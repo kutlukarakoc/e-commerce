@@ -17,10 +17,10 @@ const MobileMenu: React.FC<{ categories: CategoriesProps[]; menuTransform: strin
                <Link key={index} to={category.path}>{category.title}</Link>
             ))}
          </div>
-         <div className='border-solid border-t border-slate-500 w-full'></div>
+         <div className='border-solid border-t border-gray-500 w-full'></div>
          <div className='w-full'>
             <div className='flex items-center'>
-               <ArrowRightOnRectangleIcon className='h-6 w-6 cursor-pointer' /> Logout
+               <ArrowRightOnRectangleIcon className='h-6 w-6 cursor-pointer text-gray-5700' /> Logout
             </div>
          </div>
       </div>

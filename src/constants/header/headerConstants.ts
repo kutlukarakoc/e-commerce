@@ -1,5 +1,3 @@
-import { UserIcon, HeartIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
-
 export const categories = [
    {
       title: 'Electronics',

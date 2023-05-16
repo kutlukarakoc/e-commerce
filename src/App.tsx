@@ -3,9 +3,9 @@ import Footer from './components/footer'
 
 const App = () => {
   return (
-    <main className='font-sans h-full'>
+    <main className='font-sans h-full flex flex-col text-gray-700'>
       <Header />
-      <div className='mt-20'>
+      <div className='flex-1'>
         body
       </div>
       <Footer />
