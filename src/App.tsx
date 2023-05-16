@@ -3,10 +3,13 @@ import Footer from './components/footer'
 
 const App = () => {
   return (
-    <div>
+    <main className='font-sans h-full'>
       <Header />
+      <div className='mt-20'>
+        body
+      </div>
       <Footer />
-    </div>
+    </main>
   )
 }
 
