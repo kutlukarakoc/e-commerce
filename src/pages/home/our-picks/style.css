@@ -1,0 +1,4 @@
+.ourpicks-section.container .slick-arrow.slick-next::before,
+.ourpicks-section.container .slick-arrow.slick-prev::before {
+   display: none;
+}

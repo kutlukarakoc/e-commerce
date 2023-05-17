@@ -1,0 +1,8 @@
+#root > main > div > section.hero-section.mb-24 > div > ul {
+   bottom: 15px !important;
+}
+
+.hero-section .slick-dots li button:before {
+   font-size: 10px;
+}
+
