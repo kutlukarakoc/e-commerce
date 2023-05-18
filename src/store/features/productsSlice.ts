@@ -36,13 +36,13 @@ export const fetchSortedProducts = createAsyncThunk(
 )
 
 interface ProductsProps {
-   products: IProduct[] | IProduct
+   product: IProduct[] | IProduct
    loading: boolean
    error: string | null
 }
 
 const initialState: ProductsProps = {
-   products: [],
+   product: [],
    loading: false,
    error: null
 }
@@ -57,7 +57,7 @@ const productsSlice = createSlice({
       })
       builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
          state.loading = false
-         state.products = action.payload
+         state.product = action.payload
          state.error = null
       })
       builder.addCase(fetchAllProducts.rejected, (state) => {
@@ -70,7 +70,7 @@ const productsSlice = createSlice({
       })
       builder.addCase(fetchProductById.fulfilled, (state, action) => {
          state.loading = false
-         state.products = action.payload
+         state.product = action.payload
          state.error = null
       })
       builder.addCase(fetchProductById.rejected, (state) => {
@@ -83,7 +83,7 @@ const productsSlice = createSlice({
       })
       builder.addCase(fetchLimitedProducts.fulfilled, (state, action) => {
          state.loading = false
-         state.products = action.payload
+         state.product = action.payload
          state.error = null
       })
       builder.addCase(fetchLimitedProducts.rejected, (state) => {
@@ -96,7 +96,7 @@ const productsSlice = createSlice({
       })
       builder.addCase(fetchSortedProducts.fulfilled, (state, action) => {
          state.loading = false
-         state.products = action.payload
+         state.product = action.payload
          state.error = null
       })
       builder.addCase(fetchSortedProducts.rejected, (state) => {
