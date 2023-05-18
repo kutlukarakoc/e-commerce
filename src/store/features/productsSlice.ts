@@ -36,13 +36,13 @@ export const fetchSortedProducts = createAsyncThunk(
 )
 
 interface ProductsProps {
-   product: IProduct[] | IProduct
+   product: IProduct | null
    loading: boolean
    error: string | null
 }
 
 const initialState: ProductsProps = {
-   product: [],
+   product: null,
    loading: false,
    error: null
 }

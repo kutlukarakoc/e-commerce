@@ -75,7 +75,7 @@ const OurPicks: React.FC = () => {
       <section className='ourpicks-section container mx-auto mb-32'>
          <h2 className='text-3xl text-center mb-14 tracking-wider font-semibold'>Our Picks For You</h2>
          <Slider {...ourPicksSettings}>
-            {(product as IProduct[]).map((product: IProduct) => (
+            {(product as IProduct[] | null)?.map((product: IProduct) => (
                <div key={product.id} className='h-64'>
                   <div className='h-full w-48 sm:w-60 block mx-auto'>
                      <img src={product.image} alt='ecommerce' className='w-full block aspect-video max-w-full h-full' />
