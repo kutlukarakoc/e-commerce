@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import logo from '../../assets/logo.png'
 import { categories } from '../../constants/header/headerConstants'
 
-const Header = () => {
+const Header: React.FC = () => {
 
    const [toggleMenu, setToggleMenu] = useState<boolean>(false)
    const [menuTransform, setMenuTransform] = useState<string>('translateX(-256px)')

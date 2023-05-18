@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { categoriesBanners } from '../../../constants/home/categoriesBanners'
 
-const CategoriesSection = () => {
+const CategoriesSection: React.FC = () => {
    return (
       <section className='container px-4 sm:px-0 grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 mb-32'>
          {categoriesBanners.map((banner, index) => (

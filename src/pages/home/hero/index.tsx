@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { heroBanners } from '../../../constants/home/heroBanners'
 import './style.css'
 
-const HeroSection = () => {
+const HeroSection: React.FC = () => {
 
    const heroSettings = {
       dots: true,

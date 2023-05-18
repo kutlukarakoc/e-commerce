@@ -7,9 +7,9 @@ import { IProduct } from '../../../types/productsTypes'
 import './style.css'
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/24/outline'
 
-const OurPicks = () => {
+const OurPicks: React.FC = () => {
 
-   const { products, loading, error } = useAppSelector(state => state.products)
+   const { product, loading, error } = useAppSelector(state => state.products)
    const dispatch = useAppDispatch()
 
    useEffect(() => {
@@ -75,7 +75,7 @@ const OurPicks = () => {
       <section className='ourpicks-section container mx-auto mb-32'>
          <h2 className='text-3xl text-center mb-14 tracking-wider font-semibold'>Our Picks For You</h2>
          <Slider {...ourPicksSettings}>
-            {(products as IProduct[]).map((product: IProduct) => (
+            {(product as IProduct[]).map((product: IProduct) => (
                <div key={product.id} className='h-64'>
                   <div className='h-full w-48 sm:w-60 block mx-auto'>
                      <img src={product.image} alt='ecommerce' className='w-full block aspect-video max-w-full h-full' />
@@ -83,7 +83,7 @@ const OurPicks = () => {
                      <p className='text-sm mb-3'>{product.category}</p>
                      <div className='flex justify-between px-4 w-full'>
                         <div className='font-semibold'>${product.price.toFixed(2)}</div>
-                        <Link to={`/products/${product.id}`} className='underline text-xs'>Visit</Link>
+                        <Link to={`/products/:${product.id}`} className='underline text-xs'>Visit</Link>
                      </div>
                   </div>
                </div>

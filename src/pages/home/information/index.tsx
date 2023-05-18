@@ -1,6 +1,6 @@
 import { TruckIcon, ShieldCheckIcon, BanknotesIcon, DevicePhoneMobileIcon } from '@heroicons/react/24/outline'
 
-const Information = () => {
+const Information: React.FC = () => {
    return (
       <section className='container mx-auto grid grid-cols-2 md:grid-cols-4 mb-32'>
          <div className='md:border-r-2 md:border-solid md:border-gray-500 text-center py-8 md:py-3 md:pe-10'>

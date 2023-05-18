@@ -4,7 +4,7 @@ import logo from '../../assets/logo.png'
 import { Link } from 'react-router-dom'
 import { items } from '../../constants/footer/footerConstants'
 
-const Footer = () => {
+const Footer: React.FC = () => {
    return (
       <footer className="min-h-72 flex flex-col justify-evenly gap-4 sm:gap-10 py-4 border-t border-solid border-gray-500">
          <div className="flex flex-col sm:flex-row gap-4 justify-around items-center px-2">
