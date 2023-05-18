@@ -17,7 +17,7 @@ const HeroSection = () => {
    }
 
    return (
-      <section className='hero-section mb-24'>
+      <section className='hero-section mb-32'>
          <Slider {...heroSettings}>
             {heroBanners.map((banner, index) => (
                <div key={index} className='h-[450px] sm:h-[625px]'>

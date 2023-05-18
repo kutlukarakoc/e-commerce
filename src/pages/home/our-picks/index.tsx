@@ -72,7 +72,7 @@ const OurPicks = () => {
    }
 
    return (
-      <section className='ourpicks-section container mx-auto mb-24'>
+      <section className='ourpicks-section container mx-auto mb-32'>
          <h2 className='text-3xl text-center mb-14 tracking-wider font-semibold'>Our Picks For You</h2>
          <Slider {...ourPicksSettings}>
             {(products as IProduct[]).map((product: IProduct) => (
@@ -83,7 +83,7 @@ const OurPicks = () => {
                      <p className='text-sm mb-3'>{product.category}</p>
                      <div className='flex justify-between px-4 w-full'>
                         <div className='font-semibold'>${product.price.toFixed(2)}</div>
-                        <Link to={`/products/${product.id}`} className='underline'>Visit</Link>
+                        <Link to={`/products/${product.id}`} className='underline text-xs'>Visit</Link>
                      </div>
                   </div>
                </div>

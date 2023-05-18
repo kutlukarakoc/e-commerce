@@ -2,7 +2,7 @@ import { TruckIcon, ShieldCheckIcon, BanknotesIcon, DevicePhoneMobileIcon } from
 
 const Information = () => {
    return (
-      <section className='container mx-auto grid grid-cols-2 md:grid-cols-4 mb-24'>
+      <section className='container mx-auto grid grid-cols-2 md:grid-cols-4 mb-32'>
          <div className='md:border-r-2 md:border-solid md:border-gray-500 text-center py-8 md:py-3 md:pe-10'>
             <TruckIcon className='h-16 sm:h-20 w-16 sm:w-20 mx-auto text-gray-700' />
             <h4 className='mt-4'>Free Shipping</h4>
