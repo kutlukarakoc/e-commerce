@@ -11,14 +11,6 @@ export const fetchAllProducts = createAsyncThunk(
    }
 )
 
-export const fetchProductById = createAsyncThunk(
-   'product/byId',
-   async (id: number) => {
-      const response = await axios.get(`https://fakestoreapi.com/products/${id}`)
-      return response.data
-   }
-)
-
 export const fetchLimitedProducts = createAsyncThunk(
    'limitedProducts/byLimit',
    async (limit: number) => {
@@ -36,18 +28,18 @@ export const fetchSortedProducts = createAsyncThunk(
 )
 
 interface ProductsProps {
-   product: IProduct | null
+   product: IProduct[]
    loading: boolean
    error: string | null
 }
 
 const initialState: ProductsProps = {
-   product: null,
+   product: [],
    loading: false,
    error: null
 }
 
-const productsSlice = createSlice({
+const multipleProducts = createSlice({
    name: 'products',
    initialState,
    reducers: {},
@@ -61,19 +53,6 @@ const productsSlice = createSlice({
          state.error = null
       })
       builder.addCase(fetchAllProducts.rejected, (state) => {
-         state.loading = false
-         state.error = 'Something went wrong. Please try again later.'
-      })
-
-      builder.addCase(fetchProductById.pending, (state) => {
-         state.loading = true
-      })
-      builder.addCase(fetchProductById.fulfilled, (state, action) => {
-         state.loading = false
-         state.product = action.payload
-         state.error = null
-      })
-      builder.addCase(fetchProductById.rejected, (state) => {
          state.loading = false
          state.error = 'Something went wrong. Please try again later.'
       })
@@ -107,4 +86,4 @@ const productsSlice = createSlice({
 })
 
 export const products = (state: RootState) => state.products
-export default productsSlice.reducer
+export default multipleProducts.reducer

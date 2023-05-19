@@ -1,7 +1,7 @@
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from '../../../store/hooks'
-import { fetchLimitedProducts } from '../../../store/features/productsSlice'
+import { fetchLimitedProducts } from '../../../store/features/multipleProducts'
 import { useEffect } from 'react'
 import { IProduct } from '../../../types/productsTypes'
 import './style.css'
@@ -75,7 +75,7 @@ const OurPicks: React.FC = () => {
       <section className='ourpicks-section container mx-auto mb-32'>
          <h2 className='text-3xl text-center mb-14 tracking-wider font-semibold'>Our Picks For You</h2>
          <Slider {...ourPicksSettings}>
-            {(product as IProduct[] | null)?.map((product: IProduct) => (
+            {product.map((product: IProduct) => (
                <div key={product.id} className='h-64'>
                   <div className='h-full w-48 sm:w-60 block mx-auto'>
                      <img src={product.image} alt='ecommerce' className='w-full block aspect-video max-w-full h-full' />
@@ -83,7 +83,7 @@ const OurPicks: React.FC = () => {
                      <p className='text-sm mb-3'>{product.category}</p>
                      <div className='flex justify-between px-4 w-full'>
                         <div className='font-semibold'>${product.price.toFixed(2)}</div>
-                        <Link to={`/products/:${product.id}`} className='underline text-xs'>Visit</Link>
+                        <Link to={`/products/${product.id}`} className='underline text-xs'>Visit</Link>
                      </div>
                   </div>
                </div>
