@@ -4,5 +4,6 @@ export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
    click?: () => void
    variant: 'filled' | 'outline'
    styles?: string
-   size?: string
+   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+   color: string
 }
