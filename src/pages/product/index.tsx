@@ -8,10 +8,11 @@ import Rating from '../../components/ui/rating'
 import Accordion from '../../components/ui/accordion'
 import { shippingConstants, returnsConstants } from '../../constants/product/accordionConstants'
 import LoadingSkeleton from './loading'
+import { clearProduct } from '../../store/features/singleProduct'
 
 const Product: React.FC = () => {
 
-   /* getting productId from URL */
+   // getting productId from URL
    const { productId } = useParams()
 
    const { product, loading, error } = useAppSelector(state => state.product)
@@ -20,6 +21,11 @@ const Product: React.FC = () => {
 
    useEffect(() => {
       dispatch(fetchProductById(Number(productId)))
+
+      // clean product state when component unmount
+      return () => {
+         dispatch(clearProduct())
+      }
    }, [productId])
 
    return (
