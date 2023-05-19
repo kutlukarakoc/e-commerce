@@ -64,7 +64,7 @@ const Carousel: React.FC<ICarousel> = ({ products }) => {
          {products.map(product => (
             <div key={product.id} className='h-64'>
                <div className='h-full w-48 sm:w-60 block mx-auto'>
-                  <img src={product.image} alt='ecommerce' className='w-full block aspect-video max-w-full h-full bg-gray-600' />
+                  <img src={product.image} alt='ecommerce' className='w-full block aspect-video max-w-full h-full' />
                   <h3 className='mt-10 mb-1 text-base font-semibold h-6 line-clamp-1 overflow-hidden'>{product.title}</h3>
                   <p className='text-sm mb-3'>{product.category}</p>
                   <div className='flex justify-between px-4 w-full'>

@@ -15,7 +15,7 @@ const LoadingSkeleton = () => {
    }
 
    return (
-      <div className='flex justify-around animate-pulse'>
+      <div className='flex justify-around min-h-[325px] animate-pulse'>
          {Array.from({ length: arraySize }).map((item, index) => (
             <div key={index} className='h-64'>
                <div className='h-full w-48 sm:w-60'>
