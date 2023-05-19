@@ -39,7 +39,7 @@ const Product: React.FC = () => {
                         <div className='bg-zinc-50 rounded-md max-w-xl h-[350px] sm:h-[600px] flex justify-center items-center w-full mx-auto'>
                            <img src={product.image} alt={product.title} className='block w-3/4 h-3/4 max-h-full rounded-md mix-blend-multiply' />
                         </div>
-                        <div>
+                        <div className='max-w-[700px]'>
                            <h1 className='text-3xl sm:text-4xl font-bold mb-3 text-center md:text-left'>{product.title}</h1>
                            <h3 className='text-2xl sm:text-3xl font-semibold mb-3'>${product.price}</h3>
                            <div className='mb-6 flex items-center gap-4 text-lg'>
