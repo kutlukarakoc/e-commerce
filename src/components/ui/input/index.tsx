@@ -8,14 +8,14 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    onchange?: (value: string) => void
 }
 
-const Input: React.FC<InputProps> = ({type, name, label, ...rest}) => {
+const Input: React.FC<InputProps> = ({ type, name, label, ...rest }) => {
    return (
       <div className='input-wrapper'>
          {label && <label htmlFor={name}></label>}
-         <input 
-            type={type} 
-            id={name} 
-            {...rest} 
+         <input
+            type={type}
+            id={name}
+            {...rest}
             style={{
                outline: 'none'
             }}
