@@ -45,7 +45,7 @@ const Header: React.FC = () => {
             </nav>
             <div className='flex justify-center items-center gap-6 h-14 pb-2'>
                {categories.map((category, index) => (
-                  <Link key={index} to={category.path} className='hidden sm:block'>{category.title}</Link>
+                  <Link key={index} to={category.path} className='hidden sm:block text-gray-800'>{category.title}</Link>
                ))}
                <div className='block sm:hidden w-11/12 mx-auto'>
                   <Input type='text' name='head-search' placeholder='search products' className='w-full border-b border-gray-500 bg-transparent text-gray-700 placeholder:text-gray-700 px-2 py-1' />

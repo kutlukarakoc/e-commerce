@@ -48,7 +48,7 @@ const Product: React.FC = () => {
                            </div>
                            <p className='text-base tracking-wide mb-6 first-letter:uppercase'>{product.description}</p>
                            <div className='flex gap-6'>
-                              <Button type='button' variant='filled' color='indigo' size='xl' className='px-6 py-3 font-semibold leading-5'>
+                              <Button type='button' variant='filled' color='indigo' size='md' className='px-6 py-3 font-semibold leading-5'>
                                  Add to cart
                               </Button>
                               <div className='w-10'>
