@@ -1,18 +1,18 @@
 export const categories = [
    {
       title: 'Electronics',
-      path: '/electronics'
+      path: '/categories/electronics'
    },
    {
       title: 'Jewelery',
-      path: '/jewelery'
+      path: '/categories/jewelery'
    },
    {
       title: 'Men\'s clothing',
-      path: '/men'
+      path: '/categories/men'
    },
    {
       title: 'Women\'s clothing',
-      path: '/women'
+      path: '/categories/women'
    },
 ]
