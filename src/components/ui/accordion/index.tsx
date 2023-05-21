@@ -57,7 +57,7 @@ const Accordion: React.FC<IAccordion> = ({ title, contents, type, click }) => {
          <h3 className="flex justify-between items-center mb-4">
             {/* Button to trigger the toggle handler */}
             <button onClick={handleToggle} className="cursor-pointer flex justify-between items-center w-full">
-               <span className={toggle ? 'text-indigo-500' : ''}>{title}</span>
+               <span className={toggle ? 'text-indigo-600' : ''}>{title}</span>
                {/* Plus or minus icon based on the toggle state */}
                {toggle ? <MinusIcon className="w-7 h-7" /> : <PlusIcon className="w-7 h-7" />}
             </button>
