@@ -1,19 +1,35 @@
 export const shippingConstants = {
    title: 'Shipping',
    contents: [
-      'Free shipping on orders over $100',
-      'International shipping available',
-      'Expedited shipping options',
-      'Signature required upon delivery'
+      {
+         title: 'Free shipping on orders over $100',
+      },
+      {
+         title: 'International shipping available',
+      },
+      {
+         title: 'Expedited shipping options',
+      },
+      {
+         title: 'Signature required upon delivery'
+      }
    ]
 }
 
 export const returnsConstants = {
    title: 'Returns',
    contents: [
-      'Easy return requests',
-      'Pre-paid shipping label included',
-      '10% restocking fee for returns',
-      '30 day return window'
+      {
+         title: 'Easy return requests',
+      },
+      {
+         title: 'Pre-paid shipping label included',
+      },
+      {
+         title: '10% restocking fee for returns',
+      },
+      {
+         title: '30 day return window'
+      }
    ]
 }
