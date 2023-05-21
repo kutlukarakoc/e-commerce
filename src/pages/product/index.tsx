@@ -9,6 +9,7 @@ import Accordion from '../../components/ui/accordion'
 import { shippingConstants, returnsConstants } from '../../constants/product/accordionConstants'
 import LoadingSkeleton from './loading'
 import { clearProduct } from '../../store/features/singleProduct'
+import Divider from '../../components/ui/divider'
 
 const Product: React.FC = () => {
 
@@ -57,9 +58,9 @@ const Product: React.FC = () => {
                               </div>
                            </div>
                            <div className='mt-16'>
-                              <Accordion title={shippingConstants.title} contents={shippingConstants.contents} />
-                              <div className='my-5 border-t border-solid border-gray-500 w-full h-1'></div>
-                              <Accordion title={returnsConstants.title} contents={returnsConstants.contents} />
+                              <Accordion title={shippingConstants.title} contents={shippingConstants.contents} type='list' />
+                              <Divider />
+                              <Accordion title={returnsConstants.title} contents={returnsConstants.contents} type='list' />
                            </div>
                         </div>
                      </>
