@@ -3,7 +3,7 @@ import Footer from './components/footer'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/home'
 import Product from './pages/product'
-import AllCategories from './pages/category'
+import ProductListing from './pages/category'
 
 const App: React.FC = () => {
 	return (
@@ -12,10 +12,8 @@ const App: React.FC = () => {
 			<div className='flex-1'>
 				<Routes>
 					<Route path='/' element={<Home />} />
+					<Route path='/products/*' element={<ProductListing />} />
 					<Route path='/products/:productId' element={<Product />} />
-					<Route path='/category' element={<AllCategories />}>
-						
-					</Route>
 				</Routes>
 			</div>
 			<Footer />
