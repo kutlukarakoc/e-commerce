@@ -20,7 +20,7 @@ const Select: React.FC<ISelect> = ({ title, contents, click, initialTitle }) => 
    }, [initialTitle])
 
    return (
-      <div className={`w-full font-medium ${!open && 'h-15'}`}>
+      <div className={`w-44 md:w-full font-medium text-sm ${!open && 'h-15'}`}>
          {/* Select header */}
          <div
             onClick={() => setOpen(!open)}
@@ -29,10 +29,10 @@ const Select: React.FC<ISelect> = ({ title, contents, click, initialTitle }) => 
             <span className={(selected && selected.title !== title) ? 'text-indigo-600' : ''}>{selected ? selected.title : title}</span>
             <ChevronDownIcon className={`w-5 h-5 ${open && ' rotate-180'}`} />
          </div>
-         <ul className={`bg-white mt-2 overflow-y-auto ${open ? 'max-h-60' : 'max-h-0'} `}>
+         <ul className={`bg-white mt-2 overflow-y-auto ${open ? 'max-h-40' : 'max-h-0'} `}>
             {selected && selected.title !== title && (
                // Default select option
-               <li className='p-2 text-sm hover:bg-indigo-600 hover:text-white' onClick={() => handleClick({ title })}>
+               <li className='p-2 text-xs hover:bg-indigo-600 hover:text-white' onClick={() => handleClick({ title })}>
                   {title}
                </li>
             )}
@@ -40,7 +40,7 @@ const Select: React.FC<ISelect> = ({ title, contents, click, initialTitle }) => 
             {/* Render select options */}
             {contents.map((content, index) => (
                <li key={index}
-                  className={`p-2 text-sm hover:bg-indigo-600 hover:text-white ${content.title === selected.title && 'bg-indigo-600 text-white'}`}
+                  className={`p-2 text-xs hover:bg-indigo-600 hover:text-white ${content.title === selected.title && 'bg-indigo-600 text-white'}`}
                   onClick={() => handleClick(content)}
                >
                   {content?.title}
