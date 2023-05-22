@@ -41,10 +41,10 @@ const Filter: React.FC = () => {
    // Set initial titles for category and sort filters
    const setInitialTitle = () => {
       const selectedCategory = categoryFilters.contents.find((category: ISelectList) => category.path === decodeURI(pathname))
-      if(selectedCategory) setInitialPath(selectedCategory.title)
-      
+      if (selectedCategory) setInitialPath(selectedCategory.title)
+
       const selectedSort = sortFilters.contents.find((sort: ISelectList) => sort.search === locationSearch.split('?')[1])
-      if(selectedSort) setInitialSearch(selectedSort.title)
+      if (selectedSort) setInitialSearch(selectedSort.title)
    }
 
    useEffect(() => {
@@ -52,19 +52,21 @@ const Filter: React.FC = () => {
    }, [])
 
    return (
-      <div className='w-1/5'>
+      <div className='md:w-1/5 flex flex-col sm:flex-row md:flex-col items-center sm:items-start sm:justify-between px-4 md:px-0'>
          {/* Input component for product search */}
          <Input
             type='text'
             name='search'
             placeholder='Search products'
-            className='text-gray-700 placeholder:text-gray-700 w-full border-b border-gray-500 bg-transparent px-2 py-1 mb-10'
+            wrapperStyles='mb-10 h-9 max-w-[155px]'
          />
          {/* Select component for category filter */}
-         <Select title={categoryFilters.title} contents={categoryFilters.contents} click={handleURL} initialTitle={initialPath} />
-         <Divider />
-         {/* Select component for sort filter */}
-         <Select title={sortFilters.title} contents={sortFilters.contents} click={handleURL} initialTitle={initialSearch} />
+         <div>
+            <Select title={categoryFilters.title} contents={categoryFilters.contents} click={handleURL} initialTitle={initialPath} />
+            <Divider styles='hidden md:block' />
+            {/* Select component for sort filter */}
+            <Select title={sortFilters.title} contents={sortFilters.contents} click={handleURL} initialTitle={initialSearch} />
+         </div>
       </div>
    )
 }
