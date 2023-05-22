@@ -52,21 +52,13 @@ const Filter: React.FC = () => {
    }, [])
 
    return (
-      <div className='md:w-1/5 flex flex-col sm:flex-row md:flex-col items-center sm:items-start sm:justify-between px-4 md:px-0'>
-         {/* Input component for product search */}
-         <Input
-            type='text'
-            name='search'
-            placeholder='Search products'
-            wrapperStyles='mb-10 h-9 max-w-[155px]'
-         />
+      <div className='flex justify-between mb-20'>
          {/* Select component for category filter */}
-         <div>
-            <Select title={categoryFilters.title} contents={categoryFilters.contents} click={handleURL} initialTitle={initialPath} />
-            <Divider styles='hidden md:block' />
-            {/* Select component for sort filter */}
-            <Select title={sortFilters.title} contents={sortFilters.contents} click={handleURL} initialTitle={initialSearch} />
-         </div>
+         <Select title={categoryFilters.title} contents={categoryFilters.contents} click={handleURL} initialTitle={initialPath} />
+         {/* Input component for product search */}
+         <Input type='text' name='search' placeholder='Search products' wrapperStyles='mb-10 h-9 max-w-[155px]' />
+         {/* Select component for sort filter */}
+         <Select title={sortFilters.title} contents={sortFilters.contents} click={handleURL} initialTitle={initialSearch} />
       </div>
    )
 }
