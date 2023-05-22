@@ -3,7 +3,7 @@ import Products from './products'
 
 const ProductListing: React.FC = () => {
    return (
-      <section className='container mx-auto my-32 flex gap-20'>
+      <section className='container mx-auto my-32 flex flex-col md:flex-row gap-20'>
          <Filter />
          <Products />
       </section>
