@@ -25,11 +25,19 @@ export const sortFilters = {
    contents: [
       {
          title: 'Higher to lower price',
-         search: 'sort=higher-to-lower'
+         search: 'sort=higher-to-lower-price'
       },
       {
          title: 'Lower to higher price',
-         search: 'sort=lower-to-higher'
+         search: 'sort=lower-to-higher-price'
+      },
+      {
+         title: 'Higher to lower rate',
+         search: 'sort=higher-to-lower-rate'
+      },
+      {
+         title: 'Lower to higher rate',
+         search: 'sort=lower-to-higher-rate'
       },
       {
          title: 'A-Z',
