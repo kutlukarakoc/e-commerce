@@ -26,7 +26,7 @@ const Header: React.FC = () => {
                   <img src={logo} alt='ecommerce' className='w-full h-full block'/>
                </Link>
                <div className='hidden sm:block order-2 max-w-xs w-full'>
-                  <Input type='text' name='head-search' placeholder='search products' className='text-gray-700 placeholder:text-gray-700 w-full border-b border-gray-500 bg-transparent px-2 py-1' />
+                  <Input type='text' name='head-search' placeholder='search products' wrapperStyles='h-9' />
                </div>
                <div className='flex justify-center items-center gap-2 sm:gap-8 order-3'>
                   <div className='flex flex-col items-center justify-center gap-1 cursor-pointer'>
@@ -48,7 +48,7 @@ const Header: React.FC = () => {
                   <Link key={index} to={category.path} className='hidden sm:block text-gray-800'>{category.title}</Link>
                ))}
                <div className='block sm:hidden w-11/12 mx-auto'>
-                  <Input type='text' name='head-search' placeholder='search products' className='w-full border-b border-gray-500 bg-transparent text-gray-700 placeholder:text-gray-700 px-2 py-1' />
+                  <Input type='text' name='head-search' placeholder='search products' wrapperStyles='h-9'/>
                </div>
             </div>
          </header>
