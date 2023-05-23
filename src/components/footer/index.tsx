@@ -4,7 +4,20 @@ import logo from '../../assets/logo.png'
 import { Link } from 'react-router-dom'
 import { items } from '../../constants/footer/footerConstants'
 
+interface IFooterLinks {
+   icon: JSX.Element
+   link: string
+}
+
 const Footer: React.FC = () => {
+
+   const footerLinks: IFooterLinks[] = [
+      { icon: <AiFillGithub size={24} />, link: 'https://github.com/kutlukarakoc' },
+      { icon: <AiFillLinkedin size={24} />, link: 'https://www.linkedin.com/in/taha-kutlu-karako%C3%A7-6939b0146/' },
+      { icon: <AiOutlineInstagram size={24} />, link: 'https://www.instagram.com/kutlukrkc/' },
+      { icon: <SiLeetcode size={24} />, link: 'https://leetcode.com/kutlukarakoc/' },
+   ]
+
    return (
       <footer className="min-h-72 flex flex-col justify-evenly gap-4 sm:gap-10 py-4 border-t border-solid border-gray-500">
          <div className="flex flex-col sm:flex-row gap-4 justify-around items-center px-2 pt-6 pb-2">
@@ -25,18 +38,11 @@ const Footer: React.FC = () => {
          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 px-8">
             <div className="text-xs order-2 sm:order-1">© 2023 E Commerce, Inc. All rights reserved.</div>
             <div className='flex gap-4 order-1 sm:order-2'>
-               <a href='https://github.com/kutlukarakoc' target='_blank'>
-                  <AiFillGithub size={24} />
-               </a>
-               <a href='https://www.linkedin.com/in/taha-kutlu-karako%C3%A7-6939b0146/' target='_blank'>
-                  <AiFillLinkedin size={24} />
-               </a>
-               <a href='https://www.instagram.com/kutlukrkc/' target='_blank'>
-                  <AiOutlineInstagram size={24} />
-               </a>
-               <a href='https://leetcode.com/kutlukarakoc/' target='_blank'>
-                  <SiLeetcode size={24} />
-               </a>
+               {footerLinks.map((item: IFooterLinks) => (
+                  <a href={item.link} target='_blank'>
+                     {item.icon}
+                  </a>
+               ))}
             </div>
          </div>
       </footer>

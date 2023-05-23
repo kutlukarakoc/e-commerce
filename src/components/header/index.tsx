@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom'
-import { UserIcon, HeartIcon, ShoppingBagIcon, Bars3Icon } from '@heroicons/react/24/outline'
+import { UserIcon, HeartIcon, ShoppingBagIcon, Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import Input from '../ui/input'
 import MobileMenu from './MobileMenu'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
 import logo from '../../assets/logo.png'
 import { categories } from '../../constants/header/headerConstants'
+
+interface IRightSideItems {
+   icon: JSX.Element
+   text: string
+}
 
 const Header: React.FC = () => {
 
@@ -15,6 +20,18 @@ const Header: React.FC = () => {
       toggleMenu ? setMenuTransform('translateX(0)') : setMenuTransform('translateX(-256px)')
    }, [toggleMenu])
 
+   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      const value = new FormData(event.currentTarget).get('head-search')
+      console.log(value)
+   }
+
+   const rightSideItems: IRightSideItems[] = [
+      { icon: <UserIcon className='h-7 w-7 text-gray-700' />, text: 'Profile' },
+      { icon: <HeartIcon className='h-7 w-7 text-gray-700' />, text: 'Favorites' },
+      { icon: <ShoppingBagIcon className='h-7 w-7 text-gray-700' />, text: 'Cart' },
+   ]
+
    return (
       <>
          <header className='h-32 shadow-md text-gray-700'>
@@ -23,24 +40,21 @@ const Header: React.FC = () => {
                   <Bars3Icon className='h-7 w-7 text-gray-700' />
                </div>
                <Link to='/' className='order-1 sm:order-2 cursor-pointer w-14 h-12'>
-                  <img src={logo} alt='ecommerce' className='w-full h-full block'/>
+                  <img src={logo} alt='ecommerce' className='w-full h-full block' />
                </Link>
-               <div className='hidden sm:block order-2 max-w-xs w-full'>
-                  <Input type='text' name='head-search' placeholder='Search' wrapperStyles='h-9' />
-               </div>
+               <form className='hidden sm:block order-2 max-w-xs w-full relative' onSubmit={handleSubmit}>
+                  <Input type='text' name='head-search' placeholder='Search products' wrapperStyles='h-9' autoComplete='off' pattern='.+' required />
+                  <button type='submit' className='absolute right-3 top-1/2 -translate-y-1/2'>
+                     <MagnifyingGlassIcon className='w-5 h-5' />
+                  </button>
+               </form>
                <div className='flex justify-center items-center gap-2 sm:gap-8 order-3'>
-                  <div className='flex flex-col items-center justify-center gap-1 cursor-pointer'>
-                     <UserIcon className='h-7 w-7 text-gray-700' />
-                     <div className='text-xs tracking-wide hidden sm:block'>Profile</div>
-                  </div>
-                  <div className='flex flex-col items-center justify-center gap-1 cursor-pointer'>
-                     <HeartIcon className='h-7 w-7 text-gray-700' />
-                     <div className='text-xs tracking-wide hidden sm:block'>Favorites</div>
-                  </div>
-                  <div className='flex flex-col items-center justify-center gap-1 cursor-pointer'>
-                     <ShoppingBagIcon className='h-7 w-7 text-gray-700' />
-                     <div className='text-xs tracking-wide hidden sm:block'>Cart</div>
-                  </div>
+                  {rightSideItems.map((item: IRightSideItems) => (
+                     <div className='flex flex-col items-center justify-center gap-1 cursor-pointer'>
+                        {item.icon}
+                        <div className='text-xs tracking-wide hidden sm:block'>{item.text}</div>
+                     </div>
+                  ))}
                </div>
             </nav>
             <div className='flex justify-center items-center gap-6 h-14 pb-2'>
@@ -48,7 +62,7 @@ const Header: React.FC = () => {
                   <Link key={index} to={category.path} className='hidden sm:block text-gray-800'>{category.title}</Link>
                ))}
                <div className='block sm:hidden w-11/12 mx-auto'>
-                  <Input type='text' name='head-search' placeholder='Search' wrapperStyles='h-9'/>
+                  <Input type='text' name='head-search' placeholder='Search' wrapperStyles='h-9' />
                </div>
             </div>
          </header>
