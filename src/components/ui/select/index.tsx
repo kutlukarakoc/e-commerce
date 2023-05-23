@@ -20,11 +20,11 @@ const Select: React.FC<ISelect> = ({ title, contents, click, initialTitle }) => 
    }, [initialTitle])
 
    return (
-      <div className={`w-44 font-medium text-sm relative ${!open && 'h-15'}`}>
+      <div className={`w-44 font-medium text-sm relative cursor-pointer  ${!open && 'h-15'}`}>
          {/* Select header */}
          <div
             onClick={() => setOpen(!open)}
-            className={'bg-white w-full p-2 flex items-center justify-between rounded'}
+            className={'bg-white w-full p-2 flex items-center justify-between rounded border border-solid border-gray-500'}
          >
             <span className={(selected && selected.title !== title) ? 'text-indigo-600' : ''}>{selected ? selected.title : title}</span>
             <ChevronDownIcon className={`w-5 h-5 ${open && ' rotate-180'}`} />
