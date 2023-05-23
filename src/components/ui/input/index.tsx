@@ -1,47 +1,30 @@
 import { InputHTMLAttributes, useState, useRef } from 'react'
 
-
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    name: string
    label?: string
-   type: string
-   onchange?: (value: string) => void
+   change?: (event: React.FormEvent<HTMLInputElement>) => void
    placeholder: string
    wrapperStyles?: string
    inputStyles?: string
+   pattern?: string
 }
 
-const Input: React.FC<InputProps> = ({ type, name, label, placeholder, wrapperStyles, inputStyles, ...rest }) => {
-
-   const [isFocused, setIsFocused] = useState<boolean>(false);
-   const inputRef = useRef<HTMLInputElement | null>(null);
-
-   const handleSpanClick = () => {
-      setIsFocused(true);
-      if (inputRef.current) {
-         inputRef.current.focus();
-      }
-   };
+const Input: React.FC<InputProps> = ({ name, label, placeholder, wrapperStyles, inputStyles, change, ...rest }) => {
+   const inputRef = useRef<HTMLInputElement | null>(null)
 
    return (
       <div className={'input-wrapper relative w-full ' + wrapperStyles}>
          {label && <label htmlFor={name}>{label}</label>}
          <input
             ref={inputRef}
-            type={type}
             id={name}
+            name={name}
             {...rest}
-            className={'peer outline-none h-full text-gray-700 w-full border border-gray-500 rounded px-2 py-1 text-sm' + (isFocused ? ' focus:border-indigo-600' : '') + ' ' + inputStyles}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
+            className={'peer outline-none h-full text-gray-700 w-full border border-gray-500 rounded px-4 py-1 text-sm valid:border-indigo-600 ' + inputStyles}
+            onChange={change}
          />
-         <span
-            className={
-               'absolute text-sm whitespace-nowrap left-2 translate-x-2 top-1/2 -translate-y-1/2 transition-all' +
-               (isFocused ? ' peer-focus:text-xs peer-focus:text-indigo-600 peer-focus:top-0 peer-focus:bg-white peer-focus:-translate-x-0' : '')
-            }
-            onClick={handleSpanClick}
-         >
+         <span className='absolute text-sm text-gray-400 whitespace-nowrap left-2 translate-x-2 top-1/2 -translate-y-1/2 transition-all peer-valid:text-xs peer-valid:text-indigo-600 peer-valid:top-0 peer-valid:bg-white peer-valid:-translate-x-0'>
             {placeholder}
          </span>
       </div>
