@@ -19,14 +19,6 @@ export const fetchLimitedProducts = createAsyncThunk(
    }
 )
 
-export const fetchSortedProducts = createAsyncThunk(
-   'sortedProducts/byKey',
-   async (keyword: string) => {
-      const response = await axios.get(`https://fakestoreapi.com/products?sort=${keyword}`)
-      return response.data
-   }
-)
-
 interface ProductsProps {
    products: IProduct[]
    loading: boolean
@@ -66,19 +58,6 @@ const multipleProducts = createSlice({
          state.error = null
       })
       builder.addCase(fetchLimitedProducts.rejected, (state) => {
-         state.loading = false
-         state.error = 'Something went wrong. Please try again later.'
-      })
-
-      builder.addCase(fetchSortedProducts.pending, (state) => {
-         state.loading = true
-      })
-      builder.addCase(fetchSortedProducts.fulfilled, (state, action) => {
-         state.loading = false
-         state.products = action.payload
-         state.error = null
-      })
-      builder.addCase(fetchSortedProducts.rejected, (state) => {
          state.loading = false
          state.error = 'Something went wrong. Please try again later.'
       })
