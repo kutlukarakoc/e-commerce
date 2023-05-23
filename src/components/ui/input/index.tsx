@@ -37,8 +37,8 @@ const Input: React.FC<InputProps> = ({ type, name, label, placeholder, wrapperSt
          />
          <span
             className={
-               'absolute text-sm whitespace-nowrap left-0 translate-x-2 top-1/2 -translate-y-1/2 transition-all' +
-               (isFocused ? ' peer-focus:text-xs peer-focus:text-indigo-600 peer-focus:top-0 peer-focus:bg-white' : '')
+               'absolute text-sm whitespace-nowrap left-2 translate-x-2 top-1/2 -translate-y-1/2 transition-all' +
+               (isFocused ? ' peer-focus:text-xs peer-focus:text-indigo-600 peer-focus:top-0 peer-focus:bg-white peer-focus:-translate-x-0' : '')
             }
             onClick={handleSpanClick}
          >
