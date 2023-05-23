@@ -2,7 +2,7 @@ import { useAppSelector, useAppDispatch } from '../../store/hooks'
 import { fetchProductsByUrl } from '../../store/features/filterProducts'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-import ProductCard from './productCard'
+import ProductCard from '../../components/product/card'
 import LoadingSkeleton from './loading'
 
 const Products: React.FC = () => {

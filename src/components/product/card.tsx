@@ -1,5 +1,5 @@
 import { IProduct } from '../../types/productsTypes'
-import ProductModal from './productModal'
+import ProductModal from './modal'
 import { WindowIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 
