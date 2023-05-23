@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { ISelectList } from '../../types/selectTypes'
-import Input from '../../components/ui/input'
 import Select from '../../components/ui/select'
-import Divider from '../../components/ui/divider'
 import { categoryFilters, sortFilters } from '../../constants/filter/filterConstants'
 
 const Filter: React.FC = () => {
@@ -13,7 +11,7 @@ const Filter: React.FC = () => {
 
    const { pathname, search: locationSearch } = location
 
-   // Handle URL navigation based on the selected filter
+   // handle URL navigation based on the selected filter
    const handleURL = useCallback((content: ISelectList) => {
       const { path, search } = content
 
@@ -38,7 +36,7 @@ const Filter: React.FC = () => {
    const [initialPath, setInitialPath] = useState<string>('')
    const [initialSearch, setInitialSearch] = useState<string>('')
 
-   // Set initial titles for category and sort filters
+   // set initial titles for category and sort filters
    const setInitialTitle = () => {
       const selectedCategory = categoryFilters.contents.find((category: ISelectList) => category.path === decodeURI(pathname))
       if (selectedCategory) setInitialPath(selectedCategory.title)
@@ -52,12 +50,10 @@ const Filter: React.FC = () => {
    }, [])
 
    return (
-      <div className='flex justify-between mb-20'>
-         {/* Select component for category filter */}
+      <div className='flex justify-between mb-20 gap-4'>
+         {/* select component for category filter */}
          <Select title={categoryFilters.title} contents={categoryFilters.contents} click={handleURL} initialTitle={initialPath} />
-         {/* Input component for product search */}
-         <Input type='text' name='search' placeholder='Search products' wrapperStyles='mb-10 h-9 max-w-[155px]' />
-         {/* Select component for sort filter */}
+         {/* select component for sort filter */}
          <Select title={sortFilters.title} contents={sortFilters.contents} click={handleURL} initialTitle={initialSearch} />
       </div>
    )
