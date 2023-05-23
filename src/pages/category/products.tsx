@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import ProductCard from './productCard'
 import LoadingSkeleton from './loading'
 
-const Products = () => {
+const Products: React.FC = () => {
 
    const location = useLocation()
    const dispatch = useAppDispatch()

@@ -1,4 +1,4 @@
-const LoadingSkeleton = () => {
+const LoadingSkeleton: React.FC = () => {
    return (
       <div className='container mx-auto my-24 grid grid-cols-1 md:grid-cols-2 gap-8 2xl:gap-0 px-4 sm:px-0 animate-pulse'>
          <div className='bg-gray-600 rounded-md max-w-xl h-[350px] sm:h-[600px] flex justify-center items-center w-full mx-auto'></div>

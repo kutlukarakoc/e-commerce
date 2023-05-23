@@ -1,4 +1,4 @@
-const LoadingSkeleton = () => {
+const LoadingSkeleton: React.FC = () => {
    return (
       <>
          {Array.from({ length: 6 }).map((item, index) => (
