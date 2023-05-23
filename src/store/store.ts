@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import multipleProducts from './features/multipleProducts'
 import singleProduct from './features/singleProduct'
 import filterProducts from './features/filterProducts'
+import searchProducts from './features/searchProducts'
 
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
       product: singleProduct,
       products: multipleProducts,
       filterProducts,
+      searchProducts
    }
 })
 
