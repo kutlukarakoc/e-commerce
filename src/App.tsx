@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import Home from './pages/home'
 import Product from './pages/product'
 import ProductListing from './pages/category'
+import SearchResults from './pages/search-results'
 
 const App: React.FC = () => {
 	return (
@@ -14,6 +15,7 @@ const App: React.FC = () => {
 					<Route path='/' element={<Home />} />
 					<Route path='/products/*' element={<ProductListing />} />
 					<Route path='/products/:productId' element={<Product />} />
+					<Route path='/search-results/*' element={<SearchResults />} />
 				</Routes>
 			</div>
 			<Footer />
