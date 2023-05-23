@@ -9,10 +9,10 @@ export const categories = [
    },
    {
       title: 'Men\'s clothing',
-      path: '/products/category/men'
+      path: '/products/category/men\'s clothing'
    },
    {
       title: 'Women\'s clothing',
-      path: '/products/category/women'
+      path: '/products/category/women\'s clothing'
    },
 ]
