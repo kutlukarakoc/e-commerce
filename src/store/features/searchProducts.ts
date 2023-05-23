@@ -3,12 +3,11 @@ import { RootState } from '../store'
 import { IProduct } from '../../types/productsTypes'
 import axios from 'axios'
 
-export const searchProductsByKey = createAsyncThunk(
+export const fetchProductsBySearch = createAsyncThunk(
    'sortedProducts/byKey',
    async (key: string) => {
       const response = await axios.get('https://fakestoreapi.com/products')
-      const filteredProducts = response.data.filter((product: IProduct) => product.title.includes(key))
-      return filteredProducts
+      return response.data.filter((product: IProduct) => product.title.toLowerCase().includes(key.toLowerCase()))
    }
 )
 
@@ -29,15 +28,15 @@ const searchProducts = createSlice({
    initialState,
    reducers: {},
    extraReducers: (builder) => {
-      builder.addCase(searchProductsByKey.pending, (state) => {
+      builder.addCase(fetchProductsBySearch.pending, (state) => {
          state.loading = true
       })
-      builder.addCase(searchProductsByKey.fulfilled, (state, action) => {
+      builder.addCase(fetchProductsBySearch.fulfilled, (state, action) => {
          state.loading = false
          state.searchedProducts = action.payload
          state.error = null
       })
-      builder.addCase(searchProductsByKey.rejected, (state) => {
+      builder.addCase(fetchProductsBySearch.rejected, (state) => {
          state.loading = false
          state.error = 'Something went wrong. Please try again later.'
       })
