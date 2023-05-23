@@ -4,19 +4,19 @@ export const items = [
       links: [
          {
             title: 'Electronics',
-            path: '/electronics'
+            path: '/products/category/electronics'
          },
          {
             title: 'Jewelery',
-            path: '/jewelery'
+            path: '/products/category/jewelery'
          },
          {
             title: 'Men\'s Clothing',
-            path: '/men'
+            path: '/products/category/men'
          },
          {
             title: 'Women\'s Clothing',
-            path: '/women'
+            path: '/products/category/women'
          },
       ]
    },
