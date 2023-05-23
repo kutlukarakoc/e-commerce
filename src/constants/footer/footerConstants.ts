@@ -12,11 +12,11 @@ export const items = [
          },
          {
             title: 'Men\'s Clothing',
-            path: '/products/category/men'
+            path: '/products/category/men\'s clothing'
          },
          {
             title: 'Women\'s Clothing',
-            path: '/products/category/women'
+            path: '/products/category/women\'s clothing'
          },
       ]
    },
