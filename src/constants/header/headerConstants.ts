@@ -8,11 +8,11 @@ export const categories = [
       path: '/products/category/jewelery'
    },
    {
-      title: 'Men\'s Clothing',
-      path: '/products/category/men\'s clothing'
+      title: 'Men\'s clothing',
+      path: '/products/category/men'
    },
    {
-      title: 'Women\'s Clothing',
-      path: '/products/category/women\'s clothing'
+      title: 'Women\'s clothing',
+      path: '/products/category/women'
    },
 ]
