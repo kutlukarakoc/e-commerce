@@ -4,10 +4,12 @@ import { IProduct } from '../../types/productsTypes'
 import axios from 'axios'
 
 export const fetchProductsBySearch = createAsyncThunk(
-   'sortedProducts/byKey',
+   'searchedProducts/byKey',
    async (key: string) => {
       const response = await axios.get('https://fakestoreapi.com/products')
-      return response.data.filter((product: IProduct) => product.title.toLowerCase().includes(key.toLowerCase()))
+      const data = response.data
+      const filteredProducts =  data.filter((product: IProduct) => product.title.toLowerCase().includes(key.toLowerCase()))
+      return filteredProducts
    }
 )
 
@@ -24,7 +26,7 @@ const initialState: ProductsProps = {
 }
 
 const searchProducts = createSlice({
-   name: 'products',
+   name: 'searchProducts',
    initialState,
    reducers: {},
    extraReducers: (builder) => {

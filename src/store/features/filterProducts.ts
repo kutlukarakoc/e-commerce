@@ -71,7 +71,7 @@ const initialState: ProductsProps = {
 }
 
 const filterProducts = createSlice({
-   name: 'products',
+   name: 'filterProducts',
    initialState,
    reducers: {},
    extraReducers: (builder) => {
