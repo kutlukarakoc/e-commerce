@@ -57,7 +57,7 @@ const Product: React.FC = () => {
                               <Button type='button' variant='filled' color='indigo' size='md' className='px-6 py-3 font-semibold leading-5'>
                                  Add to cart
                               </Button>
-                              <div className='w-10'>
+                              <div className='w-10 cursor-pointer'>
                                  <HeartIcon className='w-full h-full' />
                                  {/* <HeartIcon className='w-full h-full text-red-500 fill-red-500'/> */}
                               </div>
