@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import ProductCard from '../../components/product/card'
 import LoadingSkeleton from './loading'
-import Error from '../../components/error'
+import NotFound from '../../components/not-found'
 
 const Products: React.FC = () => {
 
@@ -22,7 +22,7 @@ const Products: React.FC = () => {
 
 
    if(error || (!loading && !filteredProducts.length)) {
-      return <Error title='Something went wrong!' text='Sorry, please try again later.' link='/' />
+      return <NotFound title='Something went wrong!' text='Sorry, please try again later.' link='/' />
    }
 
    return (

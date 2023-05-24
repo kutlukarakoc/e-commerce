@@ -1,8 +1,8 @@
 import Button from '../../components/ui/button'
 import { Link } from 'react-router-dom'
-import { IError } from '../../types/errorTypes'
+import { INotFound } from '../../types/notFoundTypes'
 
-const Error: React.FC<IError> = ({title, text, link}) => {
+const NotFound: React.FC<INotFound> = ({title, text, link}) => {
    return (
       <section className='grid min-h-full place-items-center bg-white px-6 py-5 sm:py-8 lg:px-8'>
          <div className='text-center'>
@@ -19,4 +19,4 @@ const Error: React.FC<IError> = ({title, text, link}) => {
    )
 }
 
-export default Error
+export default NotFound

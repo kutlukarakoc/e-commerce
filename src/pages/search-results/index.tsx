@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../store/hooks'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { fetchProductsBySearch } from '../../store/features/searchProducts'
-import Error from '../../components/error'
+import NotFound from '../../components/not-found'
 
 const SearchResults: React.FC = () => {
    // retrieves the current URL search parameters
@@ -37,7 +37,7 @@ const SearchResults: React.FC = () => {
          {
             // displays error component or product card component depends on not found state
             isNotFound
-               ? <Error title='Product not found' text='Sorry, we couldn’t find the product you’re looking for.' link='/' />
+               ? <NotFound title='Product not found' text='Sorry, we couldn’t find the product you’re looking for.' link='/' />
                : <div className='flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'><ProductCard products={searchedProducts} /></div>
          }
       </div>
