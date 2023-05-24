@@ -10,6 +10,7 @@ import { shippingConstants, returnsConstants } from '../../constants/product/acc
 import LoadingSkeleton from './loading'
 import { clearProduct } from '../../store/features/singleProduct'
 import Divider from '../../components/ui/divider'
+import Error from '../../components/error'
 
 const Product: React.FC = () => {
 
@@ -28,6 +29,10 @@ const Product: React.FC = () => {
          dispatch(clearProduct())
       }
    }, [productId])
+
+   if(error || (!loading && !product)) {
+      return <Error title='Product not found' text='Sorry, we couldn’t find the product you’re looking for.' link='/' />
+   }
 
    return (
       <>
