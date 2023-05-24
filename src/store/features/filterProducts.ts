@@ -17,18 +17,20 @@ export const fetchProductsByUrl = createAsyncThunk(
          let sortBy: string = ''
          let sortOrder: string = ''
 
-         if (search.includes('sort=lower-to-higher-price')) {
+         if (search === 'sort=lower-to-higher-price') {
             sortBy = 'price'
             sortOrder = 'asc'
-         } else if (search.includes('sort=higher-to-lower-price')) {
+         } else if (search === 'sort=higher-to-lower-price') {
             sortBy = 'price'
             sortOrder = 'desc'
-         } else if (search.includes('lower-to-higher-price')) {
+         } else if (search === 'sort=lower-to-higher-rate') {
             sortBy = 'rate'
             sortOrder = 'asc'
+         } else if (search === 'sort=higher-to-lower-rate') {
+            sortBy = 'rate'
+            sortOrder = 'desc'
          } else {
-            sortBy = 'rate'
-            sortOrder = 'desc'
+            return false
          }
 
          const sortedProducts = sortProductsByOrder(response.data, sortBy, sortOrder)

@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import ProductCard from '../../components/product/card'
 import LoadingSkeleton from './loading'
+import Error from '../../components/error'
 
 const Products: React.FC = () => {
 
@@ -18,6 +19,11 @@ const Products: React.FC = () => {
          dispatch(fetchProductsByUrl(location.pathname))
       }
    }, [location])
+
+
+   if(error || (!loading && !filteredProducts.length)) {
+      return <Error title='Something went wrong!' text='Sorry, please try again later.' link='/' />
+   }
 
    return (
       <div className='flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
