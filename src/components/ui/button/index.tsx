@@ -16,8 +16,10 @@ const Button: React.FC<IButton> = ({ children, variant, color, size, click, ...r
 
    // defining size classes
    let sizeStyles = ''
-   if (size === 'sm') {
+   if (size === 'xs') {
       sizeStyles = 'text-xs'
+   } else if (size === 'sm') {
+      sizeStyles = 'text-sm'
    } else if (size === 'md') {
       sizeStyles = 'text-base'
    } else if (size === 'lg') {
