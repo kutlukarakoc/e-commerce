@@ -5,19 +5,19 @@ import techİmg from '../../assets/category-section/tech-img.jpeg'
 
 export const categoriesBanners = [
    {
-      path: '/women',
+      path: '/products/category/women\'s clothing',
       img: womenİmg
    },
    {
-      path: '/men',
+      path: '/products/category/men\'s clothing',
       img: menİmg
    },
    {
-      path: '/jewelery',
+      path: '/products/category/jewelery',
       img: jeweleryİmg
    },
    {
-      path: '/tech',
+      path: '/products/category/electronics',
       img: techİmg
    },
 ]
