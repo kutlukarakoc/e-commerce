@@ -3,14 +3,19 @@ import Label from '../../components/ui/label'
 import Button from '../../components/ui/button'
 import Title from './title'
 
-const Register = () => {
+interface IRegister {
+   displayLogin: () => void
+}
+
+const Register: React.FC<IRegister> = ({displayLogin}) => {
+
    return (
-      <div className='border-l border-solid border-gray-500 bg-gray-100 w-full'>
+      <div className='border-l border-solid border-gray-300 bg-gray-100 w-full h-full'>
          <div className='flex min-h-full flex-1 flex-col justify-center'>
             <Title text='Register' />
 
             <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-               <form>
+               <form className='px-8 lg:px-0'>
                   <div className='mb-6'>
                      <Label text='Fullname' htmlfor='register-fullname' />
                      <Input name='register-fullname' type='text' inputPlaceholder='Michael Jackson' wrapperStyles='h-10' inputStyles='focus:border-indigo-600' required />
@@ -33,7 +38,7 @@ const Register = () => {
 
                <div className='mt-10 text-center text-sm text-gray-500'>
                   <div>Already have an account?</div>
-                  <div className='text-indigo-600 cursor-pointer hover:text-indigo-500'>
+                  <div className='text-indigo-600 cursor-pointer hover:text-indigo-500 lg:cursor-default lg:hover:text-indigo-600' onClick={displayLogin}>
                      &larr; Sign in!
                   </div>
                </div>
