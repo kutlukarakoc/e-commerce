@@ -2,27 +2,31 @@ import Input from '../../components/ui/input'
 import Label from '../../components/ui/label'
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
 import Button from '../../components/ui/button'
+import Title from './title'
 
 const Register = () => {
    return (
       <div className='border-l border-solid border-gray-500 bg-gray-100 w-full'>
          <div className='flex min-h-full flex-1 flex-col justify-center'>
-            <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
-               <h2 className='mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-700'>
-                  Register
-               </h2>
-            </div>
+            <Title text='Register' />
 
             <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-               <form className='space-y-6' action='#' method='POST'>
-                  <div>
-                     <Label text='Email Address' htmlfor='register-email' />
-                     <Input name='register-email' type='email' inputPlaceholder='example@mail.com' wrapperStyles='h-9' inputStyles='focus:border-indigo-600' required />
+               <form>
+                  <div className='mb-6'>
+                     <Label text='Fullname' htmlfor='register-fullname' />
+                     <Input name='register-fullname' type='text' inputPlaceholder='Michael Jackson' wrapperStyles='h-10' inputStyles='focus:border-indigo-600' required />
                   </div>
-
-                  <div>
+                  <div className='mb-6'>
+                     <Label text='Birthdate' htmlfor='register-birthdate' />
+                     <Input name='register-birthdate' type='text' inputPlaceholder='mm/dd/yy' wrapperStyles='h-10' inputStyles='focus:border-indigo-600' required />
+                  </div>
+                  <div className='mb-6'>
+                     <Label text='Email Address' htmlfor='register-email' />
+                     <Input name='register-email' type='email' inputPlaceholder='example@mail.com' wrapperStyles='h-10' inputStyles='focus:border-indigo-600' required />
+                  </div>
+                  <div className='mb-10'>
                      <Label text='Password' htmlfor='register-password' />
-                     <Input name='register-password' type='password' inputPlaceholder='******' wrapperStyles='h-9' inputStyles='focus:border-indigo-600' required />
+                     <Input name='register-password' type='password' inputPlaceholder='******' wrapperStyles='h-10' inputStyles='focus:border-indigo-600' required />
                   </div>
 
                   <Button type='submit' variant='filled' size='sm' color='indigo' className='px-3 py-2 w-full'>Register</Button>

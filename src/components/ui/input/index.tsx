@@ -25,13 +25,13 @@ const Input: React.FC<InputProps> = ({ name, placeholder, inputPlaceholder, wrap
          <input
             id={name}
             name={name}
-            className={'peer outline-none h-full text-gray-700 w-full border border-gray-500 rounded px-4 py-1 text-sm valid:border-indigo-600 ' + inputStyles}
+            className={'peer outline-none h-full text-gray-700 w-full border border-gray-500 rounded px-4 py-1 text-sm valid:border-indigo-600 placeholder:text-gray-500 ' + inputStyles}
             onChange={change}
             ref={inputRef}
             placeholder={inputPlaceholder}
             {...rest}
          />
-         <span className='absolute text-sm text-gray-400 whitespace-nowrap left-2 translate-x-2 top-1/2 -translate-y-1/2 transition-all peer-valid:text-xs peer-valid:text-indigo-600 peer-valid:top-0 peer-valid:bg-white peer-valid:-translate-x-0' onClick={handleSpanClick}>
+         <span className='absolute text-sm text-gray-500 whitespace-nowrap left-2 translate-x-2 top-1/2 -translate-y-1/2 transition-all peer-valid:text-xs peer-valid:text-indigo-600 peer-valid:top-0 peer-valid:bg-white peer-valid:-translate-x-0' onClick={handleSpanClick}>
             {placeholder}
          </span>
       </div>
