@@ -1,4 +1,3 @@
-import { ArrowLongRightIcon } from '@heroicons/react/24/outline'
 import Input from '../../components/ui/input'
 import Label from '../../components/ui/label'
 import Button from '../../components/ui/button'
@@ -31,11 +30,10 @@ const Login: React.FC = () => {
                <Button type='submit' variant='filled' size='sm' color='indigo' className='px-3 py-2 w-full inline-block'>Sign in</Button>
             </form>
 
-            <div className="mt-10 text-center text-sm text-gray-500 flex justify-center items-center gap-2">
+            <div className="mt-10 text-center text-sm text-gray-500">
                <span>Not a member?</span>
-               <div className='flex justify-center items-center text-indigo-600 gap-2'>
-                  Register
-                  <ArrowLongRightIcon className='w-6 h-6' />
+               <div className='text-indigo-600 cursor-pointer hover:text-indigo-500'>
+                  Register &rarr;
                </div>
             </div>
          </div>

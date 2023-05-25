@@ -1,6 +1,5 @@
 import Input from '../../components/ui/input'
 import Label from '../../components/ui/label'
-import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
 import Button from '../../components/ui/button'
 import Title from './title'
 
@@ -32,11 +31,10 @@ const Register = () => {
                   <Button type='submit' variant='filled' size='sm' color='indigo' className='px-3 py-2 w-full'>Register</Button>
                </form>
 
-               <div className='mt-10 text-center text-sm text-gray-500 flex items-center justify-center gap-2'>
-                  <ArrowLongLeftIcon className='w-6 h-6 text-indigo-600' />
-                  <span>Already have an account?</span>
-                  <div className='flex justify-center items-center text-indigo-600 gap-2'>
-                     Sign in!
+               <div className='mt-10 text-center text-sm text-gray-500'>
+                  <div>Already have an account?</div>
+                  <div className='text-indigo-600 cursor-pointer hover:text-indigo-500'>
+                     &larr; Sign in!
                   </div>
                </div>
             </div>
