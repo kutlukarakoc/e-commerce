@@ -2,12 +2,33 @@ import Input from '../../components/ui/input'
 import Label from '../../components/ui/label'
 import Button from '../../components/ui/button'
 import Title from './title'
+import { useState } from 'react'
 
 interface IRegister {
    displayLogin: () => void
 }
 
-const Register: React.FC<IRegister> = ({displayLogin}) => {
+interface IForm {
+   registerFullname: string
+   registerBirthdate: string
+   registerEmail: string
+   registerPassword: string
+}
+
+const Register: React.FC<IRegister> = ({ displayLogin }) => {
+
+   // keep track of the form's data as the user enters it
+   const [form, setForm] = useState<IForm>({registerFullname: '', registerBirthdate: '', registerEmail: '', registerPassword: ''})
+
+   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = event.target
+      setForm({...form, [name]: value})
+   }
+
+   const handleRegisterSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      console.log('form', form)
+   }
 
    return (
       <div className='border-l border-solid border-gray-300 bg-gray-100 w-full h-full'>
@@ -15,24 +36,19 @@ const Register: React.FC<IRegister> = ({displayLogin}) => {
             <Title text='Register' />
 
             <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-               <form className='px-8 lg:px-0'>
+               <form className='px-8 lg:px-0' onSubmit={handleRegisterSubmit}>
                   <div className='mb-6'>
-                     <Label text='Fullname' htmlfor='register-fullname' />
-                     <Input name='register-fullname' type='text' inputPlaceholder='Michael Jackson' wrapperStyles='h-10' inputStyles='focus:border-indigo-600' required />
+                     <Input name='registerFullname' label='Fullname' type='text' placeholder='Michael Jackson' required onChange={handleInputChange} />
                   </div>
                   <div className='mb-6'>
-                     <Label text='Birthdate' htmlfor='register-birthdate' />
-                     <Input name='register-birthdate' type='text' inputPlaceholder='mm/dd/yy' wrapperStyles='h-10' inputStyles='focus:border-indigo-600' required />
+                     <Input name='registerBirthdate' label='Birthdate' type='text' placeholder='mm/dd/yy' required onChange={handleInputChange} />
                   </div>
                   <div className='mb-6'>
-                     <Label text='Email Address' htmlfor='register-email' />
-                     <Input name='register-email' type='email' inputPlaceholder='example@mail.com' wrapperStyles='h-10' inputStyles='focus:border-indigo-600' required />
+                     <Input name='registerEmail' label='Email Address' type='email' placeholder='example@mail.com' required onChange={handleInputChange} />
                   </div>
                   <div className='mb-10'>
-                     <Label text='Password' htmlfor='register-password' />
-                     <Input name='register-password' type='password' inputPlaceholder='******' wrapperStyles='h-10' inputStyles='focus:border-indigo-600' required />
+                     <Input name='registerPassword' label='Password' type='password' placeholder='******' required onChange={handleInputChange} />
                   </div>
-
                   <Button type='submit' variant='filled' size='sm' color='indigo' className='px-3 py-2 w-full'>Register</Button>
                </form>
 
