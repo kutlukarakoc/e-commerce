@@ -12,7 +12,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputProps> = ({ change, type, name, placeholder, label, error, ...rest }) => {
 
    return (
-      <div className={'input-wrapper w-full h-10'}>
+      <div className='w-full h-10'>
          {label && <label htmlFor={name} className='block text-sm font-medium leading-6 text-gray-700 mb-1.5'>{label}</label>}
          <input
             onChange={change}
