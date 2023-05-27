@@ -17,20 +17,10 @@ const Login: React.FC<ILogin> = ({displayRegister, loginTransform}) => {
          <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
             <form className='px-8 sm:px-0'>
                <div className='mb-6'>
-                  <Label text='Email Address' htmlfor='login-mail' />
-                  <Input name='login-email' type='email' placeholder='example@mail.com' required />
+                  <Input name='loginEmail' label='Email Address' type='email' placeholder='example@mail.com' required />
                </div>
-
                <div className='mb-10'>
-                  <div className='flex items-center justify-between'>
-                     <Label text='Password' htmlfor='login-password' />
-                     <div className='text-sm'>
-                        <a href='#' className='font-semibold text-indigo-600 hover:text-indigo-500'>
-                           Forgot password?
-                        </a>
-                     </div>
-                  </div>
-                  <Input name='login-password' type='password' placeholder='******' required />
+                  <Input name='loginPassword' label='Password' type='password' placeholder='******' required />
                </div>
 
                <Button type='submit' variant='filled' size='sm' color='indigo' className='px-3 py-2 w-full inline-block'>Sign in</Button>
