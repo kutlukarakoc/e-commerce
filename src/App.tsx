@@ -7,7 +7,8 @@ import ProductListing from './pages/category'
 import SearchResults from './pages/search-results'
 import NotFound from './components/not-found'
 import LoginAndRegister from './pages/login-register'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Navigate } from 'react-router-dom'
+import React from 'react'
 
 const App: React.FC = () => {
 
@@ -16,6 +17,11 @@ const App: React.FC = () => {
 	const notAllowedPaths: string[] = ['/auth']
 	const isAllowed: boolean = !notAllowedPaths.includes(pathname)
 
+/*	const currentUser = true
+	const RequireAuth = ({children}: any) => {
+		return currentUser ? children : <Navigate to='/' />
+	}
+*/
 	return (
 		<main className='font-sans h-full flex flex-col text-gray-700'>
 			{isAllowed && <Header />}
