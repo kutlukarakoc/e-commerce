@@ -60,7 +60,7 @@ const Header: React.FC = () => {
                   <img src={logo} alt='ecommerce' className='w-full h-full block' />
                </Link>
                <form className='hidden sm:block order-2 max-w-xs w-full relative' onSubmit={handleSubmit}>
-                  <Input type='text' name='head-search' placeholder='Search products' value={inputValue} wrapperStyles='h-9' autoComplete='off' pattern='.+' required onChange={e => setInputValue(e.target.value)} />
+                  <Input type='text' name='head-search' placeholder='Search products' value={inputValue} autoComplete='off' pattern='.+' required onChange={e => setInputValue(e.target.value)} />
                   <button type='submit' className='absolute right-3 top-1/2 -translate-y-1/2'>
                      <MagnifyingGlassIcon className='w-5 h-5' />
                   </button>
@@ -79,7 +79,7 @@ const Header: React.FC = () => {
                   <Link key={index} to={category.path} className='hidden sm:block text-gray-800'>{category.title}</Link>
                ))}
                <form className='block sm:hidden w-11/12 mx-auto relative' onSubmit={handleSubmit}>
-                  <Input type='text' name='head-search' placeholder='Search products' value={inputValue} wrapperStyles='h-9' autoComplete='off' pattern='.+' required onChange={e => setInputValue(e.target.value)} />
+                  <Input type='text' name='head-search' placeholder='Search products' value={inputValue} autoComplete='off' pattern='.+' required onChange={e => setInputValue(e.target.value)} />
                   <button type='submit' className='absolute right-3 top-1/2 -translate-y-1/2'>
                      <MagnifyingGlassIcon className='w-5 h-5' />
                   </button>
