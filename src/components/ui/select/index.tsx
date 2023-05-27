@@ -20,7 +20,7 @@ const Select: React.FC<ISelect> = ({ title, contents, click, initialTitle }) => 
    }, [initialTitle])
 
    return (
-      <div className={`w-44 font-medium text-sm relative cursor-pointer  ${!open && 'h-15'}`}>
+      <div className={`w-48 font-medium text-sm relative cursor-pointer ${!open && 'h-15'}`}>
          {/* Select header */}
          <div
             onClick={() => setOpen(!open)}
