@@ -17,7 +17,6 @@ export interface IUser {
    providerData: ProviderDaum3[]
    metadata: Metadata
    fullname: string
-   birhdate: string
 }
 
 export interface ProactiveRefresh {
