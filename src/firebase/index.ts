@@ -1,4 +1,5 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FB_API_KEY,
@@ -7,7 +8,8 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_FB_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FB_MESSAGING_ID,
   appId: process.env.REACT_APP_FB_APP_ID
-};
+}
 
 
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig)
+const auth = getAuth(app)
