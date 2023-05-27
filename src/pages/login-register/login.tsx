@@ -18,7 +18,7 @@ const Login: React.FC<ILogin> = ({displayRegister, loginTransform}) => {
             <form className='px-8 sm:px-0'>
                <div className='mb-6'>
                   <Label text='Email Address' htmlfor='login-mail' />
-                  <Input name='login-email' type='email' inputPlaceholder='example@mail.com' wrapperStyles='h-11' inputStyles='focus:border-indigo-600' required />
+                  <Input name='login-email' type='email' placeholder='example@mail.com' required />
                </div>
 
                <div className='mb-10'>
@@ -30,7 +30,7 @@ const Login: React.FC<ILogin> = ({displayRegister, loginTransform}) => {
                         </a>
                      </div>
                   </div>
-                  <Input name='login-password' type='password' inputPlaceholder='******' wrapperStyles='h-11' inputStyles='focus:border-indigo-600' required />
+                  <Input name='login-password' type='password' placeholder='******' required />
                </div>
 
                <Button type='submit' variant='filled' size='sm' color='indigo' className='px-3 py-2 w-full inline-block'>Sign in</Button>
