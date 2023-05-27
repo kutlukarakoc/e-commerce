@@ -19,6 +19,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
 
    // keep track of the form's data as the user enters it
    const [form, setForm] = useState<IForm>({ registerFullname: '', registerBirthdate: '', registerEmail: '', registerPassword: '' })
+   // state that specifies whether to show the password
    const [showPassword, setShowPassword] = useState<boolean>(false)
 
    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,10 +30,6 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
    const handleRegisterSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       console.log('form', form)
-   }
-
-   const togglePasswordType = () => {
-      setShowPassword(!showPassword)
    }
 
    return (
@@ -55,8 +52,8 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
                      <Input name='registerPassword' label='Password' type={showPassword ? 'text' : 'password'} placeholder='******' onChange={handleInputChange} required value={form.registerPassword} />
                      {
                         showPassword
-                           ? <EyeIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={togglePasswordType} />
-                           : <EyeSlashIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={togglePasswordType} />
+                           ? <EyeIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />
+                           : <EyeSlashIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />
                      }
                   </div>
                   <Button type='submit' variant='filled' size='sm' color='indigo' className='px-3 py-2 w-full'>Register</Button>
