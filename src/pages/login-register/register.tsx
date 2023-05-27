@@ -1,13 +1,14 @@
 import Input from '../../components/ui/input'
 import Button from '../../components/ui/button'
 import Title from './title'
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 
 interface IRegister {
    displayLogin: () => void
 }
 
-interface IForm {
+interface IForm {
    registerFullname: string
    registerBirthdate: string
    registerEmail: string
@@ -17,16 +18,21 @@ interface IForm {
 const Register: React.FC<IRegister> = ({ displayLogin }) => {
 
    // keep track of the form's data as the user enters it
-   const [form, setForm] = useState<IForm>({registerFullname: '', registerBirthdate: '', registerEmail: '', registerPassword: ''})
+   const [form, setForm] = useState<IForm>({ registerFullname: '', registerBirthdate: '', registerEmail: '', registerPassword: '' })
+   const [showPassword, setShowPassword] = useState<boolean>(false)
 
    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target
-      setForm({...form, [name]: value})
+      setForm({ ...form, [name]: value })
    }
 
    const handleRegisterSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       console.log('form', form)
+   }
+
+   const togglePasswordType = () => {
+      setShowPassword(!showPassword)
    }
 
    return (
@@ -37,16 +43,21 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
             <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
                <form className='px-8 lg:px-0' onSubmit={handleRegisterSubmit}>
                   <div className='mb-6'>
-                     <Input name='registerFullname' label='Fullname' type='text' placeholder='Michael Jackson' required onChange={handleInputChange} />
+                     <Input name='registerFullname' label='Fullname' type='text' placeholder='Michael Jackson' onChange={handleInputChange} required value={form.registerFullname} />
                   </div>
                   <div className='mb-6'>
-                     <Input name='registerBirthdate' label='Birthdate' type='text' placeholder='mm/dd/yy' required onChange={handleInputChange} />
+                     <Input name='registerBirthdate' label='Birthdate' type='text' placeholder='mm/dd/yy' onChange={handleInputChange} required value={form.registerBirthdate} />
                   </div>
                   <div className='mb-6'>
-                     <Input name='registerEmail' label='Email Address' type='email' placeholder='example@mail.com' required onChange={handleInputChange} />
+                     <Input name='registerEmail' label='Email Address' type='email' placeholder='example@mail.com' onChange={handleInputChange} required value={form.registerEmail} />
                   </div>
-                  <div className='mb-10'>
-                     <Input name='registerPassword' label='Password' type='password' placeholder='******' required onChange={handleInputChange} />
+                  <div className='mb-10 relative'>
+                     <Input name='registerPassword' label='Password' type={showPassword ? 'text' : 'password'} placeholder='******' onChange={handleInputChange} required value={form.registerPassword} />
+                     {
+                        showPassword
+                           ? <EyeIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={togglePasswordType} />
+                           : <EyeSlashIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={togglePasswordType} />
+                     }
                   </div>
                   <Button type='submit' variant='filled' size='sm' color='indigo' className='px-3 py-2 w-full'>Register</Button>
                </form>

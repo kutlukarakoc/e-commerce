@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useRef } from 'react'
+import { InputHTMLAttributes } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    change?: (event: React.ChangeEvent<HTMLInputElement>) => void
