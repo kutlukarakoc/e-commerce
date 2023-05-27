@@ -1,13 +1,21 @@
 import Input from '../../components/ui/input'
 import Button from '../../components/ui/button'
 import Title from './title'
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react'
 
 interface ILogin {
    displayRegister: () => void
-   loginTransform: string | undefined
+   loginTransform: string | undefined
 }
 
-const Login: React.FC<ILogin> = ({displayRegister, loginTransform}) => {
+const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
+
+   const [showPassword, setShowPassword] = useState<boolean>(false)
+
+   const togglePasswordType = () => {
+      setShowPassword(!showPassword)
+   }
 
    return (
       <div className={'bg-white flex w-full min-h-full flex-1 flex-col justify-center z-10 absolute lg:relative transition-transform duration-300 ' + loginTransform}>
@@ -18,8 +26,13 @@ const Login: React.FC<ILogin> = ({displayRegister, loginTransform}) => {
                <div className='mb-6'>
                   <Input name='loginEmail' label='Email Address' type='email' placeholder='example@mail.com' required />
                </div>
-               <div className='mb-10'>
-                  <Input name='loginPassword' label='Password' type='password' placeholder='******' required />
+               <div className='mb-10 relative'>
+                  <Input name='loginPassword' label='Password' type={showPassword ? 'text' : 'password'} placeholder='******' required />
+                  {
+                     showPassword
+                        ? <EyeIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={togglePasswordType} />
+                        : <EyeSlashIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={togglePasswordType} />
+                  }
                </div>
 
                <Button type='submit' variant='filled' size='sm' color='indigo' className='px-3 py-2 w-full inline-block'>Sign in</Button>
