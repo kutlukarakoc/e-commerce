@@ -92,5 +92,5 @@ const filterProducts = createSlice({
    }
 })
 
-export const products = (state: RootState) => state.products
+export const products = (state: RootState) => state.filterProducts
 export default filterProducts.reducer

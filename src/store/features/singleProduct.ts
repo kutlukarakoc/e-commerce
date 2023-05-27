@@ -24,7 +24,7 @@ const initialState: ProductProps = {
 }
 
 const singleProduct = createSlice({
-   name: 'singleProduct',
+   name: 'product',
    initialState,
    reducers: {
       clearProduct: (state) => {
@@ -47,6 +47,6 @@ const singleProduct = createSlice({
    }
 })
 
-export const products = (state: RootState) => state.products
+export const product = (state: RootState) => state.product
 export default singleProduct.reducer
 export const { clearProduct } = singleProduct.actions

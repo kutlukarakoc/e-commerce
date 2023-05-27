@@ -32,7 +32,7 @@ const initialState: ProductsProps = {
 }
 
 const multipleProducts = createSlice({
-   name: 'multipleProducts',
+   name: 'products',
    initialState,
    reducers: {},
    extraReducers: (builder) => {

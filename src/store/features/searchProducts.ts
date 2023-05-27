@@ -45,5 +45,5 @@ const searchProducts = createSlice({
    }
 })
 
-export const products = (state: RootState) => state.products
+export const products = (state: RootState) => state.searchProducts
 export default searchProducts.reducer
