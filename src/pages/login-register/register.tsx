@@ -5,7 +5,7 @@ import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 import Spinner from '../../components/ui/spinner'
 import { IForm } from '../../types/authFormTypes'
-import { useRegister } from '../../hooks/useRegister'
+import { useAuth } from '../../hooks/useAuth'
 import { useAppDispatch } from '../../store/hooks'
 import { login } from '../../store/features/auth'
 import { useNavigate } from 'react-router-dom'
@@ -22,7 +22,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
    const [showPassword, setShowPassword] = useState<boolean>(false)
 
    // getting states and register method from useRegister custom hook
-   const { loading, error, register } = useRegister()
+   const { loading, error, register } = useAuth()
 
    const dispatch = useAppDispatch()
 
