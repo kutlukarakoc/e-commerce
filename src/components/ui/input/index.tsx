@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({ change, type, name, placeholder, label, e
             id={name}
             name={name}
             placeholder={placeholder}
-            className={'outline-none text-gray-700 w-full border border-gray-300 rounded-md px-4 py-1 text-sm valid:border-indigo-600 placeholder:text-gray-500 focus:border-indigo-600 h-10'}
+            className={'outline-none text-gray-700 w-full border border-gray-300 rounded-md px-4 py-1 text-sm placeholder:text-gray-500 focus:border-indigo-600 h-10'}
             {...rest}
          />
          {error && <p className='error'>{error}</p>}
