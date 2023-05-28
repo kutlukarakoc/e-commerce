@@ -12,7 +12,6 @@ import NotFound from './components/not-found'
 import LoginAndRegister from './pages/login-register'
 import { useLocation, Navigate } from 'react-router-dom'
 import { useAppSelector } from './store/hooks'
-import { useState, useEffect } from 'react'
 
 const App: React.FC = () => {
 
@@ -21,19 +20,11 @@ const App: React.FC = () => {
 	const notAllowedPaths: string[] = ['/auth']
 	const isAllowed: boolean = !notAllowedPaths.includes(pathname)
 
-	// state to keep track of whether current user or not
-	const [currentUser, setCurrentUser] = useState<boolean>(false)
-
 	// getting user from store
 	const user = useAppSelector(state => state.auth.user)
 
 	// if there is current user display component, else navigate to auth page
-	const RequireAuth = ({ children }: { children: JSX.Element }) => currentUser ? children : <Navigate to='/auth' />
-
-	// if there is user set current state to true, else false
-	useEffect(() => {
-		if (user) Object.keys(user).length ? setCurrentUser(true) : setCurrentUser(false)
-	}, [user])
+	const RequireAuth = ({ children }: { children: JSX.Element }) => user ? children : <Navigate to='/auth' />
 
 	return (
 		<main className='font-sans h-full flex flex-col text-gray-700'>
