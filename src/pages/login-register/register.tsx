@@ -1,9 +1,9 @@
 import Input from '../../components/ui/input'
 import Button from '../../components/ui/button'
 import Title from './title'
+import Spinner from '../../components/ui/spinner'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
-import Spinner from '../../components/ui/spinner'
 import { IForm } from '../../types/authFormTypes'
 import { useAuth } from '../../hooks/useAuth'
 import { useAppDispatch } from '../../store/hooks'
@@ -74,7 +74,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
                            : <EyeSlashIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />
                      }
                   </div>
-                  <Button type='submit' variant='filled' size='md' color='indigo' className='w-52 h-11 flex justify-center items-center gap-4 mx-auto'>
+                  <Button disabled={loading} type='submit' variant='filled' size='md' color='indigo' className='w-52 h-11 flex justify-center items-center gap-4 mx-auto disabled:opacity-75 disabled:cursor-not-allowed'>
                      Register
                      {loading && <Spinner />}
                   </Button>
