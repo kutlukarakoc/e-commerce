@@ -27,15 +27,13 @@ const App: React.FC = () => {
 	// getting user from store
 	const user = useAppSelector(state => state.auth.user)
 
+	// if there is current user display component, else navigate to auth page
+	const RequireAuth = ({ children }: { children: JSX.Element }) => currentUser ? children : <Navigate to='/auth' />
+
 	// if there is user set current state to true, else false
 	useEffect(() => {
-		user ? setCurrentUser(true) : setCurrentUser(false)
+		if (user) Object.keys(user).length ? setCurrentUser(true) : setCurrentUser(false)
 	}, [user])
-
-	// if there is current user display component, else navigate to auth page
-	const RequireAuth = ({ children }: any) => {
-		return currentUser ? children : <Navigate to='/auth' />
-	}
 
 	return (
 		<main className='font-sans h-full flex flex-col text-gray-700'>
