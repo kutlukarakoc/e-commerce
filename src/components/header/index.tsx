@@ -10,6 +10,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 interface IRightSideItems {
    icon: JSX.Element
    text: string
+   path: string
 }
 
 const Header: React.FC = () => {
@@ -44,9 +45,9 @@ const Header: React.FC = () => {
    }
 
    const rightSideItems: IRightSideItems[] = [
-      { icon: <UserIcon className='h-7 w-7 text-gray-700' />, text: 'Profile' },
-      { icon: <HeartIcon className='h-7 w-7 text-gray-700' />, text: 'Favorites' },
-      { icon: <ShoppingBagIcon className='h-7 w-7 text-gray-700' />, text: 'Cart' },
+      { icon: <UserIcon className='h-7 w-7 text-gray-700' />, text: 'Profile', path: '/profile' },
+      { icon: <HeartIcon className='h-7 w-7 text-gray-700' />, text: 'Favorites', path: '/favorites' },
+      { icon: <ShoppingBagIcon className='h-7 w-7 text-gray-700' />, text: 'Cart', path: '/cart' },
    ]
 
    return (
@@ -67,10 +68,10 @@ const Header: React.FC = () => {
                </form>
                <div className='flex justify-center items-center gap-2 sm:gap-8 order-3'>
                   {rightSideItems.map((item: IRightSideItems, index) => (
-                     <div key={index} className='flex flex-col items-center justify-center gap-1 cursor-pointer'>
+                     <Link key={index} to={item.path} className='flex flex-col items-center justify-center gap-1 cursor-pointer'>
                         {item.icon}
                         <div className='text-xs tracking-wide hidden sm:block'>{item.text}</div>
-                     </div>
+                     </Link>
                   ))}
                </div>
             </nav>
