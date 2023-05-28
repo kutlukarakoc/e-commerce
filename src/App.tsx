@@ -5,6 +5,7 @@ import Home from './pages/home'
 import Product from './pages/product'
 import ProductListing from './pages/category'
 import SearchResults from './pages/search-results'
+import Profile from './pages/profile'
 import NotFound from './components/not-found'
 import LoginAndRegister from './pages/login-register'
 import { useLocation, Navigate } from 'react-router-dom'
@@ -32,6 +33,7 @@ const App: React.FC = () => {
 					<Route path='/products/:productId' element={<Product />} />
 					<Route path='/search-results/*' element={<SearchResults />} />
 					<Route path='/auth' element={<LoginAndRegister />} />
+					<Route path='/profile' element={<Profile />}/>
 					<Route path='*' element={<NotFound title='Page not found' text='Sorry, we couldn’t find the page you’re looking for.' link='/' />} />
 				</Routes>
 			</div>
