@@ -3,33 +3,54 @@ import Button from '../../components/ui/button'
 import Title from './title'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
+import Spinner from '../../components/ui/spinner'
+import { IForm } from '../../types/authFormTypes'
+import { useRegister } from '../../hooks/useRegister'
+import { useAppDispatch } from '../../store/hooks'
+import { login } from '../../store/features/auth'
+import { useNavigate } from 'react-router-dom'
 
 interface IRegister {
    displayLogin: () => void
 }
 
-interface IForm {
-   registerFullname: string
-   registerBirthdate: string
-   registerEmail: string
-   registerPassword: string
-}
-
 const Register: React.FC<IRegister> = ({ displayLogin }) => {
 
    // keep track of the form's data as the user enters it
-   const [form, setForm] = useState<IForm>({ registerFullname: '', registerBirthdate: '', registerEmail: '', registerPassword: '' })
+   const [form, setForm] = useState<IForm>({ registerFullname: '', registerEmail: '', registerPassword: '' })
    // state that specifies whether to show the password
    const [showPassword, setShowPassword] = useState<boolean>(false)
 
-   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+   // getting states and register method from useRegister custom hook
+   const { loading, error, register } = useRegister()
+
+   const dispatch = useAppDispatch()
+
+   const navigate = useNavigate()
+
+   // update the form state with input values
+   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target
       setForm({ ...form, [name]: value })
    }
 
-   const handleRegisterSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+   // make register request and set user state, if success navigate to home
+   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
-      console.log('form', form)
+      const response = await register(form.registerEmail, form.registerPassword)
+      if (response) {
+         // destructing properties from response
+         const { email, emailVerified, phoneNumber, photoURL, uid, metadata } = response
+         // destructing properties from response.metadata
+         const { creationTime, lastSignInTime } = metadata
+         // generating payload for user state
+         const payload = { email, emailVerified, phoneNumber, photoURL, uid, metadata: { creationTime, lastSignInTime } }
+
+         dispatch(login(payload))
+
+         // navigate to home page
+         navigate('/')
+      }
    }
 
    return (
@@ -38,26 +59,28 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
             <Title text='Register' />
 
             <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-               <form className='px-8 lg:px-0' onSubmit={handleRegisterSubmit}>
+               <form className='px-8 lg:px-0' onSubmit={handleSubmit}>
                   <div className='mb-6'>
-                     <Input name='registerFullname' label='Fullname' type='text' placeholder='Michael Jackson' onChange={handleInputChange} required value={form.registerFullname} />
+                     <Input name='registerFullname' label='Fullname' type='text' placeholder='Michael Jackson' onChange={handleChange} required value={form.registerFullname} />
                   </div>
                   <div className='mb-6'>
-                     <Input name='registerBirthdate' label='Birthdate' type='text' placeholder='mm/dd/yy' onChange={handleInputChange} required value={form.registerBirthdate} />
-                  </div>
-                  <div className='mb-6'>
-                     <Input name='registerEmail' label='Email Address' type='email' placeholder='example@mail.com' onChange={handleInputChange} required value={form.registerEmail} />
+                     <Input name='registerEmail' label='Email Address' type='email' placeholder='example@mail.com' onChange={handleChange} required value={form.registerEmail} />
                   </div>
                   <div className='mb-10 relative'>
-                     <Input name='registerPassword' label='Password' type={showPassword ? 'text' : 'password'} placeholder='******' onChange={handleInputChange} required value={form.registerPassword} />
+                     <Input name='registerPassword' label='Password' type={showPassword ? 'text' : 'password'} placeholder='******' onChange={handleChange} required value={form.registerPassword} />
                      {
                         showPassword
                            ? <EyeIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />
                            : <EyeSlashIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />
                      }
                   </div>
-                  <Button type='submit' variant='filled' size='sm' color='indigo' className='px-3 py-2 w-full'>Register</Button>
+                  <Button type='submit' variant='filled' size='md' color='indigo' className='w-52 h-11 flex justify-center items-center gap-4 mx-auto'>
+                     Register
+                     {loading && <Spinner />}
+                  </Button>
                </form>
+
+               {error && <p className='text-center mt-5 text-sm text-red-500'>{error}</p>}
 
                <div className='mt-10 text-center text-sm text-gray-500'>
                   <div>Already have an account?</div>
