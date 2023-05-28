@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { auth } from '../firebase/index'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 
 export const useAuth = () => {
    const [loading, setLoading] = useState<boolean>(false)
@@ -24,5 +24,23 @@ export const useAuth = () => {
       }
    }
 
-   return { loading, error, register }
+   const signin = async (email: string, password: string) => {
+      setLoading(true)
+      try {
+         const { user } = await signInWithEmailAndPassword(auth, email, password)
+         setLoading(false)
+         return user
+      } catch (error: any) {
+         setLoading(false)
+         if (error.message.indexOf('auth/user-not-found') > -1) {
+            setError('User not found.')
+         } else if (error.message.indexOf('auth/wrong-password') > -1) {
+            setError('The password you entered is incorrect. Please try again.')
+         } else {
+            setError('Something went wrong. Please try again later.')
+         }
+      }
+   }
+
+   return { loading, error, register, signin }
 }
