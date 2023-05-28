@@ -17,7 +17,7 @@ interface IRegister {
 const Register: React.FC<IRegister> = ({ displayLogin }) => {
 
    // keep track of the form's data as the user enters it
-   const [form, setForm] = useState<IForm>({ registerFullname: '', registerEmail: '', registerPassword: '' })
+   const [form, setForm] = useState<IForm>({ registerName: '', registerSurname: '', registerEmail: '', registerPassword: '' })
    // state that specifies whether to show the password
    const [showPassword, setShowPassword] = useState<boolean>(false)
 
@@ -60,8 +60,9 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
 
             <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
                <form className='px-8 lg:px-0' onSubmit={handleSubmit}>
-                  <div className='mb-6'>
-                     <Input name='registerFullname' label='Fullname' type='text' placeholder='Michael Jackson' onChange={handleChange} required value={form.registerFullname} />
+                  <div className='mb-6 grid grid-cols-2 gap-2'>
+                     <Input name='registerName' label='Name' type='text' placeholder='Michael' onChange={handleChange} required value={form.registerName} />
+                     <Input name='registerSurname' label='Surname' type='text' placeholder='Jackson' onChange={handleChange} required value={form.registerSurname} />
                   </div>
                   <div className='mb-6'>
                      <Input name='registerEmail' label='Email Address' type='email' placeholder='example@mail.com' onChange={handleChange} required value={form.registerEmail} />

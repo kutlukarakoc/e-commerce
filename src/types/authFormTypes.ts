@@ -1,5 +1,6 @@
 export interface IForm {
-   registerFullname?: string
+   registerName: string
+   registerSurname: string
    registerEmail: string
    registerPassword: string
 }
