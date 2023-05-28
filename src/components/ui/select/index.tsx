@@ -24,12 +24,12 @@ const Select: React.FC<ISelect> = ({ title, contents, click, initialTitle }) => 
          {/* Select header */}
          <div
             onClick={() => setOpen(!open)}
-            className={'bg-white w-full p-2 flex items-center justify-between rounded border border-solid border-gray-500'}
+            className={'bg-white w-full p-2 flex items-center justify-between rounded border border-solid border-gray-300'}
          >
             <span className={(selected && selected.title !== title) ? 'text-indigo-600' : ''}>{selected ? selected.title : title}</span>
             <ChevronDownIcon className={`w-5 h-5 ${open && ' rotate-180'}`} />
          </div>
-         <ul className={`bg-white mt-2 overflow-y-auto w-44 absolute z-10 shadow-md ${open ? 'max-h-40' : 'max-h-0'} `}>
+         <ul className={`bg-white mt-2 rounded overflow-y-auto w-48 absolute z-10 shadow-md ${open ? 'max-h-40' : 'max-h-0'} `}>
             {selected && selected.title !== title && (
                // Default select option
                <li className='p-2 text-xs hover:bg-indigo-600 hover:text-white' onClick={() => handleClick({ title })}>
