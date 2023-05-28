@@ -9,6 +9,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { useAppDispatch } from '../../store/hooks'
 import { login } from '../../store/features/auth'
 import { useNavigate } from 'react-router-dom'
+import { useFirestore } from '../../hooks/useFirestore'
 
 interface IRegister {
    displayLogin: () => void
@@ -23,6 +24,8 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
 
    // getting states and register method from useAuth custom hook
    const { loading, error, register } = useAuth()
+
+   const { setItem } = useFirestore()
 
    const dispatch = useAppDispatch()
 
@@ -48,6 +51,21 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
          const payload = { email, emailVerified, phoneNumber, photoURL, uid, metadata: { creationTime, lastSignInTime } }
          // set payload to user auth.state
          dispatch(login(payload))
+         // set user to db
+         await setItem('users', uid, {
+            name: form.registerName,
+            surname: form.registerSurname,
+            password: form.registerPassword,
+            email,
+            emailVerified,
+            phoneNumber,
+            photoURL,
+            uid,
+            metadata: {
+               creationTime,
+               lastSignInTime
+            }
+         })
          // navigate to home page
          navigate('/')
       }
