@@ -34,7 +34,7 @@ const Header: React.FC = () => {
       }
 
       return () => setInputValue('')
-   }, [search])
+   }, [search, pathname])
 
    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault()
