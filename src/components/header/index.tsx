@@ -57,7 +57,7 @@ const Header: React.FC = () => {
    // right-side items with their icons, text, and paths for logged in status
    const rightSideItems: IRightSideItems[] = [
       { icon: <UserIcon className='h-7 w-7 text-gray-700' />, text: 'Profile', path: '/profile' },
-      { icon: <HeartIcon className='h-7 w-7 text-gray-700' />, text: 'Favorites', path: '/favorites' },
+      { icon: <HeartIcon className='h-7 w-7 text-gray-700' />, text: 'Wishlist', path: '/favorites' },
       { icon: <ShoppingBagIcon className='h-7 w-7 text-gray-700' />, text: 'Cart', path: '/cart' },
    ]
 
