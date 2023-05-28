@@ -1,6 +1,5 @@
 export interface IUser {
    user?: {
-      accessToken?: string
       email?: string
       emailVerified?: boolean
       phoneNumber?: any
@@ -12,6 +11,5 @@ export interface IUser {
          lastLoginAt?: string
          lastSignInTime?: string
       }
-      displayName?: any
    }
 }
