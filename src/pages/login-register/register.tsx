@@ -21,7 +21,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
    // state that specifies whether to show the password
    const [showPassword, setShowPassword] = useState<boolean>(false)
 
-   // getting states and register method from useRegister custom hook
+   // getting states and register method from useAuth custom hook
    const { loading, error, register } = useAuth()
 
    const dispatch = useAppDispatch()
@@ -37,6 +37,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
    // make register request and set user state, if success navigate to home
    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
+      // register request using custom useAuth hook
       const response = await register(form.registerEmail, form.registerPassword)
       if (response) {
          // destructing properties from response
@@ -45,9 +46,8 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
          const { creationTime, lastSignInTime } = metadata
          // generating payload for user state
          const payload = { email, emailVerified, phoneNumber, photoURL, uid, metadata: { creationTime, lastSignInTime } }
-
+         // set payload to user auth.state
          dispatch(login(payload))
-
          // navigate to home page
          navigate('/')
       }
