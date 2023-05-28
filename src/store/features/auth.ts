@@ -3,7 +3,7 @@ import { IUser } from '../../types/userTypes'
 import { RootState } from '../store'
 
 const initialState: IUser = {
-   user: JSON.parse(`${localStorage.getItem('user')}`) ?? {},
+   user: JSON.parse(`${localStorage.getItem('user')}`) ?? null,
 }
 
 const auth = createSlice({
