@@ -58,11 +58,10 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
             email,
             emailVerified,
             phoneNumber,
+            photoURL,
             uid,
             gender: null,
-            birthDay: null,
-            birthMonth: null,
-            birthYear: null,
+            birthday: null,
             metadata: {
                creationTime,
                lastSignInTime
