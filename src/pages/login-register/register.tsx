@@ -55,12 +55,14 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
          await setItem('users', uid, {
             name: form.registerName,
             surname: form.registerSurname,
-            password: form.registerPassword,
             email,
             emailVerified,
             phoneNumber,
-            photoURL,
             uid,
+            gender: null,
+            birthDay: null,
+            birthMonth: null,
+            birthYear: null,
             metadata: {
                creationTime,
                lastSignInTime
