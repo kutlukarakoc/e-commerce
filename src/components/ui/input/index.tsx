@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-   change?: (event: React.ChangeEvent<HTMLInputElement>) => void
+   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
    type: string
    name: string
    placeholder?: string
@@ -9,13 +9,13 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    error?: string
 }
 
-const Input: React.FC<InputProps> = ({ change, type, name, placeholder, label, error, ...rest }) => {
+const Input: React.FC<InputProps> = ({ onChange, type, name, placeholder, label, error, ...rest }) => {
 
    return (
       <div className='w-full'>
          {label && <label htmlFor={name} className='block text-sm font-medium leading-6 text-gray-700 mb-1.5'>{label}</label>}
          <input
-            onChange={change}
+            onChange={onChange}
             type={type}
             id={name}
             name={name}
