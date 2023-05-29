@@ -105,7 +105,7 @@ const Header: React.FC = () => {
                ))}
                {/* Mobile Search */}
                <form className='block sm:hidden w-11/12 mx-auto relative' onSubmit={handleSubmit}>
-                  <Input type='text' name='head-search' placeholder='Search products' value={inputValue} autoComplete='off' pattern='.+' required onChange={e => setInputValue(e.target.value)} />
+                  <Input type='text' name='head-search-mb' placeholder='Search products' value={inputValue} autoComplete='off' pattern='.+' required onChange={e => setInputValue(e.target.value)} />
                   <button type='submit' className='absolute right-3 top-1/2 -translate-y-1/2'>
                      <MagnifyingGlassIcon className='w-5 h-5' />
                   </button>
