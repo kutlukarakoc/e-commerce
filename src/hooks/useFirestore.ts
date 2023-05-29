@@ -47,7 +47,6 @@ export const useFirestore = () => {
       try {
          const docSnap = await getDoc(doc(db, collection, uid))
          if (docSnap.exists()) {
-            console.log('document data: ', docSnap.data())
             return docSnap.data()
          } else {
             console.log('No such document!')
