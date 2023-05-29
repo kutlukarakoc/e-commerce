@@ -7,10 +7,14 @@ const Button: React.FC<IButton> = ({ children, variant, color, size, click, ...r
    if (variant === 'filled') {
       if (color === 'indigo') {
          variantAndColor = 'bg-indigo-600 hover:bg-indigo-500 text-white'
+      } else if (color === 'red') {
+         variantAndColor = 'bg-red-600 hover:bg-red-500 text-white'
       }
    } else if (variant === 'outline') {
       if (color === 'indigo') {
          variantAndColor = 'border border-solid border-indigo-600 text-indigo-600'
+      } else if(color === 'red') {
+         variantAndColor = 'border border-solid border-red-600 text-red-600'
       }
    }
 
