@@ -45,6 +45,7 @@ export const useStorage = (): IStorageResult => {
                   })
                   .catch((error) => {
                      setFileError('Something went wrong. Please try again later.')
+                     setFileLoading(false)
                      reject(error)
                   })
             }
