@@ -20,17 +20,12 @@ export const useStorage = (): IStorageResult => {
          uploadTask.on(
             'state_changed',
             (snapshot) => {
-               const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-               console.log('Upload is ' + progress + '% done')
-
                switch (snapshot.state) {
                   case 'paused':
-                     console.log('Upload is paused')
                      setFileLoading(false)
-                     setFileError('pause')
+                     setFileError('Upload is paused. Please try again.')
                      break
                   case 'running':
-                     console.log('Upload is running')
                      setFileLoading(true)
                      setFileError(null)
                      break
