@@ -3,7 +3,7 @@ import CategoriesSection from './categories'
 import OurPicks from './our-picks'
 import Information from './information'
 
-const Home = () => {
+const Home: React.FC = () => {
    return (
       <>
          <HeroSection />

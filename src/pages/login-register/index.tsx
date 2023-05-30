@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { useWindowWidth } from '../../hooks/useWindowWidth'
 
 
-const LoginAndRegister = () => {
+const LoginAndRegister: React.FC = () => {
 
    const [loginTransform, setLoginTransform] = useState<string>('') 
 

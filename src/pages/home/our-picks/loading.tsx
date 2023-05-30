@@ -1,6 +1,6 @@
 import { useWindowWidth } from '../../../hooks/useWindowWidth'
 
-const LoadingSkeleton = () => {
+const LoadingSkeleton: React.FC = () => {
 
    // getting current window width
    const windowWidth = useWindowWidth()
