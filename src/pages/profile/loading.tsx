@@ -1,4 +1,4 @@
-const LoadingSkeleton = () => {
+const LoadingSkeleton: React.FC = () => {
    return (
       <section className='container mx-auto my-24 animate-pulse'>
          <div className='flex justify-center items-center flex-col gap-12'>
