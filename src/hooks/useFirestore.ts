@@ -3,8 +3,18 @@ import { db } from '../firebase/index'
 import { useState } from 'react'
 
 export const useFirestore = () => {
+   // setter states
    const [loading, setLoading] = useState<boolean>(false)
    const [error, setError] = useState<any>('')
+   // getter states
+   const [getterLoading, setGetterLoading] = useState<boolean>(false)
+   const [getterError, setGetterError] = useState<string | null>(null)
+   // updater states
+   const [updaterLoading, setUpdaterLoading] = useState<boolean>(false)
+   const [updaterError, setUpdaterError] = useState<string | null>(null)
+   // delete states
+   const [removerLoading, setRemoverLoading] = useState<boolean>(false)
+   const [removerError, setremoveRError] = useState<string | null>(null)
 
    const setItem = async (collection: string, uid: string, data: any) => {
       setLoading(true)
@@ -19,45 +29,46 @@ export const useFirestore = () => {
    }
 
    const updateItem = async (collection: string, uid: string, data: any) => {
-      setLoading(true)
+      setUpdaterLoading(true)
       try {
          await updateDoc(doc(db, collection, uid), data)
-         setLoading(false)
+         setUpdaterLoading(false)
       } catch (error) {
          const errorMessage = 'error updating document: ' + error
-         setError(errorMessage)
-         setLoading(false)
+         setUpdaterError(errorMessage)
+         setUpdaterLoading(false)
       }
    }
 
    const deleteItem = async (collection: string, uid: string) => {
-      setLoading(true)
+      setRemoverLoading(true)
       try {
          await deleteDoc(doc(db, collection, uid))
-         setLoading(false)
+         setRemoverLoading(false)
       } catch (error) {
          const errorMessage = 'error deleting document: ' + error
-         setError(errorMessage)
-         setLoading(false)
+         setremoveRError(errorMessage)
+         setRemoverLoading(false)
       }
    }
 
    const getItem = async (collection: string, uid: string) => {
-      setLoading(true)
+      setGetterLoading(true)
       try {
          const docSnap = await getDoc(doc(db, collection, uid))
          if (docSnap.exists()) {
+            setGetterLoading(false)
             return docSnap.data()
          } else {
-            console.log('No such document!')
+            setGetterError('No such document!')
+            setGetterLoading(false)
          }
-         setLoading(false)
       } catch (error) {
          const errorMessage = 'error getting document: ' + error
-         setError(errorMessage)
-         setLoading(false)
+         setGetterError(errorMessage)
+         setGetterLoading(false)
       }
    }
 
-   return { loading, error, setItem, updateItem, deleteItem, getItem }
+   return { getterLoading, getterError, updaterLoading, updaterError, removerLoading, removerError, loading, error, setItem, updateItem, deleteItem, getItem }
 }
