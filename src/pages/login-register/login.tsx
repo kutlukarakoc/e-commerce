@@ -8,6 +8,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../store/hooks'
 import { login } from '../../store/features/auth'
+import { useFirestore } from '../../hooks/useFirestore'
 
 interface ILogin {
    displayRegister: () => void
@@ -23,6 +24,8 @@ const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
 
    // getting states and signin method from useAuth custom hook
    const { loading, error, signin } = useAuth()
+   // update method from useFirestore custom hook
+   const { updateItem } = useFirestore()
 
    const dispatch = useAppDispatch()
 
@@ -35,7 +38,7 @@ const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
    }
 
    // make signin request and set user state, if success navigate to home
-   const handleRegisterSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
       // signin request using custom useAuth hook
       const response = await signin(form.loginEmail, form.loginPassword)
@@ -48,6 +51,8 @@ const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
          const payload = { email, emailVerified, phoneNumber, photoURL, uid, metadata: { creationTime, lastSignInTime } }
          // set payload to user auth.state
          dispatch(login(payload))
+         // update email verified data in firestore
+         await updateItem('users', uid, {emailVerified})
          // navigate to home page
          navigate('/')
       }
@@ -58,7 +63,7 @@ const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
          <Title text='Sign in to your account' />
 
          <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-            <form className='px-8 sm:px-0' onSubmit={handleRegisterSubmit}>
+            <form className='px-8 sm:px-0' onSubmit={handleSubmit}>
                <div className='mb-6'>
                   <Input name='loginEmail' label='Email Address' type='email' placeholder='example@mail.com' onChange={handleInputChange} required />
                </div>
