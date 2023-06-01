@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
             <div className="text-xs order-2 sm:order-1">© 2023 E Commerce, Inc. All rights reserved.</div>
             <div className='flex gap-4 order-1 sm:order-2'>
                {footerLinks.map((item: IFooterLinks, index) => (
-                  <a key={index} href={item.link} target='_blank'>
+                  <a key={index} href={item.link} target='_blank' rel="noreferrer">
                      {item.icon}
                   </a>
                ))}

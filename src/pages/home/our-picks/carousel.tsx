@@ -11,7 +11,7 @@ const Carousel: React.FC<ICarousel> = ({ products }) => {
 
    // generating custom carousel next arrow
    const NextArrow = (props: any) => {
-      const { className, style, onClick } = props
+      const { className, onClick } = props
       return (
          <div
             className={className + ' w-8 h-8 sm:w-10 sm:h-10 absolute top-1/2 right-8 sm:right-1 -translate-y-1/2 z-10'}
@@ -24,7 +24,7 @@ const Carousel: React.FC<ICarousel> = ({ products }) => {
    }
    // generating custom carousel prev arrow
    const PrevArrow = (props: any) => {
-      const { className, style, onClick } = props
+      const { className, onClick } = props
       return (
          <div
             className={className + ' w-8 h-8 sm:w-10 sm:h-10 absolute top-1/2 left-7 sm:left-1 -translate-y-1/2 z-10'}
