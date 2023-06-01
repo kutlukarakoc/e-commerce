@@ -34,7 +34,7 @@ const UploadImage: React.FC<IUploadImage> = ({ uid, profile, setProfile }) => {
          <img src={profile?.photoURL ? profile.photoURL : userNullImage} alt='' className={`rounded-full w-full h-full block mb-2 shadow ${fileLoading ? 'grayscale' : 'grayscale-0'}`} />
          <div className='flex items-center justify-center gap-4'>
             <CameraIcon className={`w-6 h-6 cursor-pointer ${fileLoading ? 'text-gray-400 cursor-not-allowed' : ''}`} onClick={() => fileInput.current?.click()} />
-            <TrashIcon className={`w-6 h-6 cursor-pointer ${fileLoading ? 'text-gray-400 cursor-not-allowed' : ''}`} onClick={() => setProfile({ ...profile, ['photoURL']: userNullImage })} />
+            <TrashIcon className={`w-6 h-6 cursor-pointer ${fileLoading ? 'text-gray-400 cursor-not-allowed' : ''}`} onClick={() => setProfile({ ...profile, photoURL: userNullImage })} />
          </div>
          {fileError && <p className='text-center mt-5 text-sm text-red-500'>{fileError}</p>}
          {fileLoading && <div className={`w-6 h-6 absolute z-10 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 ${fileLoading ? 'block' : 'hidden'}`}><Spinner /></div>}
