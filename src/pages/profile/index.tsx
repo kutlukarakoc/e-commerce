@@ -20,14 +20,12 @@ const Profile: React.FC = () => {
 
    // get logged in user information from redux store
    const { user } = useAppSelector(state => state.auth)
-   // get states and methods from useAuth custom hook
-   const { resetPasswordLoading, resetPasswordError, resetPassword } = useAuth()
    // get states and methods from useFirestore custom hook
-   const { getterLoading, getterError, updaterLoading, updaterError, getItem, updateItem } = useFirestore()
+   const { getterLoading, updaterLoading, updaterError, getItem, updateItem } = useFirestore()
+   // get reset password loading state from use auth
+   const { resetPasswordLoading } = useAuth()
    // keep track of user information
    const [profile, setProfile] = useState<any>()
-   // reset password text
-   const [resetPasswordText, setResetPasswordText] = useState<string>('Reset Password')
 
    const navigate = useNavigate()
 
@@ -104,9 +102,9 @@ const Profile: React.FC = () => {
                   </div>
                </div>
 
-               <Button type='submit' variant='filled' size='md' color='indigo' className='w-52 h-11 flex justify-center items-center gap-4 mx-auto disabled:opacity-75 disabled:cursor-not-allowed' disabled={updaterLoading}>
+               <Button type='submit' variant='filled' size='md' color='indigo' className='w-52 h-11 flex justify-center items-center gap-4 mx-auto disabled:opacity-75 disabled:cursor-not-allowed' disabled={updaterLoading && resetPasswordLoading}>
                   Save
-                  {updaterLoading && <Spinner />}
+                  {updaterLoading && resetPasswordLoading && <Spinner />}
                </Button>
                {updaterError && <p className='text-center mt-5 text-sm text-red-500'>{updaterError}</p>}
             </form>
