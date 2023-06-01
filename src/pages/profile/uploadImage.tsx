@@ -21,7 +21,7 @@ const UploadImage: React.FC<IUploadImage> = ({ uid, profile, setProfile }) => {
    const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, files } = event.target
       if (uid && files && files[0]) {
-         const file = await uploadFile(uid + new Date().getTime(), files[0])
+         const file = await uploadFile(uid + Date.now(), files[0])
          setProfile({ ...profile, [name]: file })
       } else {
          setProfile({ ...profile, [name]: userNullImage })
