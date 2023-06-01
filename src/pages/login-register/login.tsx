@@ -52,7 +52,7 @@ const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
          // set payload to user auth.state
          dispatch(login(payload))
          // update email verified data in firestore
-         await updateItem('users', uid, {emailVerified})
+         await updateItem('users', uid, { emailVerified })
          // navigate to home page
          navigate('/')
       }
@@ -69,11 +69,9 @@ const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
                </div>
                <div className='mb-10 relative'>
                   <Input name='loginPassword' label='Password' type={showPassword ? 'text' : 'password'} placeholder='******' onChange={handleInputChange} required />
-                  {
-                     showPassword
-                        ? <EyeIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />
-                        : <EyeSlashIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />
-                  }
+                  {showPassword
+                     ? <EyeIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />
+                     : <EyeSlashIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />}
                </div>
 
                <Button disabled={loading} type='submit' variant='filled' size='md' color='indigo' className='w-56 h-11 flex justify-center items-center gap-4 mx-auto disabled:opacity-75 disabled:cursor-not-allowed'>
