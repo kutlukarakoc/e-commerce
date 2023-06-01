@@ -5,7 +5,7 @@ import { useState } from 'react'
 export const useFirestore = () => {
    // setter states
    const [loading, setLoading] = useState<boolean>(false)
-   const [error, setError] = useState<any>('')
+   const [error, setError] = useState<any>(null)
    // getter states
    const [getterLoading, setGetterLoading] = useState<boolean>(false)
    const [getterError, setGetterError] = useState<string | null>(null)
