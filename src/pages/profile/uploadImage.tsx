@@ -31,10 +31,10 @@ const UploadImage: React.FC<IUploadImage> = ({ uid, profile, setProfile }) => {
    return (
       <div className={`w-32 h-32 rounded-full mx-auto relative ${fileError ? 'mb-24' : 'mb-14'}`}>
          <input type='file' name='photoURL' id='image' accept='image/*' className='sr-only' ref={fileInput} onChange={handleImageChange} />
-         <img src={profile?.photoURL ? profile.photoURL : userNullImage} alt='' className={`rounded-full w-100 h-100 block mb-2 shadow ${fileLoading ? 'grayscale' : 'grayscale-0'}`} />
+         <img src={profile?.photoURL ? profile.photoURL : userNullImage} alt='' className={`rounded-full w-full h-full block mb-2 shadow ${fileLoading ? 'grayscale' : 'grayscale-0'}`} />
          <div className='flex items-center justify-center gap-4'>
-            <CameraIcon className='w-6 h-6 cursor-pointer' onClick={() => fileInput.current?.click()} />
-            <TrashIcon className='w-6 h-6 cursor-pointer' onClick={() => setProfile({ ...profile, ['photoURL']: userNullImage })} />
+            <CameraIcon className={`w-6 h-6 cursor-pointer ${fileLoading ? 'text-gray-400 cursor-not-allowed' : ''}`} onClick={() => fileInput.current?.click()} />
+            <TrashIcon className={`w-6 h-6 cursor-pointer ${fileLoading ? 'text-gray-400 cursor-not-allowed' : ''}`} onClick={() => setProfile({ ...profile, ['photoURL']: userNullImage })} />
          </div>
          {fileError && <p className='text-center mt-5 text-sm text-red-500'>{fileError}</p>}
          {fileLoading && <div className={`w-6 h-6 absolute z-10 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 ${fileLoading ? 'block' : 'hidden'}`}><Spinner /></div>}
