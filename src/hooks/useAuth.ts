@@ -78,17 +78,6 @@ export const useAuth = () => {
       }
    }
 
-   const changeEmail = async (email: string) => {
-      try {
-         const user = auth.currentUser
-         if (user) {
-            await updateEmail(user, email)
-         }
-      } catch (error: any) {
-         console.log(error.message)
-      }
-   }
-
    const resetPassword = async (email: string) => {
       setResetPasswordLoading(true)
       try {
@@ -102,5 +91,5 @@ export const useAuth = () => {
       }
    }
 
-   return { loading, error, verifierLoading, verifierError, resetPasswordLoading, resetPasswordError, deleteUserLoading, deleteUserError, register, signin, deleteUserAcc, emailVerification, changeEmail, resetPassword }
+   return { loading, error, verifierLoading, verifierError, resetPasswordLoading, resetPasswordError, deleteUserLoading, deleteUserError, register, signin, deleteUserAcc, emailVerification, resetPassword }
 }
