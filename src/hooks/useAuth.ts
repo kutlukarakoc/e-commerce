@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { auth } from '../firebase/index'
-import { createUserWithEmailAndPassword, deleteUser, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, updateEmail } from 'firebase/auth'
+import { createUserWithEmailAndPassword, deleteUser, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth'
 
 export const useAuth = () => {
    const [loading, setLoading] = useState<boolean>(false)
    const [error, setError] = useState<string | null>(null)
-   const [verifierLoading, setVerifierLoading] = useState<boolean>()
+   const [verifierLoading, setVerifierLoading] = useState<boolean>(false)
    const [verifierError, setVerifierError] = useState<string | null>(null)
-   const [resetPasswordLoading, setResetPasswordLoading] = useState<boolean>()
+   const [resetPasswordLoading, setResetPasswordLoading] = useState<boolean>(false)
    const [resetPasswordError, setResetPasswordError] = useState<string | null>(null)
    const [deleteUserLoading, setDeleteUserLoading] = useState<boolean>(false)
    const [deleteUserError, setDeleteUserError] = useState<string | null>(null)
@@ -34,7 +34,6 @@ export const useAuth = () => {
       setLoading(true)
       try {
          const { user } = await signInWithEmailAndPassword(auth, email, password)
-         console.log('user',user)
          setLoading(false)
          return user
       } catch (error: any) {
@@ -74,20 +73,17 @@ export const useAuth = () => {
       } catch (error: any) {
          setVerifierLoading(false)
          setVerifierError('Something went wrong. Please try again later.')
-         console.log(error.message)
       }
    }
 
    const resetPassword = async (email: string) => {
       setResetPasswordLoading(true)
       try {
-         const response = await sendPasswordResetEmail(auth, email)
-         console.log('resetpw', response)
+         await sendPasswordResetEmail(auth, email)
          setResetPasswordLoading(false)
       } catch (error: any) {
          setResetPasswordLoading(false)
          setResetPasswordError('Something went wrong. Please try again later.')
-         console.log(error.message)
       }
    }
 
