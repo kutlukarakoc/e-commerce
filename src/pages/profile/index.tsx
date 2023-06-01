@@ -10,7 +10,6 @@ import Radio from '../../components/ui/radio'
 import LoadingSkeleton from './loading'
 import { useEffect, useState } from 'react'
 import { useFirestore } from '../../hooks/useFirestore'
-import { useAuth } from '../../hooks/useAuth'
 import { useAppSelector } from '../../store/hooks'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import { genderConstants } from '../../constants/profile/radioConstants'
@@ -22,8 +21,6 @@ const Profile: React.FC = () => {
    const { user } = useAppSelector(state => state.auth)
    // get states and methods from useFirestore custom hook
    const { getterLoading, updaterLoading, updaterError, getItem, updateItem } = useFirestore()
-   // get reset password loading state from use auth
-   const { resetPasswordLoading } = useAuth()
    // keep track of user information
    const [profile, setProfile] = useState<any>()
 
@@ -102,9 +99,9 @@ const Profile: React.FC = () => {
                   </div>
                </div>
 
-               <Button type='submit' variant='filled' size='md' color='indigo' className='w-52 h-11 flex justify-center items-center gap-4 mx-auto disabled:opacity-75 disabled:cursor-not-allowed' disabled={updaterLoading && resetPasswordLoading}>
+               <Button type='submit' variant='filled' size='md' color='indigo' className='w-52 h-11 flex justify-center items-center gap-4 mx-auto disabled:opacity-75 disabled:cursor-not-allowed' disabled={updaterLoading}>
                   Save
-                  {updaterLoading && resetPasswordLoading && <Spinner />}
+                  {updaterLoading && <Spinner />}
                </Button>
                {updaterError && <p className='text-center mt-5 text-sm text-red-500'>{updaterError}</p>}
             </form>
