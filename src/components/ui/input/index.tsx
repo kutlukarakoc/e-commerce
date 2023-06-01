@@ -6,7 +6,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    name: string
    placeholder?: string
    label?: string
-   error?: string
+   error?: string | null
 }
 
 const Input: React.FC<InputProps> = ({ onChange, type, name, placeholder, label, error, ...rest }) => {
@@ -23,7 +23,7 @@ const Input: React.FC<InputProps> = ({ onChange, type, name, placeholder, label,
             className={'outline-none text-gray-700 w-full border border-gray-300 rounded-md px-4 py-1 text-sm placeholder:text-gray-500 focus:border-indigo-600 h-10'}
             {...rest}
          />
-         {error && <p className='error'>{error}</p>}
+         {error && <p className='mt-1 text-xs text-red-500'>{error}</p>}
       </div>
    )
 }
