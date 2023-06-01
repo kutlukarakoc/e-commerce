@@ -14,6 +14,8 @@ import { useAppSelector } from '../../store/hooks'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import { genderConstants } from '../../constants/profile/radioConstants'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const Profile: React.FC = () => {
 
@@ -25,6 +27,8 @@ const Profile: React.FC = () => {
    const [profile, setProfile] = useState<any>()
 
    const navigate = useNavigate()
+
+   const MySwal = withReactContent(Swal)
 
    // get user from firestore
    const getUser = async () => {
@@ -53,6 +57,13 @@ const Profile: React.FC = () => {
       if (user?.uid) {
          await updateItem('users', user.uid, profile)
          if (!updaterLoading && !updaterError) {
+            MySwal.fire({
+               icon: 'success',
+               title: 'Your information has been successfully saved.',
+               showConfirmButton: false,
+               timer: 2000,
+               timerProgressBar: true
+            })
             console.log('changes saved!')
          }
       }
@@ -88,7 +99,7 @@ const Profile: React.FC = () => {
                </div>
 
                <div className='mb-6 grid grid-cols-2 gap-6'>
-                  <Password email={user?.email}/>
+                  <Password email={user?.email} />
                   <Input name='birthday' label='Birthday' type='date' value={profile?.birthday ? profile.birthday : ''} onChange={handleChange} />
                </div>
 
