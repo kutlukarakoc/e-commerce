@@ -64,7 +64,6 @@ const Profile: React.FC = () => {
                timer: 2000,
                timerProgressBar: true
             })
-            console.log('changes saved!')
          }
       }
    }
