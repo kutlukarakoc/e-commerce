@@ -7,11 +7,10 @@ import { useWishlist } from '../../../hooks/useWishlist'
 
 interface IFavorite {
    product: IProduct
-   productId?: string
    className?: string
 }
 
-const Favorite: React.FC<IFavorite> = ({ product, productId, className }) => {
+const Favorite: React.FC<IFavorite> = ({ product, className }) => {
 
    const navigate = useNavigate()
    // get wish list from custom hook
@@ -37,10 +36,10 @@ const Favorite: React.FC<IFavorite> = ({ product, productId, className }) => {
 
    // get wishlist and check if product is in wishlist or not
    const getWishlist = async () => {
-      if (user?.uid && productId) {
+      if (user?.uid && product.id) {
          const currentWishlist = await handleWishlist(user.uid)
 
-         const inWishlist = currentWishlist.some((prod: IProduct) => prod.id === +productId)
+         const inWishlist = currentWishlist.some((prod: IProduct) => prod.id === product.id)
          setIsInWishlist(inWishlist)
       }
    }
