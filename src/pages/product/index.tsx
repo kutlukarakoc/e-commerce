@@ -1,17 +1,16 @@
-import { useAppSelector, useAppDispatch } from '../../store/hooks'
-import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
-import { fetchProductById } from '../../store/features/singleProduct'
-import { HeartIcon } from '@heroicons/react/24/outline'
-import Button from '../../components/ui/button'
-import Rating from '../../components/ui/rating'
-import Accordion from '../../components/ui/accordion'
-import { shippingConstants, returnsConstants } from '../../constants/product/accordionConstants'
-import LoadingSkeleton from './loading'
-import { clearProduct } from '../../store/features/singleProduct'
 import Divider from '../../components/ui/divider'
 import NotFound from '../../components/not-found'
 import Favorite from '../../components/ui/favorite'
+import Button from '../../components/ui/button'
+import Rating from '../../components/ui/rating'
+import Accordion from '../../components/ui/accordion'
+import LoadingSkeleton from './loading'
+import { shippingConstants, returnsConstants } from '../../constants/product/accordionConstants'
+import { useAppSelector, useAppDispatch } from '../../store/hooks'
+import { fetchProductById } from '../../store/features/singleProduct'
+import { clearProduct } from '../../store/features/singleProduct'
+import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const Product: React.FC = () => {
 
@@ -21,8 +20,6 @@ const Product: React.FC = () => {
    const { productId } = useParams()
    // getting current visited product from redux product state
    const { product, loading, error } = useAppSelector(state => state.product)
-   // get logged in user information from redux store
-   const { user } = useAppSelector(state => state.auth)
 
    // fetch current product by product id
    useEffect(() => {
@@ -62,9 +59,6 @@ const Product: React.FC = () => {
                                  Add to cart
                               </Button>
                               <Favorite className='w-10' product={product} productId={productId} />
-                              {/* <div className='w-10 cursor-pointer'>
-                                 <HeartIcon className={`w-full h-full ${isInWishlist ? 'text-red-500 fill-red-500' : ''}`} onClick={() => toggleWishlist(product)} />
-                              </div> */}
                            </div>
                            <div className='mt-16'>
                               <Accordion title={shippingConstants.title} contents={shippingConstants.contents} type='list' />
