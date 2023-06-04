@@ -11,16 +11,20 @@ import LoadingSkeleton from './loading'
 import { clearProduct } from '../../store/features/singleProduct'
 import Divider from '../../components/ui/divider'
 import NotFound from '../../components/not-found'
+import Favorite from '../../components/ui/favorite'
 
 const Product: React.FC = () => {
 
-   // getting productId from URL
-   const { productId } = useParams()
-
-   const { product, loading, error } = useAppSelector(state => state.product)
-
    const dispatch = useAppDispatch()
 
+   // getting productId from URL
+   const { productId } = useParams()
+   // getting current visited product from redux product state
+   const { product, loading, error } = useAppSelector(state => state.product)
+   // get logged in user information from redux store
+   const { user } = useAppSelector(state => state.auth)
+
+   // fetch current product by product id
    useEffect(() => {
       dispatch(fetchProductById(Number(productId)))
 
@@ -30,7 +34,7 @@ const Product: React.FC = () => {
       }
    }, [productId])
 
-   if(error || (!loading && !product)) {
+   if (error || (!loading && !product)) {
       return <NotFound title='Product not found' text='Sorry, we couldn’t find the product you’re looking for.' link='/' />
    }
 
@@ -57,10 +61,10 @@ const Product: React.FC = () => {
                               <Button type='button' variant='filled' color='indigo' size='md' className='px-6 py-3 font-semibold leading-5'>
                                  Add to cart
                               </Button>
-                              <div className='w-10 cursor-pointer'>
-                                 <HeartIcon className='w-full h-full' />
-                                 {/* <HeartIcon className='w-full h-full text-red-500 fill-red-500'/> */}
-                              </div>
+                              <Favorite className='w-10' product={product} productId={productId} />
+                              {/* <div className='w-10 cursor-pointer'>
+                                 <HeartIcon className={`w-full h-full ${isInWishlist ? 'text-red-500 fill-red-500' : ''}`} onClick={() => toggleWishlist(product)} />
+                              </div> */}
                            </div>
                            <div className='mt-16'>
                               <Accordion title={shippingConstants.title} contents={shippingConstants.contents} type='list' />
