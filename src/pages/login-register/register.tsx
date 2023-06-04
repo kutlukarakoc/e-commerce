@@ -67,6 +67,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
                lastSignInTime
             }
          })
+         await setItem('wishlist', uid, { products: [] })
          // navigate to home page
          navigate('/')
       }
