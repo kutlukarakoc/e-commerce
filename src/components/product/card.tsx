@@ -1,8 +1,7 @@
-import { IProduct } from '../../types/productsTypes'
-import { Link } from 'react-router-dom'
 import Button from '../ui/button'
 import Favorite from '../ui/favorite'
-import { HeartIcon } from '@heroicons/react/24/outline'
+import { IProduct } from '../../types/productsTypes'
+import { Link } from 'react-router-dom'
 
 interface IProductCard {
    products: IProduct[]
