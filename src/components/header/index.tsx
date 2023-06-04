@@ -1,18 +1,12 @@
+import RightSide from './rightSide'
 import { Link } from 'react-router-dom'
 import { useState, useEffect, FormEvent } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useAppSelector } from '../../store/hooks'
-import { UserIcon, HeartIcon, ShoppingBagIcon, Bars3Icon, MagnifyingGlassIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import Input from '../ui/input'
 import MobileMenu from './MobileMenu'
 import logo from '../../assets/logo.png'
 import { categories } from '../../constants/header/headerConstants'
-
-interface IRightSideItems {
-   icon: JSX.Element
-   text: string
-   path: string
-}
 
 const Header: React.FC = () => {
    // toggle state for mobile menu
@@ -21,9 +15,6 @@ const Header: React.FC = () => {
    const [menuTransform, setMenuTransform] = useState<string>('translateX(-256px)')
    // input value state for search
    const [inputValue, setInputValue] = useState<string>('')
-
-   // get user from the redux store
-   const user = useAppSelector(state => state.auth.user)
 
    // hook for navigation and location data
    const navigate = useNavigate()
@@ -54,13 +45,6 @@ const Header: React.FC = () => {
       }
    }
 
-   // right-side items with their icons, text, and paths for logged in status
-   const rightSideItems: IRightSideItems[] = [
-      { icon: <UserIcon className='h-7 w-7 text-gray-700' />, text: 'Profile', path: '/profile' },
-      { icon: <HeartIcon className='h-7 w-7 text-gray-700' />, text: 'Wishlist', path: '/favorites' },
-      { icon: <ShoppingBagIcon className='h-7 w-7 text-gray-700' />, text: 'Cart', path: '/cart' },
-   ]
-
    return (
       <>
          {/* Header */}
@@ -83,20 +67,7 @@ const Header: React.FC = () => {
                   </button>
                </form>
                {/* Right-side Items */}
-               <div className='flex justify-center items-center gap-2 sm:gap-8 order-3'>
-                  {// if user logged in display profile, favorites and cart, else display login/register
-                     user ? rightSideItems.map((item: IRightSideItems, index) => (
-                        <Link key={index} to={item.path} className='flex flex-col items-center justify-center gap-1 cursor-pointer'>
-                           {item.icon}
-                           <div className='text-xs tracking-wide hidden sm:block'>{item.text}</div>
-                        </Link>
-                     )) : (
-                        <Link to='/auth' className='flex flex-col items-center justify-center gap-1 cursor-pointer'>
-                           <ArrowRightOnRectangleIcon className='h-7 w-7 text-gray-700' />
-                           <div className='text-xs tracking-wide hidden sm:block'>Login/Register</div>
-                        </Link>
-                     )}
-               </div>
+               <RightSide />
             </nav>
             {/* Category Links */}
             <div className='flex justify-center items-center gap-6 h-14 pb-2'>
