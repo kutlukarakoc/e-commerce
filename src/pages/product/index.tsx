@@ -58,7 +58,7 @@ const Product: React.FC = () => {
                               <Button type='button' variant='filled' color='indigo' size='md' className='px-6 py-3 font-semibold leading-5'>
                                  Add to cart
                               </Button>
-                              <Favorite className='w-10' product={product} productId={productId} />
+                              <Favorite className='w-10' product={product} />
                            </div>
                            <div className='mt-16'>
                               <Accordion title={shippingConstants.title} contents={shippingConstants.contents} type='list' />
