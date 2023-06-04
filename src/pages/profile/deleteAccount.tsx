@@ -25,6 +25,7 @@ const DeleteAccount: React.FC<IDeleteAccount> = ({ uid }) => {
       if (uid) {
          await deleteUserAcc()
          await deleteItem('users', uid)
+         await deleteItem('wishlist', uid)
          dispatch(logout())
          navigate('/')
       }
