@@ -29,6 +29,12 @@ export const useWishlist = () => {
          return newProducts
       }
 
+      if(type === 'delete') {
+         const filteredProducts = products.filter((prod: IProduct) => prod.id !== product.id)
+         await setItem('wishlist', uid, {products: filteredProducts})
+         return filteredProducts
+      }
+
    }
 
    return handleWishlist
