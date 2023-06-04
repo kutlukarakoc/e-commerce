@@ -13,7 +13,7 @@ interface IFavorite {
 const Favorite: React.FC<IFavorite> = ({ product, className }) => {
 
    const navigate = useNavigate()
-   // get wish list from custom hook
+   // manage wishlist with custom hook
    const handleWishlist = useWishlist()
 
    // get logged in user information from redux store
