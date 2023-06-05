@@ -4,45 +4,19 @@ import LoadingSkeleton from './loading'
 import { TrashIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { useWishlist } from '../../hooks/useWishlist'
-import { useAppSelector } from '../../store/hooks'
-import { useState, useEffect } from 'react'
 import { IProduct } from '../../types/productsTypes'
 
 const Favorites = () => {
 
-   // get logged in user information from redux store
-   const { user } = useAppSelector(state => state.auth)
-   // keep track of wishlist
-   const [wishlist, setWishlist] = useState([])
-   // keep track of wishlist loading status
-   const [loading, setLoading] = useState<boolean>(false)
    // manage wishlist with custom hook
-   const handleWishlist = useWishlist()
+   const { handleWishlist, wishlist, wishlistLoading } = useWishlist()
 
    // remove product from wishlist
    const handleClick = async (product: IProduct) => {
-      if (user?.uid) {
-         const currentWishlist = await handleWishlist(user.uid, product, 'delete')
-         setWishlist(currentWishlist)
-      }
+      await handleWishlist(product, 'delete')
    }
 
-   // get wishlist from custom hook and set to wishlist state and set loading status
-   const getWishlist = async () => {
-      setLoading(true)
-      if (user?.uid) {
-         const currentWishlist = await handleWishlist(user.uid)
-         setWishlist(currentWishlist)
-         setLoading(false)
-      }
-   }
-
-   // get wishlist initially
-   useEffect(() => {
-      getWishlist()
-   }, [])
-
-   if (loading) {
+   if (wishlistLoading) {
       return <LoadingSkeleton />
    }
 
