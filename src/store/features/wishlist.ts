@@ -3,7 +3,7 @@ import { RootState } from '../store'
 import { IProduct } from '../../types/productsTypes'
 import { PayloadAction } from '@reduxjs/toolkit'
 
-const initialState: any = {
+const initialState: IProduct[] | any = {
    wishlistProducts: []
 }
 
