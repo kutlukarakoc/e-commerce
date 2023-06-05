@@ -13,7 +13,7 @@ const ProductCard: React.FC<IProductCard> = ({ products }) => {
       <>
          {products.map(product => (
             <div key={product.id} className='group bg-zinc-50 h-[525px] p-10 relative rounded'>
-               <Favorite product={product} className='absolute z-10 top-2 right-3 w-7' />
+               <Favorite product={product} className='absolute top-2 right-3 w-7' />
                <Link to={`/products/${product.id}`} className='cursor-pointer'>
                   <img src={product.image} alt='ecommerce' className='w-full block aspect-video max-w-[250px] max-h-[275px] h-full mx-auto mix-blend-multiply' />
                </Link>
