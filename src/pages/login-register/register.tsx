@@ -68,6 +68,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
             }
          })
          await setItem('wishlist', uid, { products: [] })
+         await setItem('cart', uid, { items: [] })
          // navigate to home page
          navigate('/')
       }
