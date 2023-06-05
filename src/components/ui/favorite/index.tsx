@@ -14,7 +14,7 @@ const Favorite: React.FC<IFavorite> = ({ product, className }) => {
 
    const navigate = useNavigate()
    // manage wishlist with custom hook
-   const handleWishlist = useWishlist()
+   const { handleWishlist } = useWishlist()
 
    // get logged in user information from redux store
    const { user } = useAppSelector(state => state.auth)
@@ -25,7 +25,7 @@ const Favorite: React.FC<IFavorite> = ({ product, className }) => {
    // check if product is in wishlist and set this status to isInWishlist state
    const toggleWishlist = async () => {
       if (user?.uid) {
-         const currentWishlist = await handleWishlist(user.uid, product, 'toggle')
+         const currentWishlist = await handleWishlist(product, 'toggle')
 
          const inWishlist = currentWishlist.some((prod: IProduct) => prod.id === product.id)
          setIsInWishlist(inWishlist)
@@ -36,8 +36,8 @@ const Favorite: React.FC<IFavorite> = ({ product, className }) => {
 
    // get wishlist and check if product is in wishlist or not
    const getWishlist = async () => {
-      if (user?.uid && product.id) {
-         const currentWishlist = await handleWishlist(user.uid)
+      if (product.id) {
+         const currentWishlist = await handleWishlist()
 
          const inWishlist = currentWishlist.some((prod: IProduct) => prod.id === product.id)
          setIsInWishlist(inWishlist)
