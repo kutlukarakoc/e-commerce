@@ -4,6 +4,7 @@ import singleProduct from './features/singleProduct'
 import filterProducts from './features/filterProducts'
 import searchProducts from './features/searchProducts'
 import auth from './features/auth'
+import wishlistSlice from './features/wishlist'
 
 export const store = configureStore({
    reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
       products: multipleProducts,
       filterProducts,
       searchProducts,
-      auth
+      auth,
+      wishlist: wishlistSlice
    }
 })
 
