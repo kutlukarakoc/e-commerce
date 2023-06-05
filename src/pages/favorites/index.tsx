@@ -22,7 +22,7 @@ const Favorites = () => {
 
    return (
       <div className='container mx-auto my-20 flex-1'>
-         <h1 className='text-lg font-semibold'>My Wishlist ({wishlist.length} products)</h1>
+         <h1 className='text-3xl font-semibold'>My Wishlist ({wishlist.length} products)</h1>
          <Divider />
          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
 
