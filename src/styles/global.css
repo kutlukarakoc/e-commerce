@@ -9,3 +9,9 @@ html, body, #root {
 .swal2-popup {
    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
 }
+
+@media screen and (max-width: 640px) {
+   .swal2-popup {
+      width: 22em !important;
+   }
+}

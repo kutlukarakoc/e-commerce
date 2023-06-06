@@ -5,21 +5,37 @@ import Button from '../../components/ui/button'
 import Rating from '../../components/ui/rating'
 import Accordion from '../../components/ui/accordion'
 import LoadingSkeleton from './loading'
+import ProductAdded from '../../components/popup/productAdded'
 import { shippingConstants, returnsConstants } from '../../constants/product/accordionConstants'
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
 import { fetchProductById } from '../../store/features/singleProduct'
 import { clearProduct } from '../../store/features/singleProduct'
 import { useParams } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useCart } from '../../hooks/useCart'
+import { IProduct } from '../../types/productsTypes'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { useNavigate } from 'react-router-dom'
 
 const Product: React.FC = () => {
 
-   const dispatch = useAppDispatch()
+   // swal generator
+   const MySwal = withReactContent(Swal)
 
+   const dispatch = useAppDispatch()
+   const navigate = useNavigate()
+
+   // keep track of navigate from view cart button in popup
+   const [redirect, setRedirect] = useState<boolean>(false)
    // getting productId from URL
    const { productId } = useParams()
    // getting current visited product from redux product state
    const { product, loading, error } = useAppSelector(state => state.product)
+   // getting user from redux store
+   const { user } = useAppSelector(state => state.auth)
+   // gettin cart states and method from custom hook
+   const { cart, cartLoading, handleCart } = useCart()
 
    // fetch current product by product id
    useEffect(() => {
@@ -30,6 +46,35 @@ const Product: React.FC = () => {
          dispatch(clearProduct())
       }
    }, [productId])
+
+   // add to cart and show popup
+   const handleClick = async (product: IProduct) => {
+      if (user?.uid) {
+         await handleCart(product, 1, 'add')
+         if (!cartLoading && cart) {
+            MySwal.fire({
+               icon: 'success',
+               html: <ProductAdded product={product} setRedirect={setRedirect} />,
+               showConfirmButton: false,
+               showCloseButton: true,
+               customClass: {
+                  closeButton: 'hover:text-gray-700 shadow-none border-0 outline-0 focus:outline-0 focus:shadow-none'
+               }
+            })
+         }
+      }
+   }
+
+   // navigate to cart when redirect state is true, after close modal
+   // set false to redirect state when component unmount
+   useEffect(() => {
+      if(redirect){
+         navigate('/cart')
+         MySwal.close()
+      } 
+
+      return () => setRedirect(false)
+   }, [redirect])
 
    if (error || (!loading && !product)) {
       return <NotFound title='Product not found' text='Sorry, we couldn’t find the product you’re looking for.' link='/' />
@@ -55,7 +100,7 @@ const Product: React.FC = () => {
                            </div>
                            <p className='text-base tracking-wide mb-6 first-letter:uppercase'>{product.description}</p>
                            <div className='flex gap-6'>
-                              <Button type='button' variant='filled' color='indigo' size='md' className='px-6 py-3 font-semibold leading-5'>
+                              <Button type='button' variant='filled' color='indigo' size='md' className='px-6 py-3 font-semibold leading-5' onClick={() => handleClick(product)}>
                                  Add to cart
                               </Button>
                               <Favorite className='w-10' product={product} />
