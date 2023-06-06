@@ -8,7 +8,7 @@ const Cart: React.FC = () => {
    const { cart } = useCart()
 
    return (
-      <section className='container mx-auto my-20 flex-1'>
+      <section className='container mx-auto px-4 sm:px-0 my-20 flex-1'>
          <h1 className='text-3xl font-semibold mb-16'>Shopping Cart ({cart.length} products)</h1>
          <div className='grid grid-cols-8'>
             <Products />
