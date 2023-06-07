@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { useCart } from '../../../hooks/useCart'
-import { IProduct } from '../../../types/productsTypes'
+import { ICart } from '../../../types/cartTypes'
+import { useAppSelector } from '../../../store/hooks'
 
 const OrderTotal: React.FC = () => {
 
-   // getting cart from custom hook
-   const { cart } = useCart()
+   // getting cart from redux store
+   const { cart } = useAppSelector(state => state.cart)
    // keep track of total price
    const [totalPrice, setTotalPrice] = useState<number>(0)
 
@@ -13,7 +13,7 @@ const OrderTotal: React.FC = () => {
    const calculateTotalPrice = () => {
       if (cart.length) {
          const total: number | undefined = cart
-            .map((product: IProduct) => {
+            .map((product: ICart) => {
                if (product.quantity) return product.price * product.quantity
             })
             .reduce((acc: any, curr) => acc + curr)
