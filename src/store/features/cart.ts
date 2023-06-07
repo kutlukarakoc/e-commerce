@@ -1,22 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
-import { IProduct } from '../../types/productsTypes'
+import { ICart } from '../../types/cartTypes'
 import { PayloadAction } from '@reduxjs/toolkit'
 
-const initialState: IProduct[] | any = {
-   cartItems: []
+interface IUserCart {
+   cart: ICart[]
 }
 
-const cart = createSlice({
-   name: 'wishlist',
+const initialState: IUserCart = {
+   cart: []
+}
+
+const userCart = createSlice({
+   name: 'cart',
    initialState,
    reducers: {
-      setToCart: (state, action: PayloadAction<IProduct[]>) => {
-         state.cartItems = action.payload
+      manageCart: (state, action: PayloadAction<ICart[]>) => {
+         state.cart = action.payload
       }
    }
 })
 
-export const { setToCart } = cart.actions
-export const cartItems = (state: RootState) => state.cart
-export default cart.reducer
+export const { manageCart } = userCart.actions
+export const cartItems = (state: RootState) => state.cart.cart
+export default userCart.reducer

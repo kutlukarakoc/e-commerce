@@ -4,19 +4,19 @@ import { IProduct } from '../../types/productsTypes'
 import { PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: IProduct[] | any = {
-   wishlistProducts: []
+   wishlist: []
 }
 
 const wishlistSlice = createSlice({
    name: 'wishlist',
    initialState,
    reducers: {
-      setToWishlist: (state, action: PayloadAction<IProduct[]>) => {
-         state.wishlistProducts = action.payload
+      manageWishlist: (state, action: PayloadAction<IProduct[]>) => {
+         state.wishlist = action.payload
       }
    }
 })
 
-export const { setToWishlist } = wishlistSlice.actions
-export const wishlistProducts = (state: RootState) => state.wishlist
+export const { manageWishlist } = wishlistSlice.actions
+export const wishlist = (state: RootState) => state.wishlist
 export default wishlistSlice.reducer
