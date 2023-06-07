@@ -17,7 +17,7 @@ const Products: React.FC = () => {
                cart ? cart.map((item: IProduct) => (
                   <div key={item.id}>
                      <div className='flex w-100 my-14'>
-                        <div className='w-32 h-32 sm:w-48 sm:h-48 p-4 bg-zinc-100 rounded-md'>
+                        <div className='w-32 h-32 sm:w-48 sm:h-48 p-4 bg-zinc-50 rounded-md'>
                            <img src={item.image} alt='ecommerce' className='max-w-full w-full h-full block mix-blend-multiply' />
                         </div>
                         <div className='flex-1 ms-0 sm:ms-6 flex flex-col justify-between'>

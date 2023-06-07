@@ -30,7 +30,7 @@ const Favorites = () => {
          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
 
             {wishlist.map((product: IProduct) => (
-               <div key={product.id} className='bg-zinc-50 h-[525px] p-8 relative rounded'>
+               <div key={product.id} className='bg-zinc-50 h-[525px] p-8 relative rounded-md'>
                   <div className='absolute top-2 right-2 cursor-pointer' onClick={() => handleClick(product)}><TrashIcon className='w-6 h-6' /></div>
                   <Link to={`/products/${product.id}`}>
                      <img src={product.image} alt='ecommerce' className='w-full block aspect-video max-w-[250px] max-h-[275px] h-full mx-auto mix-blend-multiply' />

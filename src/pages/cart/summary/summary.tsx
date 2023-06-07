@@ -6,7 +6,7 @@ import OrderTotal from './orderTotal'
 const Summary: React.FC = () => {
    return (
       <div className='col-span-8 lg:col-span-3'>
-         <div className='w-full bg-zinc-100 rounded-md mt-16 sm:mt-0 px-4 py-5 sm:p-5 lg:p-8h'>
+         <div className='w-full bg-zinc-50 rounded-md mt-16 sm:mt-0 px-4 py-5 sm:p-5 lg:p-8h'>
             <h2 className='text-lg'>Order Summary</h2>
             <div className='mt-6'>
                <Subtotal />
