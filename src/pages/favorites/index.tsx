@@ -4,12 +4,15 @@ import LoadingSkeleton from './loading'
 import { TrashIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { useWishlist } from '../../hooks/useWishlist'
+import { useAppSelector } from '../../store/hooks'
 import { IProduct } from '../../types/productsTypes'
 
 const Favorites = () => {
 
+   const { wishlist } = useAppSelector(state => state.wishlist)
+
    // manage wishlist with custom hook
-   const { handleWishlist, wishlist, wishlistLoading } = useWishlist()
+   const { handleWishlist, wishlistLoading, wishlistError } = useWishlist()
 
    // remove product from wishlist
    const handleClick = async (product: IProduct) => {
