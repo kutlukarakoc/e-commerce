@@ -2,12 +2,12 @@ import Divider from '../../components/ui/divider'
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { IProduct } from '../../types/productsTypes'
-import { useCart } from '../../hooks/useCart'
+import { useAppSelector } from '../../store/hooks'
 
 const Products: React.FC = () => {
 
-   // getting cart from custom hook
-   const { cart } = useCart()
+   // getting cart from redux store
+   const { cart } = useAppSelector(state => state.cart)
 
    return (
       <div className='col-span-8 lg:col-span-5'>
