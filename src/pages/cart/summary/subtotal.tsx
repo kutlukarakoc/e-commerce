@@ -16,11 +16,10 @@ const Subtotal: React.FC = () => {
          const totalArr: number[] = cart.map((product: ICart) => product.price * product.quantity)
          if (totalArr.length > 0) {
             const totalPrice = totalArr.reduce((acc: number, curr?: number) => acc + (curr || 0), 0);
-            setSubtotal(+totalPrice.toFixed(2));
+            setSubtotal(+totalPrice);
          }
       }
    };
-
 
    // execute calculateSbbtotal function when cart changes
    useEffect(() => {
@@ -31,7 +30,7 @@ const Subtotal: React.FC = () => {
       <>
          <div className='flex justify-between items-center'>
             <div className='text-gray-500 text-sm'>Subtotal</div>
-            <div className='text-sm'>${subtotal}</div>
+            <div className='text-sm'>${subtotal.toFixed(2)}</div>
          </div>
          <Divider variant='soft' />
       </>

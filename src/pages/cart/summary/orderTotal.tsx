@@ -19,7 +19,7 @@ const OrderTotal: React.FC = () => {
             .reduce((acc: any, curr) => acc + curr)
 
          if (total) {
-            +total > 100 ? setTotalPrice(+total.toFixed(2)) : setTotalPrice(+total.toFixed(2) + 5)
+            +total > 100 ? setTotalPrice(+total) : setTotalPrice(+total + 5)
          }
       }
    }
@@ -32,7 +32,7 @@ const OrderTotal: React.FC = () => {
    return (
       <div className='flex justify-between items-center'>
          <div className='font-medium'>Order total</div>
-         <div className='font-medium'>${totalPrice}</div>
+         <div className='font-medium'>${totalPrice.toFixed(2)}</div>
       </div>
    )
 }
