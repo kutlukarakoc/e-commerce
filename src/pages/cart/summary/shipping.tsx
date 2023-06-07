@@ -1,12 +1,12 @@
 import Divider from '../../../components/ui/divider'
 import { useEffect, useState } from 'react'
-import { useCart } from '../../../hooks/useCart'
-import { IProduct } from '../../../types/productsTypes'
+import { ICart } from '../../../types/cartTypes'
+import { useAppSelector } from '../../../store/hooks'
 
 const Shipping: React.FC = () => {
 
-   // getting cart from custom hook
-   const { cart } = useCart()
+   // getting cart from redux store
+   const { cart } = useAppSelector(state => state.cart)
    // keep track of shipping estimate
    const [shippingEstimateText, setShippingEstimateText] = useState<string>('0.00')
 
@@ -14,7 +14,7 @@ const Shipping: React.FC = () => {
    const calculateShippingEstimate = () => {
       if (cart.length) {
          const total: number | undefined = cart
-            .map((product: IProduct) => {
+            .map((product: ICart) => {
                if (product.quantity) return product.price * product.quantity
             })
             .reduce((acc: any, curr) => acc + curr)
