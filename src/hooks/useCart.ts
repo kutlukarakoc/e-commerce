@@ -1,88 +1,88 @@
 import { useFirestore } from './useFirestore'
 import { IProduct } from '../types/productsTypes'
+import { ICart } from '../types/cartTypes'
 import { useState, useEffect, useMemo, useCallback } from 'react'
-import { useAppSelector } from '../store/hooks'
-import { useAppDispatch } from '../store/hooks'
-import { setToCart } from '../store/features/cart'
+import { useAppSelector, useAppDispatch } from '../store/hooks'
+import { manageCart } from '../store/features/cart'
 
-interface ICart {
-   handleCart: (product?: IProduct, quantity?: number, type?: string) => Promise<IProduct[]>;
-   cart: IProduct[];
-   cartLoading: boolean;
+interface IUseCart {
+   handleCart: (type: string, product: IProduct, quantity: number) => void
+   getCart: () => void
+   cartLoading: boolean
+   cartError: string | null
 }
 
-// custom hook for handling the cart data and logic
-export const useCart = (): ICart => {
+export const useCart = (): IUseCart => {
 
    const dispatch = useAppDispatch()
 
+   // getting user from redux store
    const { user } = useAppSelector(state => state.auth)
-
-   // keep track of cart items and loading status
-   const [cart, setCart] = useState<IProduct[]>([])
+   // keep track of loading and error status
    const [cartLoading, setCartLoading] = useState<boolean>(false)
+   const [cartError, setCartError] = useState<string | null>(null)
 
    // get states and methods from use firestore custom hook   
    const { setItem, getItem } = useFirestore()
-
-   // function for fetching the cart data
-   const getCart = useCallback(async () => {
-      setCartLoading(true);
-      if (user?.uid) {
-         const { items }: any = await getItem('cart', user.uid);
-         setCart(items || []);
-         dispatch(setToCart(items || []));
-      }
-      setCartLoading(false);
-   }, [user, dispatch, setCart]);
 
    // get cart initially
    useEffect(() => {
       getCart()
    }, [])
 
-   const handleCart = async (product?: IProduct, quantity?: number, type?: string) => {
+   // function for fetching the cart data
+   const getCart = useCallback(async () => {
+      setCartLoading(true);
       if (user?.uid) {
-         const { items }: any = await getItem('cart', user.uid)
-
-         // if no product is provided, return the current cart
-         if (!product) {
-            setCart(items || [])
-            dispatch(setToCart(items || []))
-            return items
+         try {
+            const { items }: any = await getItem('cart', user.uid);
+            dispatch(manageCart(items || []))
+         } catch (error) {
+            console.log('get cart :', error)
+            setCartError('An error has occurred, please try again.')
          }
+      }
+      setCartLoading(false);
+   }, [user, dispatch]);
 
-         // if type is add, add or remove the product from the cart
-         // if product is already in list, remove, else add
-         if (type === 'add') {
-            const addedProduct = items.find((prod: IProduct) => prod.id === product.id)
-            if (addedProduct) {
-               addedProduct.quantity += quantity
-               await setItem('cart', user.uid, { items })
-               dispatch(setToCart(items || []))
-               setCart(items)
-               return items
+   const handleCart = async (type: string, product: IProduct | ICart, quantity: number) => {
+      if (user?.uid) {
+         try {
+            // set loading state true when adding to cart process starts
+            setCartLoading(true)
+            // set latest cart from db
+            const { items }: any = await getItem('cart', user.uid)
+            // if type is add, add or remove the product from the cart
+            // if product is already in the list, remove it, else add it
+            if (type === 'add') {
+               const addedProduct = items.find((prod: IProduct | ICart) => prod.id === product.id)
+               if (addedProduct) {
+                  addedProduct.quantity += quantity
+                  dispatch(manageCart(items))
+                  await setItem('cart', user.uid, { items: [...items] })
+               } else {
+                  const newItems = [...items, { ...product, quantity }]
+                  dispatch(manageCart(newItems))
+                  await setItem('cart', user.uid, { items: [...newItems] })
+               }
             }
-
-            const newItems = [...items, { ...product, quantity }]
-            await setItem('cart', user.uid, { items: newItems })
-            dispatch(setToCart(newItems || []))
-            setCart(newItems)
-            return newItems
+            // if type is delete, remove the product from the cart
+            if (type === 'delete') {
+               const filteredItems = items.filter((prod: ICart) => prod.id !== product.id)
+               dispatch(manageCart(filteredItems || []))
+               await setItem('cart', user.uid, { items: [...filteredItems] })
+            }
+            // set loading state false when adding to cart process ends
+            setCartLoading(false)
+         } catch (error) {
+            console.log('add/delete cart:', error)
+            setCartError('An error has occurred, please try again.')
          }
-
-         // if type is delete, remove the product from the cart
-         if (type === 'delete') {
-            const filteredItems = items.filter((prod: IProduct) => prod.id !== product.id)
-            await setItem('cart', user.uid, { items: filteredItems })
-            dispatch(setToCart(filteredItems || []))
-            setCart(filteredItems)
-            return filteredItems
-         }
+         setCartLoading(false)
       }
    }
 
    // memoize the handleCart function to prevent unnecessary re-renders
    // memoize the returned object to prevent unnecessary re-renders
-   return useMemo(() => ({ handleCart, cart, cartLoading }), [handleCart, cart, cartLoading]);
+   return useMemo(() => ({ handleCart, getCart, cartLoading, cartError }), [handleCart, getCart, cartLoading, cartError]);
 }

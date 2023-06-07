@@ -3,12 +3,13 @@ import { IProduct } from '../types/productsTypes'
 import { useState, useEffect, useMemo, useCallback } from 'react'
 import { useAppSelector } from '../store/hooks'
 import { useAppDispatch } from '../store/hooks'
-import { setToWishlist } from '../store/features/wishlist'
+import { manageWishlist } from '../store/features/wishlist'
 
 interface IWishlist {
    handleWishlist: (product?: IProduct, type?: string) => Promise<IProduct[]>;
-   wishlist: IProduct[];
+   getWishlist: () => void
    wishlistLoading: boolean;
+   wishlistError: string | null
 }
 
 // custom hook for handling the wishlist data and logic
@@ -18,28 +19,32 @@ export const useWishlist = (): IWishlist => {
 
    const { user } = useAppSelector(state => state.auth)
 
-   // keep track of wishlist products and loading status
-   const [wishlist, setWishlist] = useState<IProduct[]>([])
+   // keep track of wishlist loading and error status
    const [wishlistLoading, setWishlistLoading] = useState<boolean>(false)
+   const [wishlistError, setWishlistError] = useState<string | null>(null)
 
    // get states and methods from use firestore custom hook   
    const { setItem, getItem } = useFirestore()
-
-   // function for fetching the wishlist data
-   const getWishlist = useCallback(async () => {
-      setWishlistLoading(true);
-      if (user?.uid) {
-         const { products }: any = await getItem('wishlist', user.uid);
-         setWishlist(products || []);
-         dispatch(setToWishlist(products || []));
-      }
-      setWishlistLoading(false);
-   }, [user, dispatch, setWishlist]);
 
    // get wishlist initially
    useEffect(() => {
       getWishlist()
    }, [])
+
+   // function for fetching the wishlist data
+   const getWishlist = useCallback(async () => {
+      setWishlistLoading(true);
+      if (user?.uid) {
+         try {
+            const { products }: any = await getItem('wishlist', user.uid);
+            dispatch(manageWishlist(products || []));
+         } catch (error) {
+            console.log('get wishlist :', error)
+            setWishlistError('An error has occurred, please try again.')
+         }
+      }
+      setWishlistLoading(false);
+   }, [user, dispatch]);
 
    const handleWishlist = async (product?: IProduct, type?: string) => {
       if (user?.uid) {
@@ -47,8 +52,7 @@ export const useWishlist = (): IWishlist => {
 
          // if no product is provided, return the current wishlist
          if (!product) {
-            setWishlist(products || [])
-            dispatch(setToWishlist(products || []))
+            dispatch(manageWishlist(products || []))
             return products
          }
 
@@ -59,15 +63,13 @@ export const useWishlist = (): IWishlist => {
             if (isProductAdded) {
                const filteredProducts = products.filter((prod: IProduct) => prod.id !== product.id)
                await setItem('wishlist', user.uid, { products: filteredProducts })
-               dispatch(setToWishlist(filteredProducts || []))
-               setWishlist(filteredProducts)
+               dispatch(manageWishlist(filteredProducts || []))
                return filteredProducts
             }
 
             const newProducts = [...products, product]
             await setItem('wishlist', user.uid, { products: newProducts })
-            dispatch(setToWishlist(newProducts || []))
-            setWishlist(newProducts)
+            dispatch(manageWishlist(newProducts || []))
             return newProducts
          }
 
@@ -75,8 +77,7 @@ export const useWishlist = (): IWishlist => {
          if (type === 'delete') {
             const filteredProducts = products.filter((prod: IProduct) => prod.id !== product.id)
             await setItem('wishlist', user.uid, { products: filteredProducts })
-            dispatch(setToWishlist(filteredProducts || []))
-            setWishlist(filteredProducts)
+            dispatch(manageWishlist(filteredProducts || []))
             return filteredProducts
          }
       }
@@ -84,5 +85,5 @@ export const useWishlist = (): IWishlist => {
 
    // memoize the handleWishlist function to prevent unnecessary re-renders
    // memoize the returned object to prevent unnecessary re-renders
-   return useMemo(() => ({ handleWishlist, wishlist, wishlistLoading }), [handleWishlist, wishlist, wishlistLoading]);
+   return useMemo(() => ({ handleWishlist, getWishlist, wishlistLoading, wishlistError }), [handleWishlist, getWishlist, wishlistLoading, wishlistError]);
 }
