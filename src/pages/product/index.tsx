@@ -34,8 +34,10 @@ const Product: React.FC = () => {
    const { product, loading, error } = useAppSelector(state => state.product)
    // getting user from redux store
    const { user } = useAppSelector(state => state.auth)
-   // gettin cart states and method from custom hook
-   const { cart, cartLoading, handleCart } = useCart()
+   // getting cart from redux store
+   const { cart } = useAppSelector(state => state.cart)
+   // gettin cart loading state and method from custom hook
+   const { cartLoading, handleCart } = useCart()
 
    // fetch current product by product id
    useEffect(() => {
@@ -48,9 +50,9 @@ const Product: React.FC = () => {
    }, [productId])
 
    // add to cart and show popup
-   const handleClick = async (product: IProduct) => {
+   const handleClick = (product: IProduct) => {
       if (user?.uid) {
-         await handleCart(product, 1, 'add')
+         handleCart('add', product, 1)
          if (!cartLoading && cart) {
             MySwal.fire({
                icon: 'success',
@@ -68,13 +70,13 @@ const Product: React.FC = () => {
    // navigate to cart when redirect state is true, after close modal
    // set false to redirect state when component unmount
    useEffect(() => {
-      if(redirect){
+      if (redirect) {
          navigate('/cart')
          MySwal.close()
-      } 
+      }
 
       return () => setRedirect(false)
-   }, [redirect])
+   }, [redirect, MySwal, navigate])
 
    if (error || (!loading && !product)) {
       return <NotFound title='Product not found' text='Sorry, we couldn’t find the product you’re looking for.' link='/' />
