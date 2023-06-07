@@ -1,11 +1,11 @@
 import Products from './products'
 import Summary from './summary/summary'
-import { useCart } from '../../hooks/useCart'
+import { useAppSelector } from '../../store/hooks'
 
 const Cart: React.FC = () => {
 
-   // getting cart from custom hook
-   const { cart } = useCart()
+   // getting cart from redux store
+   const { cart } = useAppSelector(state => state.cart)
 
    return (
       <section className='container mx-auto px-4 sm:px-0 my-20 flex-1'>
