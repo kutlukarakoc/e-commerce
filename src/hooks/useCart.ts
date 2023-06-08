@@ -6,7 +6,7 @@ import { useAppSelector, useAppDispatch } from '../store/hooks'
 import { manageCart } from '../store/features/cart'
 
 interface IUseCart {
-   handleCart: (type: string, product: IProduct, quantity: number) => void
+   handleCart: (type: string, product: IProduct, quantity?: number) => void
    getCart: () => void
    cartLoading: boolean
    cartError: string | null
@@ -45,7 +45,7 @@ export const useCart = (): IUseCart => {
       setCartLoading(false);
    }, [user, dispatch]);
 
-   const handleCart = async (type: string, product: IProduct | ICart, quantity: number) => {
+   const handleCart = async (type: string, product: IProduct | ICart, quantity?: number) => {
       if (user?.uid) {
          try {
             // set loading state true when adding to cart process starts
@@ -54,7 +54,7 @@ export const useCart = (): IUseCart => {
             const { items }: any = await getItem('cart', user.uid)
             // if type is add, add or remove the product from the cart
             // if product is already in the list, remove it, else add it
-            if (type === 'add') {
+            if (type === 'add' && quantity) {
                const addedProduct = items.find((prod: IProduct | ICart) => prod.id === product.id)
                if (addedProduct) {
                   addedProduct.quantity += quantity
