@@ -12,10 +12,6 @@ const Products: React.FC = () => {
    // getting method from custom hook
    const { handleCart } = useCart()
 
-   const handleDeleteProduct = (item: IProduct) => {
-      handleCart('delete', item)
-   }
-
    return (
       <div className='col-span-8 lg:col-span-5'>
          <div className='pr-0 md:pr-16'>
@@ -47,7 +43,7 @@ const Products: React.FC = () => {
                                  <option value="">8</option>
                               </select>
 
-                              <XMarkIcon className='absolute -top-8 sm:top-0 right-0 w-5 h-5 text-gray-400 hover:text-gray-900 cursor-pointer' onClick={() => handleDeleteProduct(item)} />
+                              <XMarkIcon className='absolute -top-8 sm:top-0 right-0 w-5 h-5 text-gray-400 hover:text-gray-900 cursor-pointer' onClick={() => handleCart('delete', item)} />
 
                            </div>
                         </div>
