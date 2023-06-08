@@ -21,6 +21,8 @@ const OrderTotal: React.FC = () => {
          if (total) {
             +total > 100 ? setTotalPrice(+total) : setTotalPrice(+total + 5)
          }
+      } else {
+         setTotalPrice(0)
       }
    }
 

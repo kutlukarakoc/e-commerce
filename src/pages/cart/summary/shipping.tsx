@@ -24,6 +24,8 @@ const Shipping: React.FC = () => {
          } else {
             setShippingEstimateText('5.00')
          }
+      } else {
+         setShippingEstimateText('0.00')
       }
    }
 

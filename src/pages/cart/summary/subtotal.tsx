@@ -18,6 +18,8 @@ const Subtotal: React.FC = () => {
             const totalPrice = totalArr.reduce((acc: number, curr?: number) => acc + (curr || 0), 0);
             setSubtotal(+totalPrice);
          }
+      } else {
+         setSubtotal(0);
       }
    };
 
