@@ -64,6 +64,8 @@ const Product: React.FC = () => {
                }
             })
          }
+      } else {
+         navigate('/auth')
       }
    }
 
