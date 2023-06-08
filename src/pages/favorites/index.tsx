@@ -6,29 +6,26 @@ import { TrashIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { useWishlist } from '../../hooks/useWishlist'
 import { useCart } from '../../hooks/useCart'
+import { useSwal } from '../../hooks/useSwal'
 import { useAppSelector } from '../../store/hooks'
 import { IProduct } from '../../types/productsTypes'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 
 const Favorites = () => {
-
-   // swal generator
-   const MySwal = withReactContent(Swal)
 
    const navigate = useNavigate()
 
    // keep track of navigate from view cart button in popup
    const [redirect, setRedirect] = useState<boolean>(false)
-
+   // getting wishlist from redux store
    const { wishlist } = useAppSelector(state => state.wishlist)
-
    // manage wishlist with custom hook
    const { handleWishlist, wishlistLoading, wishlistError } = useWishlist()
    // getting method from custom hook
    const { handleCart, cartError, cartLoading } = useCart()
+   // getting swal from custom hook
+   const { showSwal, closeSwal } = useSwal()
 
    // remove product from wishlist
    const handleFavorite = async (product: IProduct) => {
@@ -39,28 +36,20 @@ const Favorites = () => {
    const handleAddToCart = async (product: IProduct) => {
       handleCart('add', product, 1)
       if (!cartLoading && !cartError) {
-         MySwal.fire({
-            icon: 'success',
-            html: <ProductAdded product={product} setRedirect={setRedirect} />,
-            showConfirmButton: false,
-            showCloseButton: true,
-            customClass: {
-               closeButton: 'hover:text-gray-700 shadow-none border-0 outline-0 focus:outline-0 focus:shadow-none'
-            }
-         })
+         showSwal(<ProductAdded product={product} setRedirect={setRedirect} />, 'success')
       }
    }
 
-   // navigate to cart when redirect state is true, after close modal
-   // set false to redirect state when component unmount
+   // navigate to cart when redirect state is true
+   // close modal and set false to redirect state when component unmount
    useEffect(() => {
-      if (redirect) {
-         navigate('/cart')
-         MySwal.close()
-      }
+      if (redirect) navigate('/cart')
 
-      return () => setRedirect(false)
-   }, [redirect, MySwal, navigate])
+      return () => {
+         closeSwal()
+         setRedirect(false)
+      }
+   }, [redirect, navigate])
 
    if (wishlistLoading) {
       return <LoadingSkeleton />
@@ -71,7 +60,6 @@ const Favorites = () => {
          <h1 className='text-3xl font-semibold'>My Wishlist ({wishlist.length} products)</h1>
          <Divider variant='soft' />
          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
-
             {wishlist.map((product: IProduct) => (
                <div key={product.id} className='bg-zinc-50 h-[525px] p-8 relative rounded-md'>
                   <div className='absolute top-2 right-2 cursor-pointer' onClick={() => handleFavorite(product)}><TrashIcon className='w-6 h-6' /></div>
