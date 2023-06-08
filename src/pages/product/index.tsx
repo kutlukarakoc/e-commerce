@@ -34,10 +34,8 @@ const Product: React.FC = () => {
    const { product, loading, error } = useAppSelector(state => state.product)
    // getting user from redux store
    const { user } = useAppSelector(state => state.auth)
-   // getting cart from redux store
-   const { cart } = useAppSelector(state => state.cart)
    // gettin cart loading state and method from custom hook
-   const { cartLoading, handleCart } = useCart()
+   const { cartLoading, cartError, handleCart } = useCart()
 
    // fetch current product by product id
    useEffect(() => {
@@ -53,7 +51,7 @@ const Product: React.FC = () => {
    const handleClick = (product: IProduct) => {
       if (user?.uid) {
          handleCart('add', product, 1)
-         if (!cartLoading && cart) {
+         if (!cartLoading && !cartError) {
             MySwal.fire({
                icon: 'success',
                html: <ProductAdded product={product} setRedirect={setRedirect} />,
