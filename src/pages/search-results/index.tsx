@@ -1,21 +1,22 @@
 import ProductCard from '../../components/product/card'
-import { useAppSelector, useAppDispatch } from '../../store/hooks'
+import NotFound from '../../components/not-found'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { useAppSelector, useAppDispatch } from '../../store/hooks'
 import { fetchProductsBySearch } from '../../store/features/searchProducts'
-import NotFound from '../../components/not-found'
 
 const SearchResults: React.FC = () => {
-   // retrieves the current URL search parameters
+   // getting current URL search parameters
    const { search } = useLocation()
 
    const dispatch = useAppDispatch()
-   // retrieves the searched products, loading state, and error state from the Redux store
+   // getting searched products, loading state, and error state from the redux store
    const { searchedProducts, loading, error } = useAppSelector(state => state.searchProducts)
 
    // manages the state of whether the search results are not found
    const [isNotFound, setIsNotFound] = useState<boolean>(false)
 
+   // fetches products based on the search key from the URL and updates the isNotFound state.
    useEffect(() => {
       // extracts the search key from the URL search parameters
       const key = search.split('=')[1]
@@ -27,9 +28,9 @@ const SearchResults: React.FC = () => {
       }
    }, [search])
 
+   // set is not found depends on error
    useEffect(() => {
-      // checks if an error occurred or no products were found after the search
-      error !== null || (loading === false && !searchedProducts.length) ? setIsNotFound(true) : setIsNotFound(false)
+      error ? setIsNotFound(true) : setIsNotFound(false)
    }, [searchedProducts, loading, error])
 
    return (
