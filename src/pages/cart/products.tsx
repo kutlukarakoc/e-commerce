@@ -10,7 +10,7 @@ const Products: React.FC = () => {
 
    // getting cart from redux store
    const { cart } = useAppSelector(state => state.cart)
-   // getting method from custom hook
+   // getting methods from custom hook
    const { handleCart, changeQuantity } = useCart()
 
    const handleChange = (value: string, product: ICart) => {
