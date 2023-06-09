@@ -1,4 +1,4 @@
-import Favorite from '../ui/favorite'
+import Favorite from '../ui/favorite-icon'
 import AddToCart from '../add-to-cart/addToCartBtn'
 import { IProduct } from '../../types/productsTypes'
 import { Link } from 'react-router-dom'
