@@ -7,6 +7,7 @@ import { manageCart } from '../store/features/cart'
 
 interface IUseCart {
    handleCart: (type: string, product: IProduct) => void
+   changeQuantity: (product: IProduct | ICart, quantity: number) => void
    getCart: () => void
    cartLoading: boolean
    cartError: string | null
@@ -36,7 +37,7 @@ export const useCart = (): IUseCart => {
       if (user?.uid) {
          try {
             const { items }: any = await getItem('cart', user.uid);
-            dispatch(manageCart(items || []))
+            dispatch(manageCart(items || []))
          } catch (error) {
             console.log('get cart :', error)
             setCartError('An error has occurred, please try again.')
@@ -50,7 +51,7 @@ export const useCart = (): IUseCart => {
          try {
             // set loading state true when adding to cart process starts
             setCartLoading(true)
-            // set latest cart from db
+            // get latest cart from db
             const { items }: any = await getItem('cart', user.uid)
             // if type is add, add or remove the product from the cart
             // if product is already in the list, remove it, else add it
@@ -69,7 +70,7 @@ export const useCart = (): IUseCart => {
             // if type is delete, remove the product from the cart
             if (type === 'delete') {
                const filteredItems = items.filter((prod: ICart) => prod.id !== product.id)
-               dispatch(manageCart(filteredItems || []))
+               dispatch(manageCart(filteredItems || []))
                await setItem('cart', user.uid, { items: [...filteredItems] })
             }
             // set loading state false when adding to cart process ends
@@ -82,7 +83,29 @@ export const useCart = (): IUseCart => {
       }
    }
 
+   const changeQuantity = async (product: IProduct | ICart, quantity: number) => {
+      if (user?.uid) {
+         try {
+            // set loading state true when adding to cart process starts
+            setCartLoading(true)
+            // get latest cart from db
+            const { items }: any = await getItem('cart', user.uid)
+            // find product and update it's quantity
+            const selectedProduct = items.find((prod: IProduct | ICart) => prod.id === product.id)
+            selectedProduct.quantity = quantity
+            dispatch(manageCart(items))
+            await setItem('cart', user.uid, { items: [...items] })
+            // set loading state false when changing to cart process ends
+            setCartLoading(false)
+         } catch (error) {
+            console.log('change quantity :', error)
+            setCartError('An error has occurred, please try again.')
+         }
+         setCartLoading(false)
+      }
+   }
+
    // memoize the handleCart function to prevent unnecessary re-renders
    // memoize the returned object to prevent unnecessary re-renders
-   return useMemo(() => ({ handleCart, getCart, cartLoading, cartError }), [handleCart, getCart, cartLoading, cartError]);
+   return useMemo(() => ({ handleCart, getCart, changeQuantity, cartLoading, cartError }), [handleCart, changeQuantity, getCart, cartLoading, cartError]);
 }
