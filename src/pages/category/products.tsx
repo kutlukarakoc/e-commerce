@@ -3,7 +3,7 @@ import { fetchProductsByUrl } from '../../store/features/filterProducts'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import ProductCard from '../../components/product/card'
-import LoadingSkeleton from './loading'
+import LoadingSkeleton from '../../components/product/loading'
 import NotFound from '../../components/not-found'
 
 const Products: React.FC = () => {
@@ -29,7 +29,7 @@ const Products: React.FC = () => {
 
    return (
       <div className='flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
-         {!loading && filteredProducts.length ? <ProductCard products={filteredProducts} /> : <LoadingSkeleton /> }
+         {!loading && filteredProducts.length ? <ProductCard products={filteredProducts} /> : <LoadingSkeleton count={6} hasIcon={true} loading={loading} /> }
       </div>
    )
 }
