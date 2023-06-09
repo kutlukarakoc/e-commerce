@@ -39,7 +39,7 @@ const App: React.FC = () => {
 					<Route path='/profile' element={<RequireAuth><Profile /></RequireAuth>} />
 					<Route path='/favorites' element={<RequireAuth><Favorites /></RequireAuth>} />
 					<Route path='/cart' element={<RequireAuth><Cart /></RequireAuth>} />
-					<Route path='*' element={<NotFound title='Page not found' text='Sorry, we couldn’t find the page you’re looking for.' link='/' />} />
+					<Route path='*' element={<NotFound title='Page not found' text='Sorry, we couldn’t find the page you’re looking for.' link='/' linkText='Go back home' />} />
 				</Routes>
 			</div>
 			{isAllowed && <Footer />}

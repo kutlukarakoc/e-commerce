@@ -37,7 +37,7 @@ const SearchResults: React.FC = () => {
          {
             // displays error component or product card component depends on not found state
             isNotFound
-               ? <NotFound title='Product not found' text='Sorry, we couldn’t find the product you’re looking for.' link='/' />
+               ? <NotFound title='Product not found' text='Sorry, we couldn’t find the product you’re looking for.' link='/' linkText='Go back home' />
                : <div className='flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'><ProductCard products={searchedProducts} /></div>
          }
       </div>

@@ -21,8 +21,8 @@ const Products: React.FC = () => {
    }, [location])
 
 
-   if(error || (!loading && !filteredProducts.length)) {
-      return <NotFound title='Something went wrong!' text='Sorry, please try again later.' link='/' />
+   if(error) {
+      return <NotFound title='Something went wrong!' text='Sorry, please try again later.' link='/' linkText='Go back home' />
    }
 
    return (

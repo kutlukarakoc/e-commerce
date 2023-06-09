@@ -70,7 +70,7 @@ const Product: React.FC<{}> = () => {
 
    // display notfound component when error occured
    if (error) {
-      return <NotFound title='Product not found' text='Sorry, we couldn’t find the product you’re looking for.' link='/' />
+      return <NotFound title='Product not found' text='Sorry, we couldn’t find the product you’re looking for.' link='/' linkText='Go back home' />
    }
    // display loading skeleton when the loading state is true
    if (loading) {
