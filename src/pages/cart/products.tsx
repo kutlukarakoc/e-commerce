@@ -1,7 +1,6 @@
 import Divider from '../../components/ui/divider'
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-import { IProduct } from '../../types/productsTypes'
 import { ICart } from '../../types/cartTypes'
 import { useAppSelector } from '../../store/hooks'
 import { useCart } from '../../hooks/useCart'
