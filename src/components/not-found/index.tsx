@@ -3,16 +3,17 @@ import { Link } from 'react-router-dom'
 
 interface INotFound {
    title: string
-   text: string
+   text?: string
    link: string
    linkText: string
+   isErrorCode?: boolean
 }
 
-const NotFound: React.FC<INotFound> = ({title, text, link, linkText}) => {
+const NotFound: React.FC<INotFound> = ({title, text, link, linkText, isErrorCode = true}) => {
    return (
       <section className='grid min-h-full place-items-center bg-white px-6 py-5 sm:py-8 lg:px-8'>
          <div className='text-center'>
-            <p className='text-base font-semibold text-indigo-600'>404</p>
+            <p className='text-base font-semibold text-indigo-600'>{isErrorCode ? '404' : null}</p>
             <h1 className='mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>{title}</h1>
             <p className='mt-6 text-base leading-7 text-gray-600'>{text}</p>
             <div className='mt-10 flex items-center justify-center gap-x-6'>
