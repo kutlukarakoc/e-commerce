@@ -10,8 +10,10 @@ const Products: React.FC = () => {
 
    const location = useLocation()
    const dispatch = useAppDispatch()
+   // getting filtered products, loading and error states from redux store
    const { filteredProducts, loading, error } = useAppSelector(state => state.filterProducts)
 
+   // fetch products depends on url
    useEffect(() => {
       if (location.search.length) {
          dispatch(fetchProductsByUrl(location.pathname + location.search))
