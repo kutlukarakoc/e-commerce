@@ -1,6 +1,6 @@
-import ProductCard from '../../components/product/card'
+import ProductCard from '../../components/product-card/card'
+import LoadingSkeleton from '../../components/product-card/loading'
 import NotFound from '../../components/not-found'
-import LoadingSkeleton from '../../components/product/loading'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
