@@ -48,7 +48,7 @@ const AddToCart: React.FC<IAddToCart> = ({ product, isFull = false }) => {
    }, [redirect, navigate])
 
    return (
-      <Button type='button' variant='filled' color='indigo' size='md' className={`px-6 py-3 font-semibold leading-5 ${isFull ? 'w-full' : ''}`} onClick={handleClick}>
+      <Button type='button' variant='filled' color='indigo' size='md' className={`px-6 py-3 leading-5 ${isFull ? 'w-full' : ''}`} onClick={handleClick}>
          Add to cart
       </Button>
    )
