@@ -1,4 +1,4 @@
-import AddToCart from '../../components/add-to-cart/addToCartBtn'
+import AddToCart from '../../components/add-to-cart'
 import { Link } from 'react-router-dom'
 import { useWishlist } from '../../hooks/useWishlist'
 import { useAppSelector } from '../../store/hooks'

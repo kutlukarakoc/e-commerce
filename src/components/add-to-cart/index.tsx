@@ -1,5 +1,5 @@
-import ProductAdded from '../../components/popup/productAdded'
-import Button from '../../components/ui/button'
+import ProductAdded from '../popup/productAdded'
+import Button from '../ui/button'
 import { useAppSelector } from '../../store/hooks'
 import { useEffect, useState } from 'react'
 import { useCart } from '../../hooks/useCart'
