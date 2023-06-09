@@ -1,4 +1,5 @@
 import ProductAdded from '../popup/productAdded'
+import ShouldLogin from '../popup/shouldLogin'
 import Button from '../ui/button'
 import { useAppSelector } from '../../store/hooks'
 import { useEffect, useState } from 'react'
@@ -30,18 +31,18 @@ const AddToCart: React.FC<IAddToCart> = ({ product, isFull = false }) => {
          handleCart('add', product)
          if (!cartLoading && !cartError) {
             showSwal(<ProductAdded product={product} setRedirect={setRedirect} />, 'success')
-         } else {
-            navigate('/auth')
          }
+      } else {
+         showSwal(<ShouldLogin setRedirect={setRedirect} />, 'warning')
       }
    }
 
-   // navigate to cart when redirect state is true
+   // when true, if user logged in navite to cart, if not navigate to auth
    // close modal and set false to redirect state when component unmount
    useEffect(() => {
       if (redirect) {
          closeSwal()
-         navigate('/cart')
+         user?.uid ? navigate('/cart') : navigate('/auth')
       }
 
       return () => setRedirect(false)
