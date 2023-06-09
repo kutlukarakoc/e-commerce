@@ -42,12 +42,12 @@ const ProductCard: React.FC<IProductCard> = ({ products }) => {
    // navigate to cart when redirect state is true
    // close modal and set false to redirect state when component unmount
    useEffect(() => {
-      if (redirect) navigate('/cart')
-
-      return () => {
+      if (redirect) {
          closeSwal()
-         setRedirect(false)
+         navigate('/cart')
       }
+
+      return () => setRedirect(false)
    }, [redirect, navigate])
 
    return (

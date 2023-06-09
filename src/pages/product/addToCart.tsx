@@ -11,7 +11,7 @@ interface IAddToCart {
    product: IProduct
 }
 
-const AddToCart: React.FC<IAddToCart> = ({product}) => {
+const AddToCart: React.FC<IAddToCart> = ({ product }) => {
    const navigate = useNavigate()
 
    // keep track of navigate from view cart button in popup
@@ -38,12 +38,12 @@ const AddToCart: React.FC<IAddToCart> = ({product}) => {
    // navigate to cart when redirect state is true
    // close modal and set false to redirect state when component unmount
    useEffect(() => {
-      if (redirect) navigate('/cart')
-
-      return () => {
+      if (redirect) {
          closeSwal()
-         setRedirect(false)
+         navigate('/cart')
       }
+
+      return () => setRedirect(false)
    }, [redirect, navigate])
 
    return (
