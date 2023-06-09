@@ -12,6 +12,7 @@ const Products: React.FC = () => {
    // getting methods from custom hook
    const { handleCart, changeQuantity } = useCart()
 
+   // change product quantity by given value
    const handleChange = (value: string, product: ICart) => {
       const quantity = +value
       changeQuantity(product, quantity)
