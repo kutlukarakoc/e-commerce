@@ -29,7 +29,7 @@ const Products: React.FC = () => {
 
    return (
       <div className='flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
-         {!loading && filteredProducts.length ? <ProductCard products={filteredProducts} /> : <LoadingSkeleton count={6} hasIcon={true} loading={loading} /> }
+         {!loading && filteredProducts.length ? <ProductCard products={filteredProducts} icon='favorite' /> : <LoadingSkeleton count={6} hasIcon={true} loading={loading} /> }
       </div>
    )
 }

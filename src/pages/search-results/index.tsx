@@ -37,7 +37,7 @@ const SearchResults: React.FC = () => {
             { // if loading is true display loading skeleton, else display products
                loading
                   ? <LoadingSkeleton count={3} hasIcon={true} loading={loading} />
-                  : <ProductCard products={searchedProducts} />
+                  : <ProductCard products={searchedProducts} icon='favorite' />
             }
          </div>
       </div>
