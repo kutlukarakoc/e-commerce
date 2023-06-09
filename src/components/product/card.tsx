@@ -30,7 +30,7 @@ const ProductCard: React.FC<IProductCard> = ({ products }) => {
    // add to cart and show popup
    const handleAddToCart = (product: IProduct) => {
       if (user?.uid) {
-         handleCart('add', product, 1)
+         handleCart('add', product)
          if (!cartLoading && !cartError) {
             showSwal(<ProductAdded product={product} setRedirect={setRedirect} />, 'success')
          }

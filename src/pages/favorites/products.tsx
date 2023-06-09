@@ -32,7 +32,7 @@ const WishlistProducts: React.FC = () => {
 
    // add to cart and show popup
    const handleAddToCart = async (product: IProduct) => {
-      handleCart('add', product, 1)
+      handleCart('add', product)
       if (!cartLoading && !cartError) {
          showSwal(<ProductAdded product={product} setRedirect={setRedirect} />, 'success')
       }
