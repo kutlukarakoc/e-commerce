@@ -1,7 +1,17 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PlusIcon, MinusIcon } from '@heroicons/react/24/outline'
-import { IAccordion } from '../../../types/accordionTypes'
+
+interface IAccordion {
+   title: string
+   contents: IAccordionList[]
+   type: 'list' | 'links'
+}
+
+interface IAccordionList {
+   title: string
+   path?: string
+}
 
 const Accordion: React.FC<IAccordion> = ({ title, contents, type }) => {
    const [toggle, setToggle] = useState(false)
