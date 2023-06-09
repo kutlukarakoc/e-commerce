@@ -1,4 +1,12 @@
-import { IButton } from '../../../types/buttonTypes'
+import { ButtonHTMLAttributes } from 'react'
+
+interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
+   click?: () => void
+   variant: 'filled' | 'outline'
+   styles?: string
+   size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+   color: string
+}
 
 const Button: React.FC<IButton> = ({ children, variant, color, size, click, ...rest }) => {
 
