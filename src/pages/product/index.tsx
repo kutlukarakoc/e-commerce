@@ -4,13 +4,13 @@ import Favorite from '../../components/ui/favorite'
 import Rating from '../../components/ui/rating'
 import Accordion from '../../components/ui/accordion'
 import LoadingSkeleton from './loading'
+import AddToCart from '../../components/add-to-cart/addToCartBtn'
 import { shippingConstants, returnsConstants } from '../../constants/product/accordionConstants'
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
 import { fetchProductById } from '../../store/features/singleProduct'
 import { clearProduct } from '../../store/features/singleProduct'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
-import AddToCart from './addToCart'
 
 const Product: React.FC<{}> = () => {
 

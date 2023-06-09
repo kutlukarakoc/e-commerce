@@ -9,9 +9,10 @@ import { IProduct } from '../../types/productsTypes'
 
 interface IAddToCart {
    product: IProduct
+   isFull?: boolean
 }
 
-const AddToCart: React.FC<IAddToCart> = ({ product }) => {
+const AddToCart: React.FC<IAddToCart> = ({ product, isFull = false }) => {
    const navigate = useNavigate()
 
    // keep track of navigate from view cart button in popup
@@ -47,7 +48,7 @@ const AddToCart: React.FC<IAddToCart> = ({ product }) => {
    }, [redirect, navigate])
 
    return (
-      <Button type='button' variant='filled' color='indigo' size='md' className='px-6 py-3 font-semibold leading-5' onClick={handleClick}>
+      <Button type='button' variant='filled' color='indigo' size='md' className={`px-6 py-3 font-semibold leading-5 ${isFull ? 'w-full' : ''}`} onClick={handleClick}>
          Add to cart
       </Button>
    )

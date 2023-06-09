@@ -1,53 +1,21 @@
-import Button from '../../components/ui/button'
-import ProductAdded from '../../components/popup/productAdded'
-import { Link, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import AddToCart from '../../components/add-to-cart/addToCartBtn'
+import { Link } from 'react-router-dom'
 import { useWishlist } from '../../hooks/useWishlist'
-import { useCart } from '../../hooks/useCart'
-import { useSwal } from '../../hooks/useSwal'
 import { useAppSelector } from '../../store/hooks'
 import { IProduct } from '../../types/productsTypes'
 import { TrashIcon } from '@heroicons/react/24/outline'
 
 const WishlistProducts: React.FC = () => {
 
-   const navigate = useNavigate()
-
-   // keep track of navigate from view cart button in popup
-   const [redirect, setRedirect] = useState<boolean>(false)
-
    // getting wishlist from redux store
    const { wishlist } = useAppSelector(state => state.wishlist)
    // manage wishlist with custom hook
    const { handleWishlist } = useWishlist()
-   // getting method from custom hook
-   const { handleCart, cartError, cartLoading } = useCart()
-   // getting swal from custom hook
-   const { showSwal, closeSwal } = useSwal()
 
    // remove product from wishlist
    const handleFavorite = async (product: IProduct) => {
       await handleWishlist(product, 'delete')
    }
-
-   // add to cart and show popup
-   const handleAddToCart = async (product: IProduct) => {
-      handleCart('add', product)
-      if (!cartLoading && !cartError) {
-         showSwal(<ProductAdded product={product} setRedirect={setRedirect} />, 'success')
-      }
-   }
-
-   // navigate to cart when redirect state is true
-   // close modal and set false to redirect state when component unmount
-   useEffect(() => {
-      if (redirect) {
-         closeSwal()
-         navigate('/cart')
-      }
-
-      return () => setRedirect(false)
-   }, [redirect, navigate])
 
    return (
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
@@ -62,7 +30,7 @@ const WishlistProducts: React.FC = () => {
                <Link to={`/products/${product.id}`} className='mt-10 mb-1 text-base text-left font-semibold h-6 line-clamp-1 overflow-hidden'>{product.title}</Link>
                <p className='text-sm mb-3'>{product.category}</p>
                <div className='font-semibold text-left mb-6'>${product.price.toFixed(2)}</div>
-               <Button variant='filled' color='indigo' size='sm' className='w-full h-11' onClick={() => handleAddToCart(product)}>Add to cart</Button>
+               <AddToCart product={product} isFull />
             </div>
          ))}
       </div>
