@@ -1,18 +1,21 @@
-import Favorite from '../ui/favorite-icon'
 import AddToCart from '../add-to-cart'
+import Favorite from '../ui/favorite-icon'
+import Trash from '../ui/trash-icon'
 import { IProduct } from '../../types/productsTypes'
 import { Link } from 'react-router-dom'
 
 interface IProductCard {
    products: IProduct[]
+   icon: 'favorite' | 'trash'
 }
 
-const ProductCard: React.FC<IProductCard> = ({ products }) => {
+const ProductCard: React.FC<IProductCard> = ({ products, icon }) => {
    return (
       <>
          {products.map(product => (
             <div key={product.id} className='group bg-zinc-50 h-[525px] p-10 relative rounded-md'>
-               <Favorite product={product} className='absolute top-2 right-3 w-7' />
+               {icon === 'favorite' ? <Favorite product={product} className='absolute top-2 right-3 w-7' /> : null}
+               {icon === 'trash' ? <Trash product={product} /> : null}
                <Link to={`/products/${product.id}`} className='cursor-pointer'>
                   <img src={product.image} alt='ecommerce' className='w-full block aspect-video max-w-[250px] max-h-[275px] h-full mx-auto mix-blend-multiply' />
                </Link>
