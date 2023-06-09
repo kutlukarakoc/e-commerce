@@ -19,6 +19,8 @@ const Product: React.FC<{}> = () => {
    const { productId } = useParams<string>()
    // getting current visited product from redux product state
    const { product, loading, error } = useAppSelector(state => state.product)
+   // getting user from redux store
+   const { user } = useAppSelector(state => state.auth)
 
    // fetch current product by product id
    useEffect(() => {
