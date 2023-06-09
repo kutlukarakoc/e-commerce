@@ -26,7 +26,7 @@ const RightSide: React.FC = () => {
    return (
       <div className='flex justify-center items-center gap-2 sm:gap-6 order-3'>
          {// if user logged in display profile, favorites and cart, else display login/register
-            user ? (<>
+            user?.uid ? (<>
                <Link to='/profile' className='flex flex-col items-center justify-center gap-1 cursor-pointer w-8 h-8 sm:w-12 sm:h-12'>
                   <UserIcon className='w-full h-full text-gray-700' />
                   <div className='text-xs tracking-wide hidden sm:block'>Profile</div>
