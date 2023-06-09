@@ -1,4 +1,4 @@
-import ProductCard from '../../components/product-card/card'
+import ProductCard from '../../components/product-card'
 import LoadingSkeleton from '../../components/product-card/loading'
 import NotFound from '../../components/not-found'
 import { useEffect } from 'react'
