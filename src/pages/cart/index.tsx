@@ -1,4 +1,4 @@
-import Products from './products'
+import Products from './products/products'
 import Summary from './summary/summary'
 import LoadingSkeleton from './loading'
 import { useAppSelector } from '../../store/hooks'

@@ -1,22 +1,15 @@
-import Divider from '../../components/ui/divider'
-import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Quantity from './quantity'
+import Delete from './delete'
+import Divider from '../../../components/ui/divider'
+import { CheckIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-import { ICart } from '../../types/cartTypes'
-import { useAppSelector } from '../../store/hooks'
-import { useCart } from '../../hooks/useCart'
+import { ICart } from '../../../types/cartTypes'
+import { useAppSelector } from '../../../store/hooks'
 
 const Products: React.FC = () => {
 
    // getting cart from redux store
    const { cart } = useAppSelector(state => state.cart)
-   // getting methods from custom hook
-   const { handleCart, changeQuantity } = useCart()
-
-   // change product quantity by given value
-   const handleChange = (value: string, product: ICart) => {
-      const quantity = +value
-      changeQuantity(product, quantity)
-   }
 
    return (
       <div className='col-span-8 lg:col-span-5'>
@@ -38,21 +31,14 @@ const Products: React.FC = () => {
                               <div className='mt-1 text-sm'>${(product.price * product.quantity).toFixed(2)}</div>
                            </div>
                            <div className='mt-4 sm:mt-0'>
-                              <select name='quantity' id='quantity' className='text-base sm:text-sm font-medium py-1.5 px-3 border rounded-md' onChange={(event) => handleChange(event.target.value, product)} value={product.quantity}>
-                                 {Array.from({ length: 10 }).map((number, index) => (
-                                    <option key={index} value={index + 1}>{index + 1}</option>
-                                 ))}
-                              </select>
-
-                              <XMarkIcon className='absolute -top-8 sm:top-0 right-0 w-5 h-5 text-gray-400 hover:text-gray-900 cursor-pointer' onClick={() => handleCart('delete', product)} />
-
+                              <Quantity product={product} />
+                              <Delete product={product} />
                            </div>
                         </div>
                         <div className='mt-4 text-sm flex items-center gap-2 ps-6 sm:ps-0'>
                            <CheckIcon className='w-5 h-5 text-green-500' /><span>In stock</span>
                         </div>
                      </div>
-
                   </div>
                   <Divider variant='soft' />
                </div>
