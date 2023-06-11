@@ -27,22 +27,22 @@ const RightSide: React.FC = () => {
       <div className='flex justify-center items-center gap-2 sm:gap-6 order-3'>
          {// if user logged in display profile, favorites and cart, else display login/register
             user?.uid ? (<>
-               <Link to='/profile' className='flex flex-col items-center justify-center gap-1 cursor-pointer w-8 h-8 sm:w-12 sm:h-12'>
+               <Link to='/profile' className='flex flex-col items-center gap-1 cursor-pointer w-8 h-8 sm:w-12 sm:h-12'>
                   <UserIcon className='w-full h-full text-gray-700' />
                   <div className='text-xs tracking-wide hidden sm:block'>Profile</div>
                </Link>
-               <Link to='/favorites' className='flex flex-col items-center justify-center gap-1 cursor-pointer w-8 h-8 sm:w-12 sm:h-12 relative'>
+               <Link to='/favorites' className='flex flex-col items-center gap-1 cursor-pointer w-8 h-8 sm:w-12 sm:h-12 relative'>
                   <HeartIcon className='w-full h-full text-gray-700' />
                   <div className='text-xs tracking-wide hidden sm:block'>Wishlist</div>
                   { // display wishlist count when wishlist loaded
-                     wishlist.length ? <div className='absolute -right-1 -top-2 bg-indigo-500 rounded-full w-4 h-4 text-center text-white text-xs'>{wishlist.length}</div> : null
+                     wishlist.length ? <div className='absolute -right-1 -top-2.5 sm:-top-2 bg-indigo-500 rounded-full w-4 h-4 text-center text-white text-xs'>{wishlist.length}</div> : null
                   }
                </Link>
-               <Link to='/cart' className='flex flex-col items-center justify-center gap-1 cursor-pointer w-8 h-8 sm:w-12 sm:h-12 relative'>
+               <Link to='/cart' className='flex flex-col items-center gap-1 cursor-pointer w-8 h-8 sm:w-12 sm:h-12 relative'>
                   <ShoppingBagIcon className='w-full h-full text-gray-700' />
                   <div className='text-xs tracking-wide hidden sm:block'>Cart</div>
                   { // display cart count when wishlist loaded
-                     cart.length ? <div className='absolute -right-1 -top-2 bg-indigo-500 rounded-full w-4 h-4 text-center text-white text-xs'>{cart.length}</div> : null
+                     cart.length ? <div className='absolute -right-1 -top-2.5 sm:-top-2 bg-indigo-500 rounded-full w-4 h-4 text-center text-white text-xs'>{cart.length}</div> : null
                   }
                </Link>
             </>) : (

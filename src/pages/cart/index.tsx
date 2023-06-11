@@ -24,7 +24,7 @@ const Cart: React.FC = () => {
       <section className='container mx-auto px-4 sm:px-0 my-20 flex-1'>
          {cart.length ? (
             <>
-               <h1 className='text-3xl font-semibold'>Shopping Cart ({cart.length} products)</h1>
+               <h1 className='text-center sm:text-left text-2xl sm:text-3xl font-semibold text-gray-700'>Shopping Cart ({cart.length} products)</h1>
                <div className='grid grid-cols-8'>
                   <Products />
                   <Summary />
