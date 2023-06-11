@@ -14,7 +14,7 @@ const Products: React.FC = () => {
    return (
       <div className='col-span-8 lg:col-span-5'>
          <div className='pr-0 md:pr-16'>
-            <Divider variant='soft' styles='my-5' />
+            <Divider variant='soft' />
             {cart ? cart.map((product: ICart) => (
                <div key={product.id}>
                   <div className='flex my-14'>
