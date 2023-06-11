@@ -13,7 +13,7 @@ const ProductCard: React.FC<IProductCard> = ({ products, icon }) => {
 
    // render icon depends on icon props
    const renderIcon = (product: IProduct) => {
-      if(icon === 'favorite') { console.log('render favorite')
+      if(icon === 'favorite') {
          return <Favorite product={product} wrapperClasses='w-7 h-7 absolute top-2 right-3' />
       } // trash
       return <Trash product={product} />
