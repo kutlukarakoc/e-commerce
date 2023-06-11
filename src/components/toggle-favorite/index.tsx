@@ -1,11 +1,11 @@
-import ShouldLogin from '../../popup/shouldLogin'
+import ShouldLogin from '../popup/shouldLogin'
 import { HeartIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../../../store/hooks'
-import { IProduct } from '../../../types/productsTypes'
-import { useWishlist } from '../../../hooks/useWishlist'
-import { useSwal } from '../../../hooks/useSwal'
+import { useAppSelector } from '../../store/hooks'
+import { IProduct } from '../../types/productsTypes'
+import { useWishlist } from '../../hooks/useWishlist'
+import { useSwal } from '../../hooks/useSwal'
 
 interface IFavorite {
    product: IProduct

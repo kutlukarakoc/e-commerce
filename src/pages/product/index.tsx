@@ -1,6 +1,6 @@
 import Divider from '../../components/ui/divider'
 import NotFound from '../../components/not-found'
-import Favorite from '../../components/ui/favorite-icon'
+import Favorite from '../../components/toggle-favorite'
 import Rating from '../../components/ui/rating'
 import Accordion from '../../components/ui/accordion'
 import LoadingSkeleton from './loading'
