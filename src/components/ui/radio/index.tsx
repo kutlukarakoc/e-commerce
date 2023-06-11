@@ -6,6 +6,7 @@ interface IRadio {
 }
 
 const Radio: React.FC<IRadio> = ({ name, options, selected, onChange, ...rest }) => {
+   console.log('selected',selected)
    return (
       <>
          {options.map((option: any) => (
