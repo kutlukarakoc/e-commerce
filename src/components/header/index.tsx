@@ -1,11 +1,11 @@
 import RightSide from './rightSide'
-import { Link } from 'react-router-dom'
-import { useState, useEffect, FormEvent } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import Input from '../ui/input'
 import MobileMenu from './MobileMenu'
 import logo from '../../assets/logo.png'
+import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'
+import { useState, useEffect, FormEvent } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { categories } from '../../constants/header/headerConstants'
 
 const Header: React.FC = () => {
