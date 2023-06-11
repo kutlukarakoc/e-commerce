@@ -2,58 +2,44 @@ import { ButtonHTMLAttributes } from 'react'
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
    click?: () => void
-   variant: 'filled' | 'outline'
+   variant: 'filled' | 'outline'
    styles?: string
-   size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
-   color: string
+   size: 'sm' | 'md' | 'lg'
+   color: 'indigo' | 'red'
 }
 
 const Button: React.FC<IButton> = ({ children, variant, color, size, click, ...rest }) => {
 
    // defining variant and colour classes
-   let variantAndColor = ''
+   let variantStyles = ''
    if (variant === 'filled') {
-      if (color === 'indigo') {
-         variantAndColor = 'bg-indigo-600 hover:bg-indigo-500 text-white'
-      } else if (color === 'red') {
-         variantAndColor = 'bg-red-600 hover:bg-red-500 text-white'
-      }
-   } else if (variant === 'outline') {
-      if (color === 'indigo') {
-         variantAndColor = 'border border-solid border-indigo-600 text-indigo-600'
-      } else if(color === 'red') {
-         variantAndColor = 'border border-solid border-red-600 text-red-600'
-      }
+      variantStyles =
+         color === 'indigo'
+            ? 'bg-indigo-600 hover:bg-indigo-500 text-white'
+            : 'bg-red-600 hover:bg-red-500 text-white'
+   } else { // variant outline
+      variantStyles =
+         color === 'indigo'
+            ? 'border border-solid border-indigo-600 text-indigo-600'
+            : 'border border-solid border-red-600 text-red-600'
    }
 
-   // defining size classes
-   let sizeStyles = ''
-   if (size === 'xs') {
-      sizeStyles = 'text-xs'
-   } else if (size === 'sm') {
-      sizeStyles = 'text-sm'
+   // defining font size class
+   let fontSize = '';
+   if (size === 'sm') {
+      fontSize = 'text-sm'
    } else if (size === 'md') {
-      sizeStyles = 'text-base'
-   } else if (size === 'lg') {
-      sizeStyles = 'text-lg'
-   } else if (size === 'xl') {
-      sizeStyles = 'text-xl'
-   } else {
-      sizeStyles = 'text-2xl'
+      fontSize = 'text-base'
+   } else { // lg 
+      fontSize = 'text-lg'
    }
 
    // clone rest props except className
-   const restWithoutClass = { ...rest }
-   delete restWithoutClass.className
+   const { className: restClassName, ...restWithoutClass } = rest;
 
    return (
       <button
-         className={
-            'pointer-events-auto rounded-md '
-            + variantAndColor + ' '
-            + sizeStyles + ' '
-            + rest.className
-         }
+         className={`pointer-events-auto rounded-md disabled:opacity-75 disabled:cursor-not-allowed ${variantStyles} ${fontSize} ${rest.className}`}
          onClick={click}
          {...restWithoutClass}
       >

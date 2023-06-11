@@ -109,7 +109,7 @@ const Profile: React.FC = () => {
                   </div>
                </div>
 
-               <Button type='submit' variant='filled' size='md' color='indigo' className='w-52 h-11 flex justify-center items-center gap-4 mx-auto disabled:opacity-75 disabled:cursor-not-allowed' disabled={updaterLoading}>
+               <Button type='submit' variant='filled' size='md' color='indigo' className='w-52 h-11 flex justify-center items-center gap-4 mx-auto' disabled={updaterLoading}>
                   Save
                   {updaterLoading && <Spinner />}
                </Button>

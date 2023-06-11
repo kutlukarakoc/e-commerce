@@ -34,7 +34,7 @@ const DeleteAccount: React.FC<IDeleteAccount> = ({ uid }) => {
 
    return (
       <div>
-         <Button type='submit' variant='filled' size='sm' color='red' className='w-36 h-10 flex justify-center items-center gap-4 disabled:opacity-75 disabled:cursor-not-allowed' onClick={deleteUserAccount}>
+         <Button type='submit' variant='filled' size='sm' color='red' className='w-36 h-10 flex justify-center items-center gap-4' onClick={deleteUserAccount}>
             Delete Account
             {removerLoading && <Spinner />}
          </Button>
