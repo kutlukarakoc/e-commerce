@@ -3,7 +3,6 @@ import { ButtonHTMLAttributes } from 'react'
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
    click?: () => void
    variant: 'filled' | 'outline'
-   styles?: string
    size: 'sm' | 'md' | 'lg'
    color: 'indigo' | 'red'
 }
@@ -25,7 +24,7 @@ const Button: React.FC<IButton> = ({ children, variant, color, size, click, ...r
    }
 
    // defining font size class
-   let fontSize = '';
+   let fontSize = ''
    if (size === 'sm') {
       fontSize = 'text-sm'
    } else if (size === 'md') {
