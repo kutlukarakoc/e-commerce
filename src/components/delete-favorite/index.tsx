@@ -1,6 +1,6 @@
-import { useWishlist } from '../../../hooks/useWishlist'
+import { useWishlist } from '../../hooks/useWishlist'
 import { TrashIcon } from '@heroicons/react/24/outline'
-import { IProduct } from '../../../types/productsTypes'
+import { IProduct } from '../../types/productsTypes'
 
 interface ITrash {
    product: IProduct

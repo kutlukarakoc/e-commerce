@@ -1,6 +1,6 @@
 import AddToCart from '../add-to-cart'
 import Favorite from '../toggle-favorite'
-import Trash from '../ui/trash-icon'
+import Trash from '../toggle-favorite'
 import { IProduct } from '../../types/productsTypes'
 import { Link } from 'react-router-dom'
 
