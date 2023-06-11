@@ -13,6 +13,10 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+import '../../src/styles/global.css'
+import '../../src/styles/reset.css'
+import '../../node_modules/tailwindcss/tailwind.css'
+
 // Import commands.js using ES2015 syntax:
 import './commands'
 
