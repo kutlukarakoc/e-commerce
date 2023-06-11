@@ -58,7 +58,7 @@ const Product: React.FC<{}> = () => {
                   <p className='text-base tracking-wide mb-6 first-letter:uppercase'>{product.description}</p>
                   <div className='flex gap-6'>
                      <AddToCart product={product} />
-                     <Favorite className='w-10' product={product} />
+                     <Favorite wrapperClasses='w-10' product={product} />
                   </div>
                   <div className='mt-16'>
                      <Accordion title={shippingConstants.title} contents={shippingConstants.contents} type='list' />

@@ -1,21 +1,29 @@
 import AddToCart from '../add-to-cart'
 import Favorite from '../toggle-favorite'
-import Trash from '../toggle-favorite'
+import Trash from '../delete-favorite'
 import { IProduct } from '../../types/productsTypes'
 import { Link } from 'react-router-dom'
 
 interface IProductCard {
    products: IProduct[]
-   icon: 'favorite' | 'trash'
+   icon: 'favorite' | 'trash'
 }
 
 const ProductCard: React.FC<IProductCard> = ({ products, icon }) => {
+
+   // render icon depends on icon props
+   const renderIcon = (product: IProduct) => {
+      if(icon === 'favorite') { console.log('render favorite')
+         return <Favorite product={product} wrapperClasses='w-7 h-7 absolute top-2 right-3' />
+      } // trash
+      return <Trash product={product} />
+   }
+
    return (
       <>
          {products.map(product => (
             <div key={product.id} className='group bg-zinc-50 h-[525px] p-10 relative rounded-md'>
-               {icon === 'favorite' ? <Favorite product={product} className='absolute top-2 right-3 w-7' /> : null}
-               {icon === 'trash' ? <Trash product={product} /> : null}
+               {renderIcon(product)}
                <Link to={`/products/${product.id}`} className='cursor-pointer'>
                   <img src={product.image} alt='ecommerce' className='w-full block aspect-video max-w-[250px] max-h-[275px] h-full mx-auto mix-blend-multiply' />
                </Link>

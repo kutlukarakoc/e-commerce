@@ -9,10 +9,10 @@ import { useSwal } from '../../hooks/useSwal'
 
 interface IFavorite {
    product: IProduct
-   className?: string
+   wrapperClasses?: string
 }
 
-const Favorite: React.FC<IFavorite> = ({ product, className }) => {
+const Favorite: React.FC<IFavorite> = ({ product, wrapperClasses }) => {
 
    const navigate = useNavigate()
    // manage wishlist with custom hook
@@ -66,7 +66,7 @@ const Favorite: React.FC<IFavorite> = ({ product, className }) => {
    }, [])
 
    return (
-      <div className={className}>
+      <div className={wrapperClasses}>
          <HeartIcon className={`w-full h-full cursor-pointer ${isInWishlist ? 'text-red-500 fill-red-500' : ''}`} onClick={toggleWishlist} />
       </div>
    )
