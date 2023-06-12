@@ -15,3 +15,14 @@ root.render(
     </BrowserRouter>
   </Provider>
 )
+
+
+declare global {
+  interface Window {
+    Cypress: any
+  }
+}
+
+if (window.Cypress) {
+  window['store'] = store
+}
