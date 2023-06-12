@@ -11,7 +11,7 @@ const Select: React.FC<ISelect> = ({ title, contents, click, initialTitle }) => 
       setSelected(content)
       setOpen(false)
 
-      click && click(content)
+      if (click) click(content)
    }
 
    // initial select title based on url
@@ -20,16 +20,17 @@ const Select: React.FC<ISelect> = ({ title, contents, click, initialTitle }) => 
    }, [initialTitle])
 
    return (
-      <div className={`w-48 font-medium text-sm relative cursor-pointer ${!open && 'h-15'}`}>
+      <div data-cy='container' className={`w-48 font-medium text-sm relative cursor-pointer ${!open ? 'h-15' : ''}`}>
          {/* Select header */}
          <div
-            onClick={() => setOpen(!open)}
-            className={'bg-white w-full p-2 flex items-center justify-between rounded-md border border-solid border-gray-300'}
+            data-cy='toggle'
+            onClick={() => setOpen(prevOpen => !prevOpen)}
+            className='bg-white w-full p-2 flex items-center justify-between rounded-md border border-solid border-gray-300'
          >
-            <span className={(selected && selected.title !== title) ? 'text-indigo-600' : ''}>{selected ? selected.title : title}</span>
+            <span data-cy='selected' className={(selected && selected.title !== title) ? 'text-indigo-600' : ''}>{selected ? selected.title : title}</span>
             <ChevronDownIcon className={`w-5 h-5 ${open && ' rotate-180'}`} />
          </div>
-         <ul className={`bg-white mt-2 rounded-md overflow-y-auto w-48 absolute z-10 shadow-md ${open ? 'max-h-40' : 'max-h-0'} `}>
+         <ul data-cy='content-wrapper' className={`bg-white mt-2 rounded-md overflow-y-auto w-48 absolute z-10 shadow-md ${open ? 'max-h-40' : 'max-h-0'} `}>
             {selected && selected.title !== title && (
                // Default select option
                <li className='p-2 text-xs hover:bg-indigo-600 hover:text-white' onClick={() => handleClick({ title })}>
@@ -40,6 +41,7 @@ const Select: React.FC<ISelect> = ({ title, contents, click, initialTitle }) => 
             {/* Render select options */}
             {contents.map((content, index) => (
                <li key={index}
+                  data-cy='content'
                   className={`p-2 text-xs hover:bg-indigo-600 hover:text-white ${content.title === selected.title && 'bg-indigo-600 text-white'}`}
                   onClick={() => handleClick(content)}
                >
