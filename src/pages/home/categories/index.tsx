@@ -6,7 +6,7 @@ const CategoriesSection: React.FC = () => {
       <section className='container px-4 sm:px-0 grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 mb-32'>
          {categoriesBanners.map((banner, index) => (
             <Link key={index} to={banner.path} className='w-full h-[300px] sm:h-[350px]'>
-               <img src={banner.img} alt='ecommerce' className='h-full w-full' />
+               <img data-cy='banner' src={banner.img} alt='ecommerce' className='h-full w-full' />
             </Link>
          ))}
       </section>
