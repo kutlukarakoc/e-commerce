@@ -32,14 +32,17 @@ const Header: React.FC = () => {
       } else {
          setInputValue('')
       }
-      // reset the input value when the effect is cleaned up
-      return () => setInputValue('')
+      // reset the input value and close mobile menu when the effect is cleaned up
+      return () => {
+         setInputValue('')
+         setToggleMenu(false)
+      }
    }, [search, pathname])
 
    // form submission for search
    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault()
-      const value = new FormData(event.currentTarget).get('head-search')
+      const value = new FormData(event.currentTarget).get('head-search') || new FormData(event.currentTarget).get('head-search-mb')
       if (value) {
          navigate(`/search-results?search=${value}`)
       }
@@ -60,8 +63,8 @@ const Header: React.FC = () => {
                   <img src={logo} alt='ecommerce' className='w-full h-full block' />
                </Link>
                {/* Search */}
-               <form className='hidden sm:block order-2 max-w-xs w-full relative' onSubmit={handleSubmit}>
-                  <Input type='text' name='head-search' placeholder='Search products' value={inputValue} autoComplete='off' pattern='.+' required onChange={e => setInputValue(e.target.value)} />
+               <form data-cy='header-search-form' className='hidden sm:block order-2 max-w-xs w-full relative' onSubmit={handleSubmit}>
+                  <Input data-cy='head-search' type='text' name='head-search' placeholder='Search products' value={inputValue} autoComplete='off' pattern='.+' required onChange={e => setInputValue(e.target.value)} />
                   <button type='submit' className='absolute right-3 top-1/2 -translate-y-1/2'>
                      <MagnifyingGlassIcon className='w-5 h-5' />
                   </button>
@@ -75,7 +78,7 @@ const Header: React.FC = () => {
                   <Link key={index} to={category.path} className='hidden sm:block text-gray-800'>{category.title}</Link>
                ))}
                {/* Mobile Search */}
-               <form className='block sm:hidden w-11/12 mx-auto relative' onSubmit={handleSubmit}>
+               <form data-cy='header-search-form-mb' className='block sm:hidden w-11/12 mx-auto relative' onSubmit={handleSubmit}>
                   <Input type='text' name='head-search-mb' placeholder='Search products' value={inputValue} autoComplete='off' pattern='.+' required onChange={e => setInputValue(e.target.value)} />
                   <button type='submit' className='absolute right-3 top-1/2 -translate-y-1/2'>
                      <MagnifyingGlassIcon className='w-5 h-5' />

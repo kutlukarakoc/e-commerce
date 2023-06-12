@@ -35,7 +35,7 @@ const MobileMenu: React.FC<{ categories: CategoriesProps[]; menuTransform: strin
          <div className='border-solid border-t border-gray-500 w-full'></div>
          <div className='w-full'>
             <div className='flex items-center gap-2 cursor-pointer'>
-               {user.uid
+               {user?.uid
                   ? (<>
                      <ArrowRightOnRectangleIcon className='h-6 w-6 text-gray-5700' onClick={handleLogout} /> Logout
                   </>)
@@ -43,7 +43,6 @@ const MobileMenu: React.FC<{ categories: CategoriesProps[]; menuTransform: strin
                      <ArrowRightOnRectangleIcon className='h-6 w-6 text-gray-700' />
                      <div className='text-sm tracking-wide'>Login/Register</div>
                   </Link>)}
-
             </div>
          </div>
       </div>
