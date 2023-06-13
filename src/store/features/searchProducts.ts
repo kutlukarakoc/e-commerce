@@ -28,7 +28,13 @@ const initialState: ProductsProps = {
 const searchProducts = createSlice({
    name: 'searchProducts',
    initialState,
-   reducers: {},
+   reducers: {
+      clearSearchProducts: (state) => {
+         state.searchedProducts = []
+         state.loading = false
+         state.error = null
+      }
+   },
    extraReducers: (builder) => {
       builder.addCase(fetchProductsBySearch.pending, (state) => {
          state.loading = true
@@ -47,3 +53,4 @@ const searchProducts = createSlice({
 
 export const products = (state: RootState) => state.searchProducts
 export default searchProducts.reducer
+export const { clearSearchProducts } = searchProducts.actions

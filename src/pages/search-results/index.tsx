@@ -4,7 +4,7 @@ import NotFound from '../../components/not-found'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
-import { fetchProductsBySearch } from '../../store/features/searchProducts'
+import { fetchProductsBySearch, clearSearchProducts } from '../../store/features/searchProducts'
 
 const SearchResults: React.FC = () => {
    // getting current URL search parameters
@@ -19,6 +19,11 @@ const SearchResults: React.FC = () => {
       // extracts the search key from the URL search parameters
       const key = search.split('=')[1]
       if (key.length) dispatch(fetchProductsBySearch(key))
+
+      // clear search product state when component unmount
+      return () => {
+         dispatch(clearSearchProducts())
+      }
    }, [search])
 
    // display not found error
