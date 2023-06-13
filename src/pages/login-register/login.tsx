@@ -54,7 +54,7 @@ const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
          // update email verified data in firestore
          await updateItem('users', uid, { emailVerified })
          // navigate to home page
-         navigate('/')
+         navigate('/profile')
       }
    }
 
@@ -63,12 +63,12 @@ const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
          <Title text='Sign in to your account' />
 
          <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-            <form className='px-8 sm:px-0' onSubmit={handleSubmit}>
+            <form data-cy='login-form' className='px-8 sm:px-0' onSubmit={handleSubmit}>
                <div className='mb-6'>
-                  <Input name='loginEmail' label='Email Address' type='email' placeholder='example@mail.com' onChange={handleInputChange} required />
+                  <Input data-cy='login-email' name='loginEmail' label='Email Address' type='email' placeholder='example@mail.com' onChange={handleInputChange} required />
                </div>
                <div className='mb-10 relative'>
-                  <Input name='loginPassword' label='Password' type={showPassword ? 'text' : 'password'} placeholder='******' onChange={handleInputChange} required />
+                  <Input data-cy='login-password' name='loginPassword' label='Password' type={showPassword ? 'text' : 'password'} placeholder='******' onChange={handleInputChange} required />
                   {showPassword
                      ? <EyeIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />
                      : <EyeSlashIcon className='w-5 h-5 absolute top-[55%] right-5 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />}
