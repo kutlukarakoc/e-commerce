@@ -28,7 +28,7 @@ const ProductCard: React.FC<IProductCard> = ({ products, icon }) => {
                   <img src={product.image} alt='ecommerce' className='w-full block aspect-video max-w-[250px] max-h-[275px] h-full mx-auto mix-blend-multiply' />
                </Link>
                <Link to={`/products/${product.id}`} className='cursor-pointer'>
-                  <h3 className='mt-10 mb-1 text-base text-left font-semibold h-6 line-clamp-1 overflow-hidden'>{product.title}</h3>
+                  <h3 data-cy='product-card-title' className='mt-10 mb-1 text-base text-left font-semibold h-6 line-clamp-1 overflow-hidden'>{product.title}</h3>
                </Link>
                <p className='text-sm mb-3'>{product.category}</p>
                <div className='font-semibold text-left items-center mb-6'>${product.price.toFixed(2)}</div>
