@@ -23,7 +23,7 @@ const SearchResults: React.FC = () => {
 
    // display not found error
    if (error) {
-      return <NotFound title='Product not found' text='Sorry, we couldn’t find the product you’re looking for.' link='/products' linkText='See products' />
+      return <NotFound title='Something went wrong' text='Please try again later.' link='/products' linkText='See products' />
    }
 
    // display not found product component when there is no error, false loading and no product in searched products state
