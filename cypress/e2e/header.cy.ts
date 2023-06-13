@@ -9,11 +9,21 @@ describe('Header tests', () => {
   // right side components when not logged in
   it('Does display login/register works properly when not logged in and redirect to auth?', () => {
     cy.window().its('store').invoke('getState').its('auth').as('authState')
+    // right sight item when not logged in
     cy.get('[data-cy="header-right-wrapper"]').as('wrapper')
     cy.get('@authState').its('user').should('be.null')
     cy.get('@wrapper').children().should('have.length', 1)
     cy.get('@wrapper').children().eq(0).should('have.attr', 'href', '/auth')
-    cy.get('@wrapper').children().eq(0).click().url().should('include', '/auth')
+    // login and redirect tests
+    cy.get('[data-cy="login-email"]').type('karakockutlu@gmail.com')
+    cy.get('[data-cy="login-password"]').type('123456')
+    cy.get('[data-cy="login-form"]').submit().url().should('include', '/profile')
+    cy.get('@authState').its('user').should('not.be.null')
+    // right side items after logged in
+    cy.get('@wrapper').children().should('have.length', 3)
+    cy.get('@wrapper').children().eq(0).should('have.attr', 'href', '/profile')
+    cy.get('@wrapper').children().eq(1).should('have.attr', 'href', '/favorites')
+    cy.get('@wrapper').children().eq(2).should('have.attr', 'href', '/cart')
   })
 
   // desktop search
