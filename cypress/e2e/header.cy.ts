@@ -14,6 +14,7 @@ describe('Header tests', () => {
     cy.get('@authState').its('user').should('be.null')
     cy.get('@wrapper').children().should('have.length', 1)
     cy.get('@wrapper').children().eq(0).should('have.attr', 'href', '/auth')
+    cy.get('@wrapper').children().eq(0).click()
     // login and redirect tests
     cy.get('[data-cy="login-email"]').type('karakockutlu@gmail.com')
     cy.get('[data-cy="login-password"]').type('123456')
