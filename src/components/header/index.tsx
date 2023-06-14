@@ -75,7 +75,7 @@ const Header: React.FC = () => {
             {/* Category Links */}
             <div className='flex justify-center items-center gap-6 h-14 pb-2'>
                {categories.map((category, index) => (
-                  <Link key={index} to={category.path} className='hidden sm:block text-gray-800'>{category.title}</Link>
+                  <Link data-cy='header-category' key={index} to={category.path} className='hidden sm:block text-gray-800'>{category.title}</Link>
                ))}
                {/* Mobile Search */}
                <form data-cy='header-search-form-mb' className='block sm:hidden w-11/12 mx-auto relative' onSubmit={handleSubmit}>

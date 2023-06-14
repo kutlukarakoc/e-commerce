@@ -14,9 +14,9 @@ const ProductCard: React.FC<IProductCard> = ({ products, icon }) => {
    // render icon depends on icon props
    const renderIcon = (product: IProduct) => {
       if(icon === 'favorite') {
-         return <Favorite product={product} wrapperClasses='w-7 h-7 absolute top-2 right-3' />
+         return <Favorite data-cy='fav-icon' product={product} wrapperClasses='w-7 h-7 absolute top-2 right-3' />
       } // trash
-      return <Trash product={product} />
+      return <Trash data-cy='trash-icon' product={product} />
    }
 
    return (
@@ -31,7 +31,7 @@ const ProductCard: React.FC<IProductCard> = ({ products, icon }) => {
                   <h3 data-cy='product-card-title' className='mt-10 mb-1 text-base text-left font-semibold h-6 line-clamp-1 overflow-hidden'>{product.title}</h3>
                </Link>
                <p className='text-sm mb-3'>{product.category}</p>
-               <div className='font-semibold text-left items-center mb-6'>${product.price.toFixed(2)}</div>
+               <div data-cy='product-card-price' className='font-semibold text-left items-center mb-6'>${product.price.toFixed(2)}</div>
                <AddToCart product={product} isFull />
             </div>
          ))}

@@ -22,7 +22,6 @@ const Products: React.FC = () => {
       }
    }, [location])
 
-
    if(error) {
       return <NotFound title='Something went wrong!' text='Sorry, please try again later.' link='/' linkText='Go back home' />
    }

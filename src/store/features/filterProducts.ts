@@ -45,15 +45,14 @@ const sortProductsByOrder = (products: IProduct[], sortBy: string, sortOrder: st
       if (sortBy === 'price') {
          if (sortOrder === 'desc') {
             return b.price - a.price
-         } else {
-            return a.price - b.price
          }
+         return a.price - b.price
+
       } else if (sortBy === 'rate') {
          if (sortOrder === 'desc') {
             return b.rating.rate - a.rating.rate
-         } else {
-            return a.rating.rate - b.rating.rate
-         }
+         } 
+         return a.rating.rate - b.rating.rate
       }
       return 0
    })
