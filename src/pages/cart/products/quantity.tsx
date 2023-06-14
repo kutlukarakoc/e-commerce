@@ -18,6 +18,7 @@ const Quantity: React.FC<IQuantity> = ({ product }) => {
 
    return (
       <select
+         data-cy='quantity'
          name='quantity'
          className='text-base sm:text-sm font-medium py-1.5 px-3 border rounded-md'
          onChange={(event) => handleChange(event.target.value, product)}

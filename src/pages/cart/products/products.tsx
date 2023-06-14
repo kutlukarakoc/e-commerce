@@ -16,7 +16,7 @@ const Products: React.FC = () => {
          <div className='pr-0 md:pr-16'>
             <Divider variant='soft' />
             {cart ? cart.map((product: ICart) => (
-               <div key={product.id}>
+               <div data-cy='cart-product-container' key={product.id}>
                   <div className='flex my-14'>
                      <Link to={`/products/${product.id}`} className='w-32 h-32 sm:w-48 sm:h-48 p-4 bg-zinc-50 rounded-md'>
                         <img src={product.image} alt='ecommerce' className='max-w-full w-full h-full block mix-blend-multiply' />
@@ -28,7 +28,7 @@ const Products: React.FC = () => {
                                  <Link to={`/products/${product.id}`}>{product.title}</Link>
                               </h3>
                               <p className='mt-1 text-sm text-gray-400'>{product.category}</p>
-                              <div className='mt-1 text-sm'>${(product.price * product.quantity).toFixed(2)}</div>
+                              <div data-cy='product-price' className='mt-1 text-sm'>${(product.price * product.quantity).toFixed(2)}</div>
                            </div>
                            <div className='mt-4 sm:mt-0'>
                               <Quantity product={product} />

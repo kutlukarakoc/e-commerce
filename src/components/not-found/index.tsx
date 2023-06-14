@@ -11,7 +11,7 @@ interface INotFound {
 
 const NotFound: React.FC<INotFound> = ({title, text, link, linkText, isErrorCode = true}) => {
    return (
-      <section className='grid min-h-full place-items-center bg-white px-6 py-5 sm:py-8 lg:px-8'>
+      <section data-cy='not-found' className='grid min-h-full place-items-center bg-white px-6 py-5 sm:py-8 lg:px-8'>
          <div className='text-center'>
             <p className='text-base font-semibold text-indigo-600'>{isErrorCode ? '404' : null}</p>
             <h1 className='mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>{title}</h1>

@@ -34,7 +34,7 @@ const OrderTotal: React.FC = () => {
    return (
       <div className='flex justify-between items-center'>
          <div className='font-medium'>Order total</div>
-         <div className='font-medium'>${totalPrice.toFixed(2)}</div>
+         <div data-cy='order-total' className='font-medium'>${totalPrice.toFixed(2)}</div>
       </div>
    )
 }

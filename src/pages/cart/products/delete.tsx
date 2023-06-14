@@ -13,6 +13,7 @@ const Delete: React.FC<IDelete> = ({ product }) => {
 
    return (
       <XMarkIcon
+         data-cy='remove-product'
          className='absolute -top-8 sm:top-0 right-0 w-5 h-5 text-gray-400 hover:text-gray-900 cursor-pointer'
          onClick={() => handleCart('delete', product)}
       />

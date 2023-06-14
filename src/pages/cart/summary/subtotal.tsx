@@ -32,7 +32,7 @@ const Subtotal: React.FC = () => {
       <>
          <div className='flex justify-between items-center'>
             <div className='text-gray-500 text-sm'>Subtotal</div>
-            <div className='text-sm'>${subtotal.toFixed(2)}</div>
+            <div data-cy='subtotal' className='text-sm'>${subtotal.toFixed(2)}</div>
          </div>
          <Divider variant='soft' />
       </>

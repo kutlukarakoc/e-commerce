@@ -38,7 +38,7 @@ const Shipping: React.FC = () => {
       <>
          <div className='flex justify-between items-center'>
             <div className='text-gray-500 text-sm'>Shipping estimate</div>
-            <div className='text-sm'>${shippingEstimateText}</div>
+            <div data-cy='shipping-estimate' className='text-sm'>${shippingEstimateText}</div>
          </div>
          <Divider variant='soft' />
       </>
