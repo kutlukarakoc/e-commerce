@@ -7,7 +7,6 @@ describe('Product Page tests', () => {
 		cy.get('[data-cy="login-password"]').type('123456')
 		cy.get('[data-cy="login-form"]').submit().then(() => {
 			cy.window().its('store').invoke('getState').its('auth').its('user').should('have.property', 'email').then(() => {
-				/*cy.get('[data-cy="header-category"]').eq(0).click()*/
 				cy.visit('http://localhost:3000/products/5')
 			})
 		})
