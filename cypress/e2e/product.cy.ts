@@ -39,7 +39,7 @@ describe('Product Page tests', () => {
 		})
 	})
 
-	it('Does add to cart button work properly?', () => {
+	it('Does add to cart button works properly?', () => {
 		cy.window().its('store').invoke('getState').its('product').its('product').as('productState')
 		cy.wait(1000)
 		cy.get('@productState').then((product) => {
