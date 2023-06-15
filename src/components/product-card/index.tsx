@@ -22,7 +22,7 @@ const ProductCard: React.FC<IProductCard> = ({ products, icon }) => {
    return (
       <>
          {products.map(product => (
-            <div key={product.id} className='group bg-zinc-50 h-[525px] p-10 relative rounded-md'>
+            <div data-cy='product-card' key={product.id} className='group bg-zinc-50 h-[525px] p-10 relative rounded-md'>
                {renderIcon(product)}
                <Link to={`/products/${product.id}`} className='cursor-pointer'>
                   <img src={product.image} alt='ecommerce' className='w-full block aspect-video max-w-[250px] max-h-[275px] h-full mx-auto mix-blend-multiply' />

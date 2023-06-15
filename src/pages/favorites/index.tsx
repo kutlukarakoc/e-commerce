@@ -31,7 +31,7 @@ const Favorites = () => {
 
    return (
       <div className='container mx-auto my-20 flex-1'>
-         <h1 className='text-center sm:text-left text-2xl sm:text-3xl font-semibold text-gray-700'>My Wishlist ({wishlist.length} products)</h1>
+         <h1 data-cy='wishlist-title' className='text-center sm:text-left text-2xl sm:text-3xl font-semibold text-gray-700'>My Wishlist ({wishlist.length} products)</h1>
          <Divider variant='soft' />
          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
             <ProductCard products={wishlist} icon='trash' />
