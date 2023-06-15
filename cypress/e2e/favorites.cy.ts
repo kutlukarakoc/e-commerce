@@ -34,7 +34,7 @@ describe('Favorites page tests', () => {
 	})
 
 	it('Does add to cart button works properly?', () => {
-		cy.get('[data-cy="addtocart-btn"]').eq(0).click().then(() => {
+		cy.get('[data-cy="btn-component"]').eq(0).click().then(() => {
 			cy.get('[data-cy="product-added"]').should('exist')
 		})
 	})

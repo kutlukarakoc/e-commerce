@@ -38,7 +38,7 @@ const Button: React.FC<IButton> = ({ children, variant, color, size, click, ...r
 
    return (
       <button
-         data-cy='addtocart-btn'
+         data-cy='btn-component'
          className={`pointer-events-auto rounded-md disabled:opacity-75 disabled:cursor-not-allowed ${variantStyles} ${fontSize} ${rest.className}`}
          onClick={click}
          {...restWithoutClass}

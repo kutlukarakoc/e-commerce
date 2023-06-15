@@ -43,7 +43,7 @@ describe('Product Page tests', () => {
 		cy.window().its('store').invoke('getState').its('product').its('product').as('productState')
 		cy.wait(1000)
 		cy.get('@productState').then((product) => {
-			cy.get('[data-cy="addtocart-btn"]').click().then(() => {
+			cy.get('[data-cy="btn-component"]').click().then(() => {
 				cy.get('[data-cy="product-added"]').should('exist')
 				cy.get('[data-cy="product-added-title"]').should('have.text', product['title'])
 			})
