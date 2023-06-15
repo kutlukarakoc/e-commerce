@@ -66,7 +66,7 @@ const Favorite: React.FC<IFavorite> = ({ product, wrapperClasses }) => {
    }, [])
 
    return (
-      <div className={wrapperClasses}>
+      <div data-cy='favorite-btn' className={wrapperClasses}>
          <HeartIcon className={`w-full h-full cursor-pointer ${isInWishlist ? 'text-red-500 fill-red-500' : ''}`} onClick={toggleWishlist} />
       </div>
    )
