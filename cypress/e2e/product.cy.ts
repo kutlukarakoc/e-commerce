@@ -1,6 +1,6 @@
 describe('Product Page tests', () => {
 
-	// log in and navigate to electronics category page
+	// log in and navigate to product page
 	beforeEach(() => {
 		cy.visit('http://localhost:3000/auth')
 		cy.get('[data-cy="login-email"]').type('karakockutlu@gmail.com')
