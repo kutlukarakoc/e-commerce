@@ -1,17 +1,22 @@
 import ProductCard from '../../components/product-card'
 import LoadingSkeleton from '../../components/product-card/loading'
 import NotFound from '../../components/not-found'
-import { useAppSelector, useAppDispatch } from '../../store/hooks'
+import { useAppDispatch } from '../../store/hooks'
 import { fetchProductsByUrl } from '../../store/features/filterProducts'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import { IProduct } from '../../types/productsTypes'
 
-const Products: React.FC = () => {
+interface IProducts {
+   filteredProducts: IProduct[]
+   loading: boolean
+   error: null | string
+}
+
+const Products: React.FC<IProducts> = ({filteredProducts, loading, error}) => {
 
    const location = useLocation()
    const dispatch = useAppDispatch()
-   // getting filtered products, loading and error states from redux store
-   const { filteredProducts, loading, error } = useAppSelector(state => state.filterProducts)
 
    // fetch products depends on url
    useEffect(() => {

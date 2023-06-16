@@ -4,7 +4,11 @@ import { ISelectList } from '../../types/selectTypes'
 import Select from '../../components/ui/select'
 import { categoryFilters, sortFilters } from '../../constants/filter/filterConstants'
 
-const Filter: React.FC = () => {
+interface IFilter {
+   error: null | string
+}
+
+const Filter: React.FC<IFilter> = ({error}) => {
 
    const navigate = useNavigate()
    const location = useLocation()
@@ -48,6 +52,10 @@ const Filter: React.FC = () => {
    useEffect(() => {
       setInitialTitle()
    }, [location])
+
+   if(error) {
+      return null
+   }
 
    return (
       <div className='flex justify-between mb-20 gap-4'>
