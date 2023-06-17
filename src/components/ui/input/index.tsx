@@ -1,15 +1,17 @@
-import { InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes, DetailedHTMLProps } from 'react'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
    type: string
    name: string
    placeholder?: string
    label?: string
-   error?: string | null
+   error?: string | null
 }
 
-const Input: React.FC<InputProps> = ({ onChange, type, name, placeholder, label, error, ...rest }) => {
+const Input: React.FC<InputProps> = ({ onChange, type, name, placeholder, label, error, className, ...rest }) => {
+
+   const initialInputClasses = 'outline-none text-gray-700 w-full border border-gray-300 rounded-md px-4 text-sm placeholder:text-gray-500 focus:border-indigo-600 h-10'
 
    return (
       <div className='w-full'>
@@ -20,7 +22,7 @@ const Input: React.FC<InputProps> = ({ onChange, type, name, placeholder, label,
             id={name}
             name={name}
             placeholder={placeholder}
-            className={'outline-none text-gray-700 w-full border border-gray-300 rounded-md px-4 py-1 text-sm placeholder:text-gray-500 focus:border-indigo-600 h-10'}
+            className={`${initialInputClasses} ${className}`}
             {...rest}
          />
          {error && <p className='mt-1 text-xs text-red-500'>{error}</p>}
