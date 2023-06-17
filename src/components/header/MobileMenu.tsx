@@ -37,9 +37,9 @@ const MobileMenu: React.FC<{ categories: CategoriesProps[]; menuTransform: strin
          <div className='w-full'>
             <div data-cy='mobile-menu-footer' className='flex items-center gap-2 cursor-pointer'>
                {user?.uid
-                  ? (<>
-                     <ArrowRightOnRectangleIcon className='h-6 w-6 text-gray-700' onClick={handleLogout} /> Logout
-                  </>)
+                  ? (<div className='flex items-center gap-2' onClick={handleLogout}>
+                     <ArrowRightOnRectangleIcon className='h-6 w-6 text-gray-700' /> Logout
+                  </div>)
                   : (<Link to='/auth' className='flex items-center justify-center gap-2 cursor-pointer'>
                      <ArrowRightOnRectangleIcon className='h-6 w-6 text-gray-700' />
                      Login/Register
