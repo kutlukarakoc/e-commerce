@@ -6,12 +6,14 @@ export const useSwal = () => {
    // swal generator
    const MySwal = withReactContent(Swal)
 
-   const showSwal = (content: JSX.Element, icon: SweetAlertIcon) => {
+   const showSwal = (content: JSX.Element, icon: SweetAlertIcon, time?: number) => {
       return MySwal.fire({
          icon: icon,
          html: content,
          showConfirmButton: false,
          showCloseButton: true,
+         timer: time ? time : null,
+         timerProgressBar: time ? true : false,
          customClass: {
             closeButton: 'hover:text-gray-700 shadow-none border-0 outline-0 focus:outline-0 focus:shadow-none'
          }
