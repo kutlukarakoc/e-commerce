@@ -27,8 +27,8 @@ const VerifyEmail: React.FC = () => {
    }
 
    return (
-      <div className='bg-gray-400 hover:bg-gray-500 text-white w-full mx-auto h-10 p-4 flex justify-center items-center gap-4 mb-10 cursor-pointer' onClick={handleVerifyMail}>
-         {verifierLoading ? <Spinner /> : <EnvelopeIcon className='w-6 h-6' />} {verifierError ? verifierError : verifyMailText}
+      <div className='bg-gray-400 hover:bg-gray-500 text-center text-white w-full max-w-sm sm:max-w-md mx-auto h-12 sm:h-10 p-4 flex justify-center items-center gap-4 mb-10 rounded-md cursor-pointer' onClick={handleVerifyMail}>
+         {verifierLoading ? <Spinner /> : <EnvelopeIcon className='w-8 h-8 sm:w-6 sm:h-6' />} {verifierError ? verifierError : verifyMailText}
       </div>
    )
 }
