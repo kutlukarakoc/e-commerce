@@ -8,16 +8,18 @@ import Input from '../../components/ui/input'
 import Spinner from '../../components/ui/spinner'
 import Radio from '../../components/ui/radio'
 import LoadingSkeleton from './loading'
-import { useEffect, useState } from 'react'
-import { useFirestore } from '../../hooks/useFirestore'
-import { useAppSelector } from '../../store/hooks'
+import ProfileSaved from '../../components/popup/profileSaved'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
-import { genderConstants } from '../../constants/profile/radioConstants'
+import { useEffect, useState } from 'react'
+import { useAppSelector } from '../../store/hooks'
+import { useFirestore } from '../../hooks/useFirestore'
 import { useNavigate } from 'react-router-dom'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import { useSwal } from '../../hooks/useSwal'
+import { genderConstants } from '../../constants/profile/radioConstants'
 
 const Profile: React.FC = () => {
+
+   const navigate = useNavigate()
 
    // get logged in user information from redux store
    const { user } = useAppSelector(state => state.auth)
@@ -25,10 +27,8 @@ const Profile: React.FC = () => {
    const { getterLoading, updaterLoading, updaterError, getItem, updateItem } = useFirestore()
    // keep track of user information
    const [profile, setProfile] = useState<any>()
-
-   const navigate = useNavigate()
-
-   const MySwal = withReactContent(Swal)
+   // getting swal from custom hook
+   const { showSwal } = useSwal()
 
    // get user from firestore
    const getUser = async () => {
@@ -52,18 +52,12 @@ const Profile: React.FC = () => {
    }
 
    // update infos in db when submit
-   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+   const handleSaveForm = async (event: React.FormEvent<HTMLFormElement>) => {
       event?.preventDefault()
       if (user?.uid) {
          await updateItem('users', user.uid, profile)
          if (!updaterLoading && !updaterError) {
-            MySwal.fire({
-               icon: 'success',
-               title: 'Your information has been successfully saved.',
-               showConfirmButton: false,
-               timer: 2000,
-               timerProgressBar: true
-            })
+            showSwal(<ProfileSaved />, 'success', 2000)
          }
       }
    }
@@ -77,7 +71,7 @@ const Profile: React.FC = () => {
       <section className='container mx-auto my-24 px-4 sm:px-0'>
          {!user?.emailVerified && <VerifyEmail />}
          <div className='flex justify-center items-center flex-col gap-12'>
-            <form className='mx-auto w-full max-w-sm sm:max-w-md' onSubmit={handleSubmit}>
+            <form className='mx-auto w-full max-w-sm sm:max-w-md' onSubmit={handleSaveForm}>
                <UploadImage profile={profile} setProfile={setProfile} uid={user?.uid} />
 
                <h3 className='mb-4 text-center'>Account created at: {profile?.metadata.creationTime ? profile.metadata.creationTime : 'unknown'}</h3>
