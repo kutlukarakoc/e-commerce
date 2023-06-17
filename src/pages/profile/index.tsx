@@ -74,7 +74,7 @@ const Profile: React.FC = () => {
    }
 
    return (
-      <section className='container mx-auto my-24'>
+      <section className='container mx-auto my-24 px-4 sm:px-0'>
          {!user?.emailVerified && <VerifyEmail />}
          <div className='flex justify-center items-center flex-col gap-12'>
             <form className='mx-auto w-full max-w-sm sm:max-w-md' onSubmit={handleSubmit}>

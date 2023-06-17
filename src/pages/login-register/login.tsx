@@ -65,7 +65,7 @@ const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
                onSubmit={(values: ILoginValues) => { handleLogin(values) }}
             >
                {({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
-                  <form data-cy='login-form' className='px-8 sm:px-0' onSubmit={handleSubmit}>
+                  <form data-cy='login-form' className='px-4 sm:px-0' onSubmit={handleSubmit}>
                      <div className='mb-3 h-24'>
                         <Input
                            data-cy='login-email'

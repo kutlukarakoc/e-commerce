@@ -8,7 +8,7 @@ const ProductListing: React.FC = () => {
    const { filteredProducts, loading, error } = useAppSelector(state => state.filterProducts)
 
    return (
-      <section className='container mx-auto my-32'>
+      <section className='container mx-auto my-32 px-4 sm:px-0'>
          <Filter error={error} />
          <Products filteredProducts={filteredProducts} loading={loading} error={error} />
       </section>
