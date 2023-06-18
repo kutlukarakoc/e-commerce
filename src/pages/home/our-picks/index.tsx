@@ -18,18 +18,16 @@ const OurPicks: React.FC = () => {
 
    return (
       <>
-         {
-            !error && (
-               <section className='ourpicks-section container mx-auto mb-32'>
-                  <h2 className='text-3xl text-center mb-14 tracking-wider font-semibold'>Our Picks For You</h2>
-                  {
-                     !loading && products.length
-                        ? <Carousel products={products} />
-                        : <LoadingSkeleton />
-                  }
-               </section>
-            )
-         }
+         {!error && (
+            <section className='ourpicks-section container mx-auto mb-32'>
+               <h2 className='text-3xl text-center mb-14 tracking-wider font-semibold'>Our Picks For You</h2>
+               {
+                  !loading && products.length
+                     ? <Carousel products={products} />
+                     : <LoadingSkeleton />
+               }
+            </section>
+         )}
       </>
    )
 }
