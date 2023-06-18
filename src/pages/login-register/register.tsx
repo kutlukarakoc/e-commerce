@@ -1,6 +1,6 @@
 import Input from '../../components/ui/input'
 import Button from '../../components/ui/button'
-import Title from '../../components/Title'
+import Title from '../../components/title'
 import Spinner from '../../components/ui/spinner'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'

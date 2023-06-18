@@ -1,6 +1,6 @@
 import ProductCard from '../../components/product-card'
 import Divider from '../../components/ui/divider'
-import Title from '../../components/Title'
+import Title from '../../components/title'
 import LoadingSkeleton from '../../components/product-card/loading'
 import NotFound from '../../components/not-found'
 import { useWishlist } from '../../hooks/useWishlist'

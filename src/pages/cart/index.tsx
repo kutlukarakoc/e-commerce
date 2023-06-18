@@ -1,6 +1,6 @@
 import Products from './products/products'
 import Summary from './summary/summary'
-import Title from '../../components/Title'
+import Title from '../../components/title'
 import LoadingSkeleton from './loading'
 import { useAppSelector } from '../../store/hooks'
 import { useCart } from '../../hooks/useCart'
