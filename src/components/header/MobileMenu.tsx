@@ -4,8 +4,14 @@ import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { logout } from '../../store/features/auth'
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
 
-const MobileMenu: React.FC<{ menuTransform: string }> = ({ menuTransform }) => {
+interface IMobileMenu {
+   setToggleMenu: React.Dispatch<React.SetStateAction<boolean>>
+   menuTransform: string
+}
+
+const MobileMenu: React.FC<IMobileMenu> = ({ menuTransform, setToggleMenu }) => {
 
    const navigate = useNavigate()
    const dispatch = useAppDispatch()
@@ -13,14 +19,37 @@ const MobileMenu: React.FC<{ menuTransform: string }> = ({ menuTransform }) => {
    // get user from the redux store
    const { user } = useAppSelector(state => state.auth)
 
+   // ref for mobile menu container
+   const menuRef = useRef<HTMLDivElement>(null);
+
    // execute logout with dispatch and navigate to home page
    const handleLogout = () => {
       dispatch(logout())
       navigate('/')
    }
 
+   // close mobile menu when click outside
+   const handleClickOutside = (event: TouchEvent | MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+         setToggleMenu(false)
+      }
+   }
+
+   useEffect(() => {
+      // execute for mobile and desktop
+      document.addEventListener('click', handleClickOutside)
+      document.addEventListener('mousedown', handleClickOutside)
+
+      // remove events when component unmount
+      return () => {
+         document.removeEventListener('click', handleClickOutside)
+         document.removeEventListener('mousedown', handleClickOutside)
+      }
+   }, [setToggleMenu])
+
    return (
       <div
+         ref={menuRef}
          data-cy='mobile-menu'
          className="absolute z-10 w-52 h-60 shadow-lg bg-white top-20 left-0 flex flex-col justify-between items-start p-6 transition-transform"
          style={{ transform: menuTransform }}

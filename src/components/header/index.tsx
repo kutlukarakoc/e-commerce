@@ -91,7 +91,7 @@ const Header: React.FC = () => {
          </header>
 
          {/* Mobile Menu */}
-         {toggleMenu && <MobileMenu menuTransform={menuTransform} />}
+         {toggleMenu && <MobileMenu menuTransform={menuTransform} setToggleMenu={setToggleMenu} />}
       </>
    )
 }
