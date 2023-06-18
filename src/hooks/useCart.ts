@@ -102,7 +102,5 @@ export const useCart = (): IUseCart => {
       }
    }
 
-   // memoize the handleCart function to prevent unnecessary re-renders
-   // memoize the returned object to prevent unnecessary re-renders
    return { handleCart, getCart, changeQuantity, cartLoading, cartError }
 }
