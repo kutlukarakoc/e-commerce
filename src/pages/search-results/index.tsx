@@ -37,7 +37,7 @@ const SearchResults: React.FC = () => {
    }
 
    return (
-      <div className='container mx-auto my-32'>
+      <section className='container mx-auto my-32 px-4 sm:px-0'>
          <div className='flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
             { // if loading is true display loading skeleton, else display products
                loading
@@ -45,7 +45,7 @@ const SearchResults: React.FC = () => {
                   : <ProductCard products={searchedProducts} icon='favorite' />
             }
          </div>
-      </div>
+      </section>
    )
 }
 
