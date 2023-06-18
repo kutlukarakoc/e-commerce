@@ -1,6 +1,9 @@
 import ProductCard from '../../components/product-card'
 import LoadingSkeleton from '../../components/product-card/loading'
 import NotFound from '../../components/not-found'
+import Title from '../../components/title'
+import TitleLoading from '../../components/title/loading'
+import Divider from '../../components/ui/divider'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
@@ -37,9 +40,15 @@ const SearchResults: React.FC = () => {
    }
 
    return (
-      <section className='container mx-auto my-32 px-4 sm:px-0'>
+      <section className='container mx-auto my-20 px-4 sm:px-0'>
+         {
+            loading
+               ? <TitleLoading />
+               : <Title cypressAttr='wishlist-title' className='sm:text-left'>{searchedProducts.length} Products found</Title>
+         }
+         <Divider variant='soft' />
          <div className='flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
-            { // if loading is true display loading skeleton, else display products
+            {
                loading
                   ? <LoadingSkeleton count={3} hasIcon={true} loading={loading} />
                   : <ProductCard products={searchedProducts} icon='favorite' />
