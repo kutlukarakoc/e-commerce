@@ -1,13 +1,13 @@
-
-import { useAppSelector, useAppDispatch } from '../../../store/hooks'
-import { fetchLimitedProducts } from '../../../store/features/multipleProducts'
-import { useEffect } from 'react'
-import './style.css'
-import Carousel from './carousel'
 import LoadingSkeleton from './loading'
+import Carousel from './carousel'
+import './style.css'
+import { fetchLimitedProducts } from '../../../store/features/multipleProducts'
+import { useAppSelector, useAppDispatch } from '../../../store/hooks'
+import { useEffect } from 'react'
 
 const OurPicks: React.FC = () => {
 
+   // getting products from redux store
    const { products, loading, error } = useAppSelector(state => state.products)
    const dispatch = useAppDispatch()
 
