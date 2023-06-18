@@ -20,16 +20,16 @@ const Select: React.FC<ISelect> = ({ title, contents, click, initialTitle }) => 
    }
 
    // close contents when click outside of component
-   useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-         if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
-            setOpen(false)
-         }
+   const handleClickOutside = (event: MouseEvent) => {
+      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+         setOpen(false)
       }
+   }
 
-      document.addEventListener('mousedown', handleClickOutside)
+   useEffect(() => {
+      document.addEventListener('click', handleClickOutside)
       // remove event when component unmount
-      return () => document.removeEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('click', handleClickOutside)
    }, [])
 
    // initial select title based on url
