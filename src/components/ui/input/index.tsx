@@ -25,7 +25,7 @@ const Input: React.FC<InputProps> = ({ onChange, type, name, placeholder, label,
             className={`${initialInputClasses} ${className}`}
             {...rest}
          />
-         {error && <p className='mt-1 text-xs text-red-500'>{error}</p>}
+         {error && <p data-cy='input-error' className='mt-1 text-xs text-red-500'>{error}</p>}
       </div>
    )
 }

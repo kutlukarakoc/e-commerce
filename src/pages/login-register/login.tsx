@@ -102,7 +102,7 @@ const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
                )}
             </Formik>
             {/* Display firestore erros if its exists */}
-            {error && <p className='text-center mt-5 text-sm text-red-500'>{error}</p>}
+            {error && <p data-cy='login-error' className='text-center mt-5 text-sm text-red-500'>{error}</p>}
             <div className='mt-10 text-center text-sm text-gray-500'>
                <span>Not a member?</span>
                <div className='text-indigo-600 cursor-pointer hover:text-indigo-500 lg:cursor-default lg:hover:text-indigo-600' onClick={displayRegister}>
