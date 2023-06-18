@@ -55,7 +55,7 @@ const Header: React.FC = () => {
             <nav className='flex justify-between items-center h-20 pl-4 pr-5 border-solid border-b border-gray-500'>
                {/* Mobile Menu */}
                <div data-cy='menu-button' className='block sm:hidden cursor-pointer' onClick={() => setToggleMenu(prev => !prev)}>
-                  <Bars3Icon className='h-7 w-7 text-gray-700' />
+                  <Bars3Icon className='menu-toggler h-7 w-7 text-gray-700' />
                </div>
                {/* Logo */}
                <Link to='/' className='order-1 sm:order-2 cursor-pointer w-14 h-12'>
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
          </header>
 
          {/* Mobile Menu */}
-         {toggleMenu && <MobileMenu menuTransform={menuTransform} setToggleMenu={setToggleMenu} />}
+         {toggleMenu && <MobileMenu menuTransform={menuTransform} toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />}
       </>
    )
 }

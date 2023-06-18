@@ -7,11 +7,12 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 
 interface IMobileMenu {
+   toggleMenu: boolean
    setToggleMenu: React.Dispatch<React.SetStateAction<boolean>>
    menuTransform: string
 }
 
-const MobileMenu: React.FC<IMobileMenu> = ({ menuTransform, setToggleMenu }) => {
+const MobileMenu: React.FC<IMobileMenu> = ({ menuTransform, toggleMenu, setToggleMenu }) => {
 
    const navigate = useNavigate()
    const dispatch = useAppDispatch()
@@ -20,7 +21,7 @@ const MobileMenu: React.FC<IMobileMenu> = ({ menuTransform, setToggleMenu }) => 
    const { user } = useAppSelector(state => state.auth)
 
    // ref for mobile menu container
-   const menuRef = useRef<HTMLDivElement>(null);
+   const menuRef = useRef<HTMLDivElement>(null)
 
    // execute logout with dispatch and navigate to home page
    const handleLogout = () => {
@@ -29,23 +30,21 @@ const MobileMenu: React.FC<IMobileMenu> = ({ menuTransform, setToggleMenu }) => 
    }
 
    // close mobile menu when click outside
-   const handleClickOutside = (event: TouchEvent | MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+   const handleClickOutside = (event: MouseEvent) => {
+      // if its toggle icon or toggle icons child
+      const isMenuTogglerIcon = (event.target as HTMLElement).classList.contains('menu-toggler')
+      const isTargetsParentTogglerIcon = (event.target as HTMLElement).parentElement?.classList.contains('menu-toggler')
+      if (menuRef.current && !menuRef.current.contains(event.target as Node) && !isMenuTogglerIcon && !isTargetsParentTogglerIcon) {
          setToggleMenu(false)
       }
    }
 
    useEffect(() => {
-      // execute for mobile and desktop
       document.addEventListener('click', handleClickOutside)
-      document.addEventListener('mousedown', handleClickOutside)
 
-      // remove events when component unmount
-      return () => {
-         document.removeEventListener('click', handleClickOutside)
-         document.removeEventListener('mousedown', handleClickOutside)
-      }
-   }, [setToggleMenu])
+      // remove event when component unmount
+      return () => document.removeEventListener('click', handleClickOutside)
+   }, [])
 
    return (
       <div
