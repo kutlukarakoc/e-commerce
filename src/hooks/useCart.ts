@@ -32,19 +32,18 @@ export const useCart = (): IUseCart => {
    }, [])
 
    // function for fetching the cart data
-   const getCart = useCallback(async () => {
-      setCartLoading(true);
+   const getCart = async () => {
+      setCartLoading(true)
       if (user?.uid) {
          try {
-            const { items }: any = await getItem('cart', user.uid);
+            const { items }: any = await getItem('cart', user.uid)
             dispatch(manageCart(items || []))
          } catch (error) {
-            console.log('get cart :', error)
             setCartError('An error has occurred, please try again.')
          }
       }
-      setCartLoading(false);
-   }, [user, dispatch]);
+      setCartLoading(false)
+   }
 
    const handleCart = async (type: string, product: IProduct | ICart) => {
       if (user?.uid) {
@@ -76,7 +75,6 @@ export const useCart = (): IUseCart => {
             // set loading state false when adding to cart process ends
             setCartLoading(false)
          } catch (error) {
-            console.log('add/delete cart:', error)
             setCartError('An error has occurred, please try again.')
          }
          setCartLoading(false)
@@ -98,7 +96,6 @@ export const useCart = (): IUseCart => {
             // set loading state false when changing to cart process ends
             setCartLoading(false)
          } catch (error) {
-            console.log('change quantity :', error)
             setCartError('An error has occurred, please try again.')
          }
          setCartLoading(false)
@@ -107,5 +104,5 @@ export const useCart = (): IUseCart => {
 
    // memoize the handleCart function to prevent unnecessary re-renders
    // memoize the returned object to prevent unnecessary re-renders
-   return useMemo(() => ({ handleCart, getCart, changeQuantity, cartLoading, cartError }), [handleCart, changeQuantity, getCart, cartLoading, cartError]);
+   return useMemo(() => ({ handleCart, getCart, changeQuantity, cartLoading, cartError }), [handleCart, changeQuantity, getCart, cartLoading, cartError])
 }
