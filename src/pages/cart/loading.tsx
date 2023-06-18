@@ -3,7 +3,7 @@ import Divider from '../../components/ui/divider'
 const LoadingSkeleton: React.FC = () => {
    return (
       <section className='container mx-auto px-4 sm:px-0 my-20 flex-1 animate-pulse'>
-         <h1 className='w-80 h-8 mb-16 rounded-lg bg-gray-600'></h1>
+         <h1 className='w-80 h-8 mb-8 rounded-lg bg-gray-600'></h1>
          <div className='grid grid-cols-8 md:gap-14'>
             <div className='col-span-8 lg:col-span-5'>
                <div className='pr-0 md:pr-11'>
@@ -26,7 +26,7 @@ const LoadingSkeleton: React.FC = () => {
                                     <div className='absolute -top-8 sm:top-0 right-0 w-5 h-5 rounded-md bg-gray-600'></div>
                                  </div>
                               </div>
-                              <div className='mt-4 ps-6 sm:ps-0 w-16 h-4 rounded-md bg-gray-600'></div>
+                              <div className='mt-4 ml-6 sm:ps-0 w-16 h-4 rounded-md bg-gray-600'></div>
                            </div>
                         </div>
                         <Divider variant='soft' styles='mt-0 mb-5' />
