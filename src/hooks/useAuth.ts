@@ -3,12 +3,16 @@ import { auth } from '../firebase/index'
 import { createUserWithEmailAndPassword, deleteUser, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth'
 
 export const useAuth = () => {
+   // loading and error states for register/sign in
    const [loading, setLoading] = useState<boolean>(false)
    const [error, setError] = useState<string | null>(null)
+   // loading and error states for verifying account
    const [verifierLoading, setVerifierLoading] = useState<boolean>(false)
    const [verifierError, setVerifierError] = useState<string | null>(null)
+   // loading and error states for reset account password
    const [resetPasswordLoading, setResetPasswordLoading] = useState<boolean>(false)
    const [resetPasswordError, setResetPasswordError] = useState<string | null>(null)
+   // loading and error states for delete account
    const [deleteUserLoading, setDeleteUserLoading] = useState<boolean>(false)
    const [deleteUserError, setDeleteUserError] = useState<string | null>(null)
 
