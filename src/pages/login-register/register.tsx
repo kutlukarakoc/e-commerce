@@ -83,9 +83,10 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
                   onSubmit={(values: IRegisterValues) => { handleRegister(values) }}
                >
                   {({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
-                     <form className='px-4 lg:px-0' onSubmit={handleSubmit}>
+                     <form data-cy='register-form' className='px-4 lg:px-0' onSubmit={handleSubmit}>
                         <div className='mb-1 h-24 grid grid-cols-2 gap-2'>
                            <Input
+                              data-cy='register-name'
                               name='registerName'
                               label='Name'
                               type='text'
@@ -96,6 +97,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
                               error={(touched.registerName && errors.registerName) ? errors.registerName : null}
                            />
                            <Input
+                              data-cy='register-surname'
                               name='registerSurname'
                               label='Surname'
                               type='text'
@@ -108,6 +110,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
                         </div>
                         <div className='mb-1 h-24'>
                            <Input
+                              data-cy='register-email'
                               name='registerEmail'
                               label='Email Address'
                               type='email'
@@ -120,6 +123,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
                         </div>
                         <div className='mb-10 h-24 relative'>
                            <Input
+                              data-cy='register-password'
                               name='registerPassword'
                               label='Password'
                               type={showPassword ? 'text' : 'password'}
@@ -142,7 +146,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
                   )}
                </Formik>
                {/* Display firestore erros if its exists */}
-               {error && <p className='text-center mt-5 text-sm text-red-500'>{error}</p>}
+               {error && <p data-cy='register-error' className='text-center mt-5 text-sm text-red-500'>{error}</p>}
                <div className='mt-10 text-center text-sm text-gray-500'>
                   <div>Already have an account?</div>
                   <div className='text-indigo-600 cursor-pointer hover:text-indigo-500 lg:cursor-default lg:hover:text-indigo-600' onClick={displayLogin}>
