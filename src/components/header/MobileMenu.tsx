@@ -32,13 +32,16 @@ const MobileMenu: React.FC<{ menuTransform: string }> = ({ menuTransform }) => {
          <div className='w-full'>
             <div data-cy='mobile-menu-footer' className='flex items-center gap-2 cursor-pointer'>
                {user?.uid
-                  ? (<div className='flex items-center gap-2 text-sm' onClick={handleLogout}>
-                     <ArrowRightOnRectangleIcon className='h-5 w-5 text-gray-700' /> Logout
-                  </div>)
-                  : (<Link to='/auth' className='flex items-center justify-center gap-2 cursor-pointer text-sm'>
-                     <ArrowRightOnRectangleIcon className='h-5 w-5 text-gray-700' />
-                     Login/Register
-                  </Link>)}
+                  ? (
+                     <div className='flex items-center gap-2 text-sm' onClick={handleLogout}>
+                        <ArrowRightOnRectangleIcon className='h-5 w-5 text-gray-700' /> Logout
+                     </div>
+                  ) : (
+                     <Link to='/auth' className='flex items-center justify-center gap-2 cursor-pointer text-sm'>
+                        <ArrowRightOnRectangleIcon className='h-5 w-5 text-gray-700' /> Login/Register
+                     </Link>
+                  )
+               }
             </div>
          </div>
       </div>
