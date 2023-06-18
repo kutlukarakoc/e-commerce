@@ -1,7 +1,7 @@
 import { useFirestore } from './useFirestore'
 import { IProduct } from '../types/productsTypes'
 import { ICart } from '../types/cartTypes'
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { useAppSelector, useAppDispatch } from '../store/hooks'
 import { manageCart } from '../store/features/cart'
 
@@ -104,5 +104,5 @@ export const useCart = (): IUseCart => {
 
    // memoize the handleCart function to prevent unnecessary re-renders
    // memoize the returned object to prevent unnecessary re-renders
-   return useMemo(() => ({ handleCart, getCart, changeQuantity, cartLoading, cartError }), [handleCart, changeQuantity, getCart, cartLoading, cartError])
+   return { handleCart, getCart, changeQuantity, cartLoading, cartError }
 }

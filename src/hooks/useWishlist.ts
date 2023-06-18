@@ -1,6 +1,6 @@
 import { useFirestore } from './useFirestore'
 import { IProduct } from '../types/productsTypes'
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { useAppSelector } from '../store/hooks'
 import { useAppDispatch } from '../store/hooks'
 import { manageWishlist } from '../store/features/wishlist'
@@ -32,19 +32,18 @@ export const useWishlist = (): IWishlist => {
    }, [])
 
    // function for fetching the wishlist data
-   const getWishlist = useCallback(async () => {
+   const getWishlist = async () => {
       setWishlistLoading(true);
       if (user?.uid) {
          try {
             const { products }: any = await getItem('wishlist', user.uid);
             dispatch(manageWishlist(products || []));
          } catch (error) {
-            console.log('get wishlist :', error)
             setWishlistError('An error has occurred, please try again.')
          }
       }
       setWishlistLoading(false);
-   }, [user, dispatch]);
+   }
 
    const handleWishlist = async (product?: IProduct, type?: string) => {
       if (user?.uid) {
@@ -83,7 +82,5 @@ export const useWishlist = (): IWishlist => {
       }
    }
 
-   // memoize the handleWishlist function to prevent unnecessary re-renders
-   // memoize the returned object to prevent unnecessary re-renders
-   return useMemo(() => ({ handleWishlist, getWishlist, wishlistLoading, wishlistError }), [handleWishlist, getWishlist, wishlistLoading, wishlistError]);
+   return { handleWishlist, getWishlist, wishlistLoading, wishlistError }
 }
