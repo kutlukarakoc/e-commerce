@@ -2,7 +2,7 @@ import { informations } from '../../../constants/home/information'
 
 const Information: React.FC = () => {
    return (
-      <section className='container mx-auto grid grid-cols-2 md:grid-cols-4 mb-32'>
+      <section className='container mx-auto grid grid-cols-2 md:grid-cols-4 mb-20'>
          {informations.map((item, index) => {
             const IconComponent = item.icon
             return (
