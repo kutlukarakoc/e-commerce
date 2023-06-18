@@ -17,6 +17,7 @@ const App: React.FC = () => {
 
 	// defining routes to not display header and footer components
 	const { pathname } = useLocation()
+	// not allowed paths for header and footer components
 	const notAllowedPaths: string[] = ['/auth']
 	const isAllowed: boolean = !notAllowedPaths.includes(pathname)
 
