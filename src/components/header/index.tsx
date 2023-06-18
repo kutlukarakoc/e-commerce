@@ -1,14 +1,18 @@
 import RightSide from './rightSide'
-import Input from '../ui/input'
 import MobileMenu from './MobileMenu'
+import Categories from './categories'
+import Search from './search'
 import logo from '../../assets/logo.png'
-import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
 import { useState, useEffect, FormEvent } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { categories } from '../../constants/header/headerConstants'
 
 const Header: React.FC = () => {
+   // hook for navigation and location data
+   const navigate = useNavigate()
+   const { pathname, search } = useLocation()
+
    // toggle state for mobile menu
    const [toggleMenu, setToggleMenu] = useState<boolean>(false)
    // CSS transform value for mobile menu animation
@@ -16,9 +20,13 @@ const Header: React.FC = () => {
    // input value state for search
    const [inputValue, setInputValue] = useState<string>('')
 
-   // hook for navigation and location data
-   const navigate = useNavigate()
-   const { pathname, search } = useLocation()
+   // form submission for search
+   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      if (inputValue) {
+         navigate(`/search-results?search=${inputValue}`)
+      }
+   }
 
    // update the menu transform based on the toggle state
    useEffect(() => {
@@ -32,21 +40,12 @@ const Header: React.FC = () => {
       } else {
          setInputValue('')
       }
-      // reset the input value and close mobile menu when the effect is cleaned up
+      // reset the input value and close mobile menu when component unmount
       return () => {
          setInputValue('')
          setToggleMenu(false)
       }
    }, [search, pathname])
-
-   // form submission for search
-   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault()
-      const value = new FormData(event.currentTarget).get('head-search') || new FormData(event.currentTarget).get('head-search-mb')
-      if (value) {
-         navigate(`/search-results?search=${value}`)
-      }
-   }
 
    return (
       <>
@@ -62,33 +61,37 @@ const Header: React.FC = () => {
                <Link to='/' className='order-1 sm:order-2 cursor-pointer w-14 h-12'>
                   <img src={logo} alt='ecommerce' className='w-full h-full block' />
                </Link>
-               {/* Search */}
-               <form data-cy='header-search-form' className='hidden sm:block order-2 max-w-xs w-full relative' onSubmit={handleSubmit}>
-                  <Input data-cy='head-search' type='text' name='head-search' placeholder='Search products' value={inputValue} autoComplete='off' pattern='.+' required onChange={e => setInputValue(e.target.value)} />
-                  <button type='submit' className='absolute right-3 top-1/2 -translate-y-1/2'>
-                     <MagnifyingGlassIcon className='w-5 h-5' />
-                  </button>
-               </form>
+               {/* Desktop Search */}
+               <Search
+                  formClasses='hidden sm:block order-2 max-w-xs w-full'
+                  formCypressAttr='header-search-form'
+                  inputCypressAttr='head-search'
+                  handleSubmit={handleSubmit}
+                  setInputValue={setInputValue}
+                  inputValue={inputValue}
+                  name='head-search'
+               />
                {/* Right-side Items */}
                <RightSide />
             </nav>
             {/* Category Links */}
             <div className='flex justify-center items-center gap-6 h-14 pb-2'>
-               {categories.map((category, index) => (
-                  <Link data-cy='header-category' key={index} to={category.path} className='hidden sm:block text-gray-800'>{category.title}</Link>
-               ))}
+               <Categories cypressAttr='header-category' className='hidden sm:block text-gray-800' />
                {/* Mobile Search */}
-               <form data-cy='header-search-form-mb' className='block sm:hidden w-11/12 mx-auto relative' onSubmit={handleSubmit}>
-                  <Input type='text' name='head-search-mb' placeholder='Search products' value={inputValue} autoComplete='off' pattern='.+' required onChange={e => setInputValue(e.target.value)} />
-                  <button type='submit' className='absolute right-3 top-1/2 -translate-y-1/2'>
-                     <MagnifyingGlassIcon className='w-5 h-5' />
-                  </button>
-               </form>
+               <Search
+                  formClasses='block sm:hidden w-11/12 mx-auto'
+                  formCypressAttr='header-search-form-mb'
+                  inputCypressAttr='head-search-mb'
+                  handleSubmit={handleSubmit}
+                  setInputValue={setInputValue}
+                  inputValue={inputValue}
+                  name='head-search-mb'
+               />
             </div>
          </header>
 
          {/* Mobile Menu */}
-         {toggleMenu && <MobileMenu categories={categories} menuTransform={menuTransform} />}
+         {toggleMenu && <MobileMenu menuTransform={menuTransform} />}
       </>
    )
 }
