@@ -1,7 +1,8 @@
-import { items } from '../../constants/footer/footerConstants'
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
+import { items } from '../../constants/footer/footerConstants'
 
-const Contents = () => {
+const Contents: React.FC = () => {
    return (
       <div className='flex flex-wrap gap-9 sm:gap-24 pb-4 sm:pb-0'>
          {items.map((item, index) => (
@@ -16,4 +17,4 @@ const Contents = () => {
    )
 }
 
-export default Contents
+export default memo(Contents)

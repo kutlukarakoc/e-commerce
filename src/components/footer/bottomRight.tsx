@@ -1,29 +1,19 @@
-import { AiFillGithub, AiFillLinkedin, AiOutlineInstagram } from 'react-icons/ai'
-import { SiLeetcode } from 'react-icons/si'
+import { memo } from 'react'
+import { footerLinks } from '../../constants/footer/bottomRightConstants'
 
-interface IFooterLinks {
-   icon: JSX.Element
-   link: string
-}
-
-const BottomRight = () => {
-
-   const footerLinks: IFooterLinks[] = [
-      { icon: <AiFillGithub size={24} />, link: 'https://github.com/kutlukarakoc' },
-      { icon: <AiFillLinkedin size={24} />, link: 'https://www.linkedin.com/in/taha-kutlu-karako%C3%A7-6939b0146/' },
-      { icon: <AiOutlineInstagram size={24} />, link: 'https://www.instagram.com/kutlukrkc/' },
-      { icon: <SiLeetcode size={24} />, link: 'https://leetcode.com/kutlukarakoc/' },
-   ]
-
+const BottomRight: React.FC = () => {
    return (
       <div className='flex gap-4 order-1 sm:order-2'>
-         {footerLinks.map((item: IFooterLinks, index) => (
-            <a key={index} href={item.link} target='_blank' rel="noreferrer">
-               {item.icon}
-            </a>
-         ))}
+         {footerLinks.map((item, index) => {
+            const Icon = item.icon
+            return (
+               <a key={index} href={item.link} target='_blank' rel="noreferrer">
+                  <Icon size={24} />
+               </a>
+            )
+         })}
       </div>
    )
 }
 
-export default BottomRight
+export default memo(BottomRight)
