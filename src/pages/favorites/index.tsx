@@ -1,5 +1,6 @@
 import ProductCard from '../../components/product-card'
 import Divider from '../../components/ui/divider'
+import Title from '../../components/Title'
 import LoadingSkeleton from '../../components/product-card/loading'
 import NotFound from '../../components/not-found'
 import { useWishlist } from '../../hooks/useWishlist'
@@ -31,7 +32,7 @@ const Favorites = () => {
 
    return (
       <div className='container mx-auto my-20 flex-1 px-4 sm:px-0'>
-         <h1 data-cy='wishlist-title' className='text-center sm:text-left text-2xl sm:text-3xl font-semibold text-gray-700'>My Wishlist ({wishlist.length} products)</h1>
+         <Title cypressAttr='wishlist-title' className='sm:text-left'>My Wishlist ({wishlist.length} products)</Title>
          <Divider variant='soft' />
          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
             <ProductCard products={wishlist} icon='trash' />

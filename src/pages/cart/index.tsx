@@ -1,5 +1,6 @@
 import Products from './products/products'
 import Summary from './summary/summary'
+import Title from '../../components/Title'
 import LoadingSkeleton from './loading'
 import { useAppSelector } from '../../store/hooks'
 import { useCart } from '../../hooks/useCart'
@@ -24,7 +25,7 @@ const Cart: React.FC = () => {
       <section className='container mx-auto px-4 sm:px-0 my-20 flex-1'>
          {cart.length ? (
             <>
-               <h1 data-cy='cart-title' className='text-center sm:text-left text-2xl sm:text-3xl font-semibold text-gray-700'>Shopping Cart ({cart.length} products)</h1>
+               <Title cypressAttr='cart-title' className='sm:text-left'>Shopping Cart ({cart.length} products)</Title>
                <div className='grid grid-cols-8'>
                   <Products />
                   <Summary />

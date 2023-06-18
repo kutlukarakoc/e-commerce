@@ -1,6 +1,6 @@
 import Input from '../../components/ui/input'
 import Button from '../../components/ui/button'
-import Title from './title'
+import Title from '../../components/Title'
 import Spinner from '../../components/ui/spinner'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
@@ -75,7 +75,7 @@ const Register: React.FC<IRegister> = ({ displayLogin }) => {
    return (
       <div className='border-l border-solid border-gray-300 bg-gray-100 w-full h-full'>
          <div className='flex min-h-full flex-1 flex-col justify-center'>
-            <Title text='Register' />
+            <Title>Register</Title>
             <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
                <Formik
                   initialValues={{ registerName: '', registerSurname: '', registerEmail: '', registerPassword: '' }}

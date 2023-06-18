@@ -1,6 +1,6 @@
 import Input from '../../components/ui/input'
 import Button from '../../components/ui/button'
-import Title from './title'
+import Title from '../../components/Title'
 import Spinner from '../../components/ui/spinner'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
@@ -57,7 +57,7 @@ const Login: React.FC<ILogin> = ({ displayRegister, loginTransform }) => {
 
    return (
       <div className={'bg-white flex w-full min-h-full flex-1 flex-col justify-center z-10 absolute lg:relative transition-transform duration-300 ' + loginTransform}>
-         <Title text='Sign in to your account' />
+         <Title>Sign in to your account</Title>
          <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
             <Formik
                initialValues={{ loginEmail: '', loginPassword: '' }}
