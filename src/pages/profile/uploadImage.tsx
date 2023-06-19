@@ -31,7 +31,7 @@ const UploadImage: React.FC<IUploadImage> = ({ uid, profile, setProfile }) => {
    return (
       <div className={`w-32 h-32 rounded-full mx-auto relative ${fileError ? 'mb-24' : 'mb-14'}`}>
          <input type='file' name='photoURL' id='image' accept='image/*' className='sr-only' ref={fileInput} onChange={handleImageChange} />
-         <img src={profile?.photoURL ? profile.photoURL : userNullImage} alt='' className={`rounded-full w-full h-full block mb-2 shadow ${fileLoading ? 'grayscale' : 'grayscale-0'}`} />
+         <img data-cy='profile-picture' src={profile?.photoURL ? profile.photoURL : userNullImage} alt='' className={`rounded-full w-full h-full block mb-2 shadow ${fileLoading ? 'grayscale' : 'grayscale-0'}`} />
          <div className='flex items-center justify-center gap-4'>
             <CameraIcon className={`w-6 h-6 cursor-pointer ${fileLoading ? 'text-gray-400 cursor-not-allowed' : ''}`} onClick={() => fileInput.current?.click()} />
             <TrashIcon className={`w-6 h-6 cursor-pointer ${fileLoading ? 'text-gray-400 cursor-not-allowed' : ''}`} onClick={() => setProfile({ ...profile, photoURL: userNullImage })} />

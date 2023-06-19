@@ -74,7 +74,7 @@ const Profile: React.FC = () => {
             <form className='mx-auto w-full max-w-sm sm:max-w-md' onSubmit={handleSaveForm}>
                <UploadImage profile={profile} setProfile={setProfile} uid={user?.uid} />
 
-               <h3 className='mb-4 text-center'>Account created at: {profile?.metadata.creationTime ? profile.metadata.creationTime : 'unknown'}</h3>
+               <h3 data-cy='creation-time' className='mb-4 text-center'>Account created at: {profile?.metadata.creationTime ? profile.metadata.creationTime : 'unknown'}</h3>
 
                {user?.emailVerified && <h3 className='mb-8 text-center flex justify-center items-center gap-2 text-green-500'>
                   <CheckCircleIcon className='w-5 h-5' />
@@ -82,24 +82,24 @@ const Profile: React.FC = () => {
                </h3>}
 
                <div className='mb-6 grid grid-cols-2 gap-6'>
-                  <Input name='name' label='Name' type='text' placeholder='Michael' value={profile?.name ? profile.name : ''} onChange={handleChange} />
-                  <Input name='surname' label='Surname' type='text' placeholder='Jackson' value={profile?.surname ? profile.surname : ''} onChange={handleChange} />
+                  <Input data-cy='profile-name' name='name' label='Name' type='text' placeholder='Michael' value={profile?.name ? profile.name : ''} onChange={handleChange} />
+                  <Input data-cy='profile-surname' name='surname' label='Surname' type='text' placeholder='Jackson' value={profile?.surname ? profile.surname : ''} onChange={handleChange} />
                </div>
 
                <div className='mb-6 grid grid-cols-2 gap-6'>
-                  <Input name='email' label='Email' type='email' value={profile?.email ? profile.email : ''} readOnly />
-                  <Input name='phoneNumber' label='Phone Number' type='text' placeholder='54645654654' value={profile?.phoneNumber ? profile.phoneNumber : ''} onChange={handleChange} />
+                  <Input data-cy='profile-email' name='email' label='Email' type='email' value={profile?.email ? profile.email : ''} readOnly />
+                  <Input data-cy='profile-phone' name='phoneNumber' label='Phone Number' type='text' placeholder='54645654654' value={profile?.phoneNumber ? profile.phoneNumber : ''} onChange={handleChange} />
                </div>
 
                <div className='mb-6 grid grid-cols-2 gap-6'>
                   <Password email={user?.email} />
-                  <Input name='birthday' label='Birthday' type='date' value={profile?.birthday ? profile.birthday : ''} onChange={handleChange} />
+                  <Input data-cy='profile-birthday' name='birthday' label='Birthday' type='date' value={profile?.birthday ? profile.birthday : ''} onChange={handleChange} />
                </div>
 
                <div className='mb-10'>
                   <div className='block text-sm font-medium leading-6 text-gray-700 mb-1.5'>Gender</div>
                   <div className='flex items-center gap-4'>
-                     <Radio name='gender' options={genderConstants} selected={profile?.gender ? profile.gender : ''} onChange={handleChange} />
+                     <Radio data-cy='profile-gender' name='gender' options={genderConstants} selected={profile?.gender ? profile.gender : ''} onChange={handleChange} />
                   </div>
                </div>
 
