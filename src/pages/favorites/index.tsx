@@ -18,6 +18,10 @@ const Favorites = () => {
       return <NotFound title='Something went wrong.' text='We are currently unable to view your wishlist. Please try again later.' link='/' linkText='Go back home' />
    }
 
+   if(!wishlist.length) {
+      return <NotFound title='Your wihslist is empty.' link='/products' linkText='See products' isErrorCode={false} />
+   }
+
    return (
       <div className='container mx-auto my-20 flex-1 px-4 sm:px-0'>
          {
